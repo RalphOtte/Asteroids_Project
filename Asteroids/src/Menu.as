@@ -19,9 +19,10 @@ package
 	 public class Menu extends Sprite
 	{
 		private var _1P:Player;
-		private var gameStartTimer:Timer = new Timer (1500, 1);
-		private var MenuMusic:Sound;
-		[Embed(source = "../Assets/MainMenu/Asteroids.png")]
+		private var gameStartTimer:Timer = new Timer (500, 1);
+		private var MenuMusic:Sound; // MENU MUSIC
+		
+		[Embed(source = "../Assets/MainMenu/Asteroids.png")] //AL DEZE PNG's ZIJN VOOR DE MENU ITEMS, DIE WORDEN BINNENKORT VERVANGEN DOOR DE ART VAN ARTIST
 		private var mainMenuTitle:Class;
 		private var mMenuTitle:Bitmap;
 		[Embed(source="../Assets/MainMenu/NewButton.png")]
@@ -127,48 +128,59 @@ package
 		{
 			if (e.keyCode == 49) // Keycode 1
 			{
-				
-				//gameStartTimer = new Timer;
-				gameStartTimer.addEventListener(TimerEvent.TIMER, tick);
+				gameStartTimer.addEventListener(TimerEvent.TIMER, tick1); //Timer voor instantiatie van OnePlayer
 				gameStartTimer.start();
-				
-				
-				
-				
 			}
 			if (e.keyCode == 50) // Keycode 2
 			{
-				TwoPlayer();
+				gameStartTimer.addEventListener(TimerEvent.TIMER, tick2); //Timer voor instantiatie van TwoPlayer
+				gameStartTimer.start();
 			}
 			if (e.keyCode == 51) // Keycode 3
 			{
-				Options();
+				gameStartTimer.addEventListener(TimerEvent.TIMER, tick3); //Timer voor instantiatie van Options
+				gameStartTimer.start();
 			}
 			if (e.keyCode == 52) // Keycode 4
 			{
-				Credits();
+				gameStartTimer.addEventListener(TimerEvent.TIMER, tick4); //Timer voor instantiatie van Credits
+				gameStartTimer.start();
 			}
 			if (e.keyCode == 53) // Keycode 5
 			{
 				System.exit(0); //SLUIT HET PROGRAMMA
 			}
 		}
-		function tick(e:Event):void
+		function tick1(e:Event):void  //Functie die aangeroepen wordt als tick1(TIMER) aangeroepen wordt.
 		{
 			OnePlayer();
 		}
+		function tick2(e:Event):void  //Functie die aangeroepen wordt als tick2(TIMER) aangeroepen wordt.
+		{
+			TwoPlayer();
+		}
+		function tick3(e:Event):void  //Functie die aangeroepen wordt als tick3(TIMER) aangeroepen wordt.
+		{
+			Options();
+		}
+		function tick4(e:Event):void  //Functie die aangeroepen wordt als tick4(TIMER) aangeroepen wordt.
+		{
+			Credits();
+		}
 		public function OnePlayer():void
 		{
-			trace("sdfghjk");
+			trace("Oneplayer wordt aangeroepen");
 			// StartGame();
-			_1P = new Player;
-			addChild(_1P);
+			_1P = new Player; // DIT WORDT VERVANGEN DOOR FUNCTIES UIT DE GAMEMANAGER CLASS(Die wordt aangeroepen ,
+			addChild(_1P);	  // Daarin wordt een integer hieruit opgehaald met welke selectie is gemaakt in het menu.
+			//	_1P.x = stage.stageWidth / 2;
+			//	_1P.y = stage.stageHeight / 2; //De X & Y zijn weggecomment vanwege: Error #1009: "Cannot access a property or method of a null object reference."
 		}
 		public function TwoPlayer():void
 		{
 			// StartGame
 		}
-		private function Options():void
+		private function Options():void //Options voor SFX & Music etc.
 		{
 			
 		}
