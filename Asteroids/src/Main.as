@@ -28,6 +28,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			startMenu();
+			
 		}
 		
 		private function startMenu():void //MAIN MENU

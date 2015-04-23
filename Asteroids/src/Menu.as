@@ -10,8 +10,6 @@ package
 	import flash.media.Sound;
 	import flash.net.URLRequest;
 	import flash.system.System;
-
-
 	
 	/**
 	 * ...
@@ -134,12 +132,7 @@ package
 				gameStartTimer.addEventListener(TimerEvent.TIMER, tick);
 				gameStartTimer.start();
 				
-				function tick(e:Event):void
-				{
-					trace("TIMUR");
-					//stage.addEventListener(Event.ENTER_FRAME, OnePlayer());
-					OnePlayer();
-				}
+				
 				
 				
 			}
@@ -160,8 +153,13 @@ package
 				System.exit(0); //SLUIT HET PROGRAMMA
 			}
 		}
+		function tick(e:Event):void
+		{
+			OnePlayer();
+		}
 		public function OnePlayer():void
 		{
+			trace("sdfghjk");
 			// StartGame();
 			_1P = new Player;
 			addChild(_1P);

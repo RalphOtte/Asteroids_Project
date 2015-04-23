@@ -26,8 +26,8 @@ package
 		{
 			pHolder = new placeHolder;
 			addChild(pHolder);
-			this.x = stage.stageWidth / 3;
-			this.y = stage.stageHeight / 3;
+			this.x = stage.stageWidth / 2 ;
+			this.y = 720 / 2;
 		}
 	}
 
