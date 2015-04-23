@@ -5,11 +5,11 @@ package
 	import flash.display.Bitmap;
 	import flash.events.FocusEvent;
 	import flash.events.KeyboardEvent;
-	import flash.system.System;
-	import flash.media.Sound;
-	import flash.net.URLRequest;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	import flash.media.Sound;
+	import flash.net.URLRequest;
+	import flash.system.System;
 
 
 	
@@ -21,7 +21,7 @@ package
 	 public class Menu extends Sprite
 	{
 		private var _1P:Player;
-		//gameStartTimer:Timer = new Timer (1500, 1);
+		private var gameStartTimer:Timer = new Timer (1500, 1);
 		private var MenuMusic:Sound;
 		[Embed(source = "../Assets/MainMenu/Asteroids.png")]
 		private var mainMenuTitle:Class;
@@ -129,18 +129,19 @@ package
 		{
 			if (e.keyCode == 49) // Keycode 1
 			{
-				/*
-				gameStartTimer = new Timer;
+				
+				//gameStartTimer = new Timer;
 				gameStartTimer.addEventListener(TimerEvent.TIMER, tick);
 				gameStartTimer.start();
 				
 				function tick(e:Event):void
 				{
 					trace("TIMUR");
-					stage.addEventListener(Event.ENTER_FRAME, OnePlayer(null));
+					//stage.addEventListener(Event.ENTER_FRAME, OnePlayer());
+					OnePlayer();
 				}
-				*/
-				OnePlayer();
+				
+				
 			}
 			if (e.keyCode == 50) // Keycode 2
 			{
