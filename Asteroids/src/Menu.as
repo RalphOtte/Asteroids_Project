@@ -8,6 +8,9 @@ package
 	import flash.system.System;
 	import flash.media.Sound;
 	import flash.net.URLRequest;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+
 
 	
 	/**
@@ -17,6 +20,8 @@ package
 	
 	 public class Menu extends Sprite
 	{
+		private var _1P:Player;
+		//gameStartTimer:Timer = new Timer (1500, 1);
 		private var MenuMusic:Sound;
 		[Embed(source = "../Assets/MainMenu/Asteroids.png")]
 		private var mainMenuTitle:Class;
@@ -69,12 +74,12 @@ package
 			 mMenuTitle = new mainMenuTitle; //Title Art
 			 addChild(mMenuTitle);
 			 
-			 nButtonArt = new newButtonArt; // New Game Button Art
+			 nButtonArt = new newButtonArt; // One Player Button Art
 			 addChild(nButtonArt); 
 			 nButtonArt.x = stage.stageWidth / 2 - 40;
 			 nButtonArt.y = 300;
 			 
-			 lButtonArt = new loadButtonArt; // Load Game Button Art
+			 lButtonArt = new loadButtonArt; // Two Player Button Art
 			 addChild(lButtonArt);
 			 lButtonArt.x = stage.stageWidth / 2 - 45;
 			 lButtonArt.y = 350; 
@@ -124,25 +129,53 @@ package
 		{
 			if (e.keyCode == 49) // Keycode 1
 			{
-				// Start NewGame();
+				/*
+				gameStartTimer = new Timer;
+				gameStartTimer.addEventListener(TimerEvent.TIMER, tick);
+				gameStartTimer.start();
+				
+				function tick(e:Event):void
+				{
+					trace("TIMUR");
+					stage.addEventListener(Event.ENTER_FRAME, OnePlayer(null));
+				}
+				*/
+				OnePlayer();
 			}
 			if (e.keyCode == 50) // Keycode 2
 			{
-				// Start LoadGame();
+				TwoPlayer();
 			}
 			if (e.keyCode == 51) // Keycode 3
 			{
-				// Start Options();
+				Options();
 			}
 			if (e.keyCode == 52) // Keycode 4
 			{
-				// Start Credits();
+				Credits();
 			}
 			if (e.keyCode == 53) // Keycode 5
 			{
 				System.exit(0); //SLUIT HET PROGRAMMA
 			}
 		}
+		public function OnePlayer():void
+		{
+			// StartGame();
+			_1P = new Player;
+			addChild(_1P);
+		}
+		public function TwoPlayer():void
+		{
+			// StartGame
+		}
+		private function Options():void
+		{
+			
+		}
+		private function Credits():void ///BUTTON ERBIJ MAKEN ZODAT DE CREDITS SNELLER GAAN SCROLLEN
+		{
+			
+		}	
 	}
-
 }

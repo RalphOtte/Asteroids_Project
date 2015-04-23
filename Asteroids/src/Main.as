@@ -5,8 +5,6 @@ package
 	import flash.display.Bitmap;
 	import flash.events.FocusEvent;
 	import flash.events.KeyboardEvent;
-	import flash.media.Sound;
-	import flash.net.URLRequest;
 	import flash.system.System;
 
 	
@@ -17,8 +15,8 @@ package
 	
 	public class Main extends Sprite 
 	{
-		private var Me:Menu;
-		
+		public var Me:Menu;
+		private var _1IsDown:Boolean = false;
 		
 		
 		public function Main():void 
@@ -37,28 +35,33 @@ package
 
 			Me = new Menu();
 			addChild(Me);
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
+			stage.addEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
+			
 			
 		}
 		
-		private function NewGame(e:KeyboardEvent):void
+		private function checkButtonUp(e:KeyboardEvent):void 
 		{
-			// SELECT SAVE SLOT
-			// StartGame
+			if (e.keyCode == 49)
+			{
+				_1IsDown = false;
+			}
 		}
-		private function LoadGame(e:KeyboardEvent):void
+		public function checkButtonDown(e:KeyboardEvent):void
 		{
-			// SELECT SAVE SLOT
-			// StartGame
+			if (e.keyCode == 49)
+			{
+				_1IsDown = true;
+				
+			}
+			if (_1IsDown == true)
+			{
+				removeChild(Me);
+			}
 		}
-		private function Options(e:KeyboardEvent):void
-		{
-			
-		}
-		private function Credits(e:KeyboardEvent):void
-		{
-			
-		}	
 		
+
 	}
 	
 }
