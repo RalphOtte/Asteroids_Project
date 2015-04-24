@@ -1,6 +1,5 @@
 package  
 {
-	
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
 	import flash.events.Event;
@@ -15,8 +14,8 @@ package
 	public class Player extends Sprite
 	{
 		[Embed(source = "../Assets/Game/PlayerShips/placeholder.png")]
-		private var placeHolder:Class;
-		private var pHolder:Bitmap;
+		private var _placeHolderPlayer:Class;
+		private var _pHolderPlayer:Bitmap;
 		
 		public function Player() 
 		{
@@ -24,10 +23,9 @@ package
 		}
 		private function init(e:Event):void
 		{
-			pHolder = new placeHolder;
-			addChild(pHolder);
-			this.x = stage.stageWidth / 2 ;
-			this.y = 720 / 2;
+			trace("");
+			_pHolderPlayer = new _placeHolderPlayer;
+			addChild(_pHolderPlayer);
 		}
 	}
 

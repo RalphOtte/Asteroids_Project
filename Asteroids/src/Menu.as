@@ -10,7 +10,7 @@ package
 	import flash.media.Sound;
 	import flash.net.URLRequest;
 	import flash.system.System;
-	
+
 	/**
 	 * ...
 	 * @author Ralph Otte
@@ -18,9 +18,10 @@ package
 	
 	 public class Menu extends Sprite
 	{
-		private var _1P:Player;
-		private var gameStartTimer:Timer = new Timer (500, 1);
-		private var MenuMusic:Sound; // MENU MUSIC
+		private var _1Player:Player; 			// Player Class wordt aangeroepen.
+		private var _modeSelectTimer:Timer = new Timer (1100, 1); // Algemene timer van een halve seconde. (Kan ook op andere plaatsen aangeroepen worden zonder problemen dat hij wat anders aanroept)
+		private var _MenuMusic:Sound; 		// MENU MUSIC(muziek nog in de game zetten)
+		private var _GM:GameManager;		// GameManager Class wordt aangeroepen.
 		
 		[Embed(source = "../Assets/MainMenu/Asteroids.png")] //AL DEZE PNG's ZIJN VOOR DE MENU ITEMS, DIE WORDEN BINNENKORT VERVANGEN DOOR DE ART VAN ARTIST
 		private var mainMenuTitle:Class;
@@ -67,8 +68,8 @@ package
 		
 		removeEventListener(Event.ADDED_TO_STAGE, init);
 				
-			 MenuMusic = new Sound(new URLRequest("../Assets/Music/MUZIEK")); //MUziek voor menu
-			 MenuMusic.play(0, 999);
+			 _MenuMusic = new Sound(new URLRequest("../Assets/Music/MUZIEK")); //Muziek voor menu
+			 _MenuMusic.play(0, 999);
 		
 			 mMenuTitle = new mainMenuTitle; //Title Art
 			 addChild(mMenuTitle);
@@ -128,59 +129,65 @@ package
 		{
 			if (e.keyCode == 49) // Keycode 1
 			{
-				gameStartTimer.addEventListener(TimerEvent.TIMER, tick1); //Timer voor instantiatie van OnePlayer
-				gameStartTimer.start();
+				_modeSelectTimer.addEventListener(TimerEvent.TIMER, OnePlayerChosen); //Timer voor instantiatie van OnePlayer
+				_modeSelectTimer.start();
 			}
 			if (e.keyCode == 50) // Keycode 2
 			{
-				gameStartTimer.addEventListener(TimerEvent.TIMER, tick2); //Timer voor instantiatie van TwoPlayer
-				gameStartTimer.start();
+				_modeSelectTimer.addEventListener(TimerEvent.TIMER, TwoPlayerChosen); //Timer voor instantiatie van TwoPlayer
+				_modeSelectTimer.start();
 			}
 			if (e.keyCode == 51) // Keycode 3
 			{
-				gameStartTimer.addEventListener(TimerEvent.TIMER, tick3); //Timer voor instantiatie van Options
-				gameStartTimer.start();
+				_modeSelectTimer.addEventListener(TimerEvent.TIMER, OptionsChosen); //Timer voor instantiatie van Options
+				_modeSelectTimer.start();
 			}
 			if (e.keyCode == 52) // Keycode 4
 			{
-				gameStartTimer.addEventListener(TimerEvent.TIMER, tick4); //Timer voor instantiatie van Credits
-				gameStartTimer.start();
+				_modeSelectTimer.addEventListener(TimerEvent.TIMER, CreditsChosen); //Timer voor instantiatie van Credits
+				_modeSelectTimer.start();
 			}
 			if (e.keyCode == 53) // Keycode 5
 			{
 				System.exit(0); //SLUIT HET PROGRAMMA
 			}
 		}
-		function tick1(e:Event):void  //Functie die aangeroepen wordt als tick1(TIMER) aangeroepen wordt.
+		function OnePlayerChosen(e:Event):void  //Functie die aangeroepen wordt als OnePlayerChosen(TIMER) aangeroepen wordt.
 		{
 			OnePlayer();
 		}
-		function tick2(e:Event):void  //Functie die aangeroepen wordt als tick2(TIMER) aangeroepen wordt.
+		function TwoPlayerChosen(e:Event):void  //Functie die aangeroepen wordt als TwoPlayerChosen(TIMER) aangeroepen wordt.
 		{
 			TwoPlayer();
 		}
-		function tick3(e:Event):void  //Functie die aangeroepen wordt als tick3(TIMER) aangeroepen wordt.
+		function OptionsChosen(e:Event):void  //Functie die aangeroepen wordt als OptionsChosen(TIMER) aangeroepen wordt.
 		{
 			Options();
 		}
-		function tick4(e:Event):void  //Functie die aangeroepen wordt als tick4(TIMER) aangeroepen wordt.
+		function CreditsChosen(e:Event):void  //Functie die aangeroepen wordt als CreditsChosen(TIMER) aangeroepen wordt.
 		{
 			Credits();
 		}
 		public function OnePlayer():void
 		{
-			trace("Oneplayer wordt aangeroepen");
-			// StartGame();
-			_1P = new Player; // DIT WORDT VERVANGEN DOOR FUNCTIES UIT DE GAMEMANAGER CLASS(Die wordt aangeroepen ,
-			addChild(_1P);	  // Daarin wordt een integer hieruit opgehaald met welke selectie is gemaakt in het menu.
-			//	_1P.x = stage.stageWidth / 2;
-			//	_1P.y = stage.stageHeight / 2; //De X & Y zijn weggecomment vanwege: Error #1009: "Cannot access a property or method of a null object reference."
+			trace("GameManager Class wordt aangeroepen (Menu OnePlayer function)");
+			_GM = new GameManager();	//Spawned de GM
+			addChild(_GM);
+			
+			_1Player = new Player;	//Spawned de player
+			addChild(_1Player);
+			trace(_1Player.x + " X (Menu OnePlayer function)"); // trace X = 0		(WAAROM?)
+			trace(_1Player.y + " Y (Menu OnePlayer function)"); // trace Y = 0		(WAAROM?)
+			_1Player.x = 400;
+			_1Player.y = 600;
+			trace(_1Player.x + " X (Menu OnePlayer function)"); // trace X = 400
+			trace(_1Player.y + " Y (Menu OnePlayer function)"); // trace Y = 600; (MAAR HIJ LAAT NIKS ZIEN)
 		}
 		public function TwoPlayer():void
 		{
-			// StartGame
+			
 		}
-		private function Options():void //Options voor SFX & Music etc.
+		private function Options():void //Options voor SFX & Music etc.(EN CONTROLS OFC)
 		{
 			
 		}
