@@ -21,7 +21,11 @@ package
 		private var _1Player:Player; 			// Player Class wordt aangeroepen.
 		private var _modeSelectTimer:Timer = new Timer (1100, 1); // Algemene timer van een halve seconde. (Kan ook op andere plaatsen aangeroepen worden zonder problemen dat hij wat anders aanroept)
 		private var _MenuMusic:Sound; 		// MENU MUSIC(muziek nog in de game zetten)
-		private var _GM:GameManager;		// GameManager Class wordt aangeroepen.
+		
+		//[Embed(source="../Assets/MainMenu/menu_voor_space_ding.jpg")]    NIEUWE BACKGROUND
+		//private var _MenuBackground:Class;							   NIEUWE BACKGROUND
+		//private var _MenuBack:Bitmap;									   NIEUWE BACKGROUND
+		
 		
 		[Embed(source = "../Assets/MainMenu/Asteroids.png")] //AL DEZE PNG's ZIJN VOOR DE MENU ITEMS, DIE WORDEN BINNENKORT VERVANGEN DOOR DE ART VAN ARTIST
 		private var mainMenuTitle:Class;
@@ -57,6 +61,7 @@ package
 		private var point5Art:Class;
 		private var p5Art:Bitmap;
 		
+		
 		public function Menu() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -70,6 +75,9 @@ package
 			 _MenuMusic = new Sound(new URLRequest("../Assets/Music/MUZIEK")); //Muziek voor menu
 			 _MenuMusic.play(0, 999);
 		
+			// _MenuBack = new _MenuBackground;		NIEUWE BACKGROUND
+			// addChild(_MenuBack);					NIEUWE BACKGROUND
+			 
 			 mMenuTitle = new mainMenuTitle; //Title Art
 			 addChild(mMenuTitle);
 			 
@@ -123,6 +131,7 @@ package
 			 addChild(p5Art);
 			 p5Art.x = stage.stageWidth / 3 - 20;
 			 p5Art.y = 500;
+			 
 	}
 		private function mainSelect(e:KeyboardEvent):void //Draait tegelijk met StartMenu(Doordat het alleen EventListener toevoegt, en niet weghaalt)
 		{
@@ -133,22 +142,22 @@ package
 			}
 			if (e.keyCode == 49) // Keycode 1
 			{
-				_modeSelectTimer.addEventListener(TimerEvent.TIMER, OnePlayerChosen); //Timer voor instantiatie van OnePlayer
+				_modeSelectTimer.addEventListener(TimerEvent.TIMER, OPChoice); //Timer voor instantiatie van OnePlayer
 				_modeSelectTimer.start();
 			}
 			if (e.keyCode == 50) // Keycode 2
 			{
-				_modeSelectTimer.addEventListener(TimerEvent.TIMER, TwoPlayerChosen); //Timer voor instantiatie van TwoPlayer
+				_modeSelectTimer.addEventListener(TimerEvent.TIMER, TPChoice); //Timer voor instantiatie van TwoPlayer
 				_modeSelectTimer.start();
 			}
 			if (e.keyCode == 51) // Keycode 3
 			{
-				_modeSelectTimer.addEventListener(TimerEvent.TIMER, OptionsChosen); //Timer voor instantiatie van Options
+				_modeSelectTimer.addEventListener(TimerEvent.TIMER, OptChoice); //Timer voor instantiatie van Options
 				_modeSelectTimer.start();
 			}
 			if (e.keyCode == 52) // Keycode 4
 			{
-				_modeSelectTimer.addEventListener(TimerEvent.TIMER, CreditsChosen); //Timer voor instantiatie van Credits
+				_modeSelectTimer.addEventListener(TimerEvent.TIMER, CredChoice); //Timer voor instantiatie van Credits
 				_modeSelectTimer.start();
 			}
 			if (e.keyCode == 53) // Keycode 5
@@ -156,39 +165,29 @@ package
 				System.exit(0); //SLUIT HET PROGRAMMA
 			}
 		}
-		function OnePlayerChosen(e:Event):void  //Functie die aangeroepen wordt als OnePlayerChosen(TIMER) aangeroepen wordt.
+		function OPChoice(e:Event):void  //Functie die aangeroepen wordt als OnePlayerChosen(TIMER) aangeroepen wordt.
 		{
-			OnePlayer();
+			trace("GameManager Class wordt aangeroepen (Menu class, OnePlayer function)");
+			dispatchEvent(new Event("OPChoice"));
+			trace("One Player = chosen" + " (Menu class, OnePlayerChosen function)");
 		}
-		function TwoPlayerChosen(e:Event):void  //Functie die aangeroepen wordt als TwoPlayerChosen(TIMER) aangeroepen wordt.
+		function TPChoice(e:Event):void  //Functie die aangeroepen wordt als TwoPlayerChosen(TIMER) aangeroepen wordt.
 		{
-			TwoPlayer();
+			//TwoPlayer();
+			dispatchEvent(new Event("TPChoice"));
+			trace("Two Player = chosen" + " (Menu class, TwoPlayerChosen function)");
 		}
-		function OptionsChosen(e:Event):void  //Functie die aangeroepen wordt als OptionsChosen(TIMER) aangeroepen wordt.
+		function OptChoice(e:Event):void  //Functie die aangeroepen wordt als OptionsChosen(TIMER) aangeroepen wordt.
 		{
-			Options();
+			//Options();
+			dispatchEvent(new Event("OptChoice"));
+			trace("Options = chosen" + " (Menu class, OptionsChosen function)");
 		}
-		function CreditsChosen(e:Event):void  //Functie die aangeroepen wordt als CreditsChosen(TIMER) aangeroepen wordt.
+		function CredChoice(e:Event):void  //Functie die aangeroepen wordt als CreditsChosen(TIMER) aangeroepen wordt.
 		{
-			Credits();
+			//Credits();
+			dispatchEvent(new Event("CredChoice"));
+			trace("Credits = chosen" + " (Menu class, CreditsChosen function)");
 		}
-		public function OnePlayer():void
-		{
-			trace("GameManager Class wordt aangeroepen (Menu OnePlayer function)");
-			_GM = new GameManager();	//Spawned de GM
-			addChild(_GM);
-		}
-		public function TwoPlayer():void
-		{
-			
-		}
-		private function Options():void //Options voor SFX & Music etc.(EN CONTROLS OFC)
-		{
-			
-		}
-		private function Credits():void ///BUTTON ERBIJ MAKEN ZODAT DE CREDITS SNELLER GAAN SCROLLEN
-		{
-			
-		}	
 	}
 }

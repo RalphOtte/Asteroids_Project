@@ -19,17 +19,17 @@ package
 		{
 			// Functie voor Score/Recordtijd
 			// Functie voor de finish + new record ja/nee
-			trace("GM wordt geinstantieerd (GameManager Class GameManager function)");						//DIT WORDT WEL GETRACED
+			trace("GM wordt geinstantieerd (GameManager class, GameManager function)");								
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
-			trace(addEventListener(Event.ADDED_TO_STAGE, init) + " (GameManager Class GameManager function)");											//WORDT ALS "UNDEFINED" GETRACED
+			trace(addEventListener(Event.ADDED_TO_STAGE, init) + " (GameManager class, GameManager function)" + " (Info: INIT Trace)");		
 		}
 		
 		private function init(e:Event):void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			trace("GM INIT wordt weggehaald (GameManager Class init function)");						//DIT WORDT NIET GETRACED
-			// Check welke mode hij moet starten(Oneplayer, Twoplayer, Options of Credits(Misschien met behulp van een variable binnen de MENU class?)
-			trace("GM 1 Player added (GameManager Class init function)");
+			trace("GM INIT wordt weggehaald (GameManager class, init function)");						
+			//Check welke mode hij moet starten(Oneplayer, Twoplayer, Options of Credits(Met behulp van dispatchEvents)
+			trace("GM 1 Player added (GameManager class, init function)");
 			_1Player = new Player;
 			addChild(_1Player);
 		}	
