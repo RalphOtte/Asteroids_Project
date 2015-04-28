@@ -11,6 +11,7 @@ package
 	 * ...
 	 * @author Ralph Otte
 	 */
+	
 	public class Player extends Sprite
 	{
 		[Embed(source = "../Assets/Game/PlayerShips/placeholder.png")]
@@ -23,10 +24,8 @@ package
 		}
 		private function init(e:Event):void
 		{
-			trace("");
 			_pHolderPlayer = new _placeHolderPlayer;
 			addChild(_pHolderPlayer);
 		}
 	}
-
 }

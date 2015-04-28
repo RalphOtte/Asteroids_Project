@@ -57,7 +57,6 @@ package
 		private var point5Art:Class;
 		private var p5Art:Bitmap;
 		
-		
 		public function Menu() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -66,7 +65,7 @@ package
 		private function init(e:Event):void
 		{
 		
-		removeEventListener(Event.ADDED_TO_STAGE, init);
+			 removeEventListener(Event.ADDED_TO_STAGE, init);
 				
 			 _MenuMusic = new Sound(new URLRequest("../Assets/Music/MUZIEK")); //Muziek voor menu
 			 _MenuMusic.play(0, 999);
@@ -127,6 +126,11 @@ package
 	}
 		private function mainSelect(e:KeyboardEvent):void //Draait tegelijk met StartMenu(Doordat het alleen EventListener toevoegt, en niet weghaalt)
 		{
+			if (e.keyCode == 80) //keycode P
+			{
+				trace("Sytem Paused")
+				System.pause();
+			}
 			if (e.keyCode == 49) // Keycode 1
 			{
 				_modeSelectTimer.addEventListener(TimerEvent.TIMER, OnePlayerChosen); //Timer voor instantiatie van OnePlayer
@@ -173,15 +177,6 @@ package
 			trace("GameManager Class wordt aangeroepen (Menu OnePlayer function)");
 			_GM = new GameManager();	//Spawned de GM
 			addChild(_GM);
-			
-			_1Player = new Player;	//Spawned de player
-			addChild(_1Player);
-			trace(_1Player.x + " X (Menu OnePlayer function)"); // trace X = 0		(WAAROM?)
-			trace(_1Player.y + " Y (Menu OnePlayer function)"); // trace Y = 0		(WAAROM?)
-			_1Player.x = 400;
-			_1Player.y = 600;
-			trace(_1Player.x + " X (Menu OnePlayer function)"); // trace X = 400
-			trace(_1Player.y + " Y (Menu OnePlayer function)"); // trace Y = 600; (MAAR HIJ LAAT NIKS ZIEN)
 		}
 		public function TwoPlayer():void
 		{
