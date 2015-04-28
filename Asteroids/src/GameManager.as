@@ -19,19 +19,20 @@ package
 		{
 			// Functie voor Score/Recordtijd
 			// Functie voor de finish + new record ja/nee
-			trace("GM wordt geinstantieerd (GameManager class, GameManager function)");								
+			trace("init EventListener wordt toegevoegd (GameManager class, GameManager function)" + " (Before adding init EventListener)");							
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
-			trace(addEventListener(Event.ADDED_TO_STAGE, init) + " (GameManager class, GameManager function)" + " (Info: INIT Trace)");		
+			trace("init EventListener is toegevoegd (GameManager class, GameManager function)" + " (After adding init EventListener, Verification)");	
 		}
 		
 		private function init(e:Event):void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			trace("GM INIT wordt weggehaald (GameManager class, init function)");						
+			trace("GM INIT wordt weggehaald (GameManager class, init function)" + " (After removing init EventListener, Verification)");						
 			//Check welke mode hij moet starten(Oneplayer, Twoplayer, Options of Credits(Met behulp van dispatchEvents)
-			trace("GM 1 Player added (GameManager class, init function)");
+			trace("GM 1 Player added (GameManager class, init function)" + " (Before adding Player)");
 			_1Player = new Player;
 			addChild(_1Player);
+			trace("GM 1 Player added (GameManager class, init function)" + " (After adding Player, Verification)");
 		}	
 	}
 }

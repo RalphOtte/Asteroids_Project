@@ -121,10 +121,10 @@ package
 		private function OnePlayerChosen(e:Event):void
 		{
 		// Hier GM aanroepen + dispatchevent met "OnePlayer", de GM pakt deze weer op en voert de functie uit die DispatchEvent "OnePlayer aanroept.
-			trace("Spawning GM" + " (Main class, OnePlayerChosen function)");
+			trace("Spawning GM" + " (Main class, OnePlayerChosen function)" + " (Before adding GM)");
 			_GM = new GameManager();
 			addChild(_GM);
-			trace("GM Spawned" + " (Main class, OnePlayerChosen function)");
+			trace("GM Spawned" + " (Main class, OnePlayerChosen function)" + " (After adding GM, Verification)");
 		}
 		private function TwoPlayerChosen(e:Event):void
 		{

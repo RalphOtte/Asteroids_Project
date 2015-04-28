@@ -167,7 +167,7 @@ package
 		}
 		function OPChoice(e:Event):void  //Functie die aangeroepen wordt als OnePlayerChosen(TIMER) aangeroepen wordt.
 		{
-			trace("GameManager Class wordt aangeroepen (Menu class, OnePlayer function)");
+			trace("GameManager Class wordt aangeroepen (Menu class, OnePlayer function)" + " (Before dispatching 'OPChoice')");
 			dispatchEvent(new Event("OPChoice"));
 			trace("One Player = chosen" + " (Menu class, OnePlayerChosen function)");
 		}
@@ -175,19 +175,19 @@ package
 		{
 			//TwoPlayer();
 			dispatchEvent(new Event("TPChoice"));
-			trace("Two Player = chosen" + " (Menu class, TwoPlayerChosen function)");
+			trace("Two Player = chosen" + " (Menu class, TwoPlayerChosen function)" + " (Before dispatching 'TPChoice')");
 		}
 		function OptChoice(e:Event):void  //Functie die aangeroepen wordt als OptionsChosen(TIMER) aangeroepen wordt.
 		{
 			//Options();
 			dispatchEvent(new Event("OptChoice"));
-			trace("Options = chosen" + " (Menu class, OptionsChosen function)");
+			trace("Options = chosen" + " (Menu class, OptionsChosen function)" + " (Before dispatching 'OptChoice')");
 		}
 		function CredChoice(e:Event):void  //Functie die aangeroepen wordt als CreditsChosen(TIMER) aangeroepen wordt.
 		{
 			//Credits();
 			dispatchEvent(new Event("CredChoice"));
-			trace("Credits = chosen" + " (Menu class, CreditsChosen function)");
+			trace("Credits = chosen" + " (Menu class, CreditsChosen function)" + " (Before dispatching 'CredChoice')");
 		}
 	}
 }
