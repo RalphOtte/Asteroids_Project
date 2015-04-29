@@ -22,7 +22,7 @@ package
 		private var _2ButtonIsDown:Boolean = false;					//Boolean die kijkt of de "2" knop ingedrukt is
 		private var _3ButtonIsDown:Boolean = false;					//Boolean die kijkt of de "3" knop ingedrukt is	
 		private var _4ButtonIsDown:Boolean = false;					//Boolean die kijkt of de "4" knop ingedrukt is
-		private var _removeMenuTimer:Timer = new Timer (1000, 1);	// 1 seconde timer(1000)
+		private var _removeMenuTimer:Timer = new Timer (100, 1);	// 0.1 seconde timer, 100 milliseconde
 		
 		
 		public function Main():void 
@@ -41,6 +41,8 @@ package
 
 			_menu = new Menu();
 			addChild(_menu);
+			_GM = new GameManager;
+			addChild(_GM);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
 			_menu.addEventListener("OPChoice" , OnePlayerChosen); 	
@@ -72,8 +74,7 @@ package
 		{
 			if (e.keyCode == 49)
 			{
-				_1ButtonIsDown = true;
-				
+				_1ButtonIsDown = true;				
 			}
 			if (e.keyCode == 50)
 			{
@@ -93,29 +94,27 @@ package
 			{
 				_removeMenuTimer.addEventListener(TimerEvent.TIMER, RemoveMenu); //Timer voor instantiatie van OnePlayer
 				_removeMenuTimer.start();
-				
+				_GM.OnePlayerChosen();
 			}
 			if (_2ButtonIsDown == true)
 			{
 				_removeMenuTimer.addEventListener(TimerEvent.TIMER, RemoveMenu); //Timer voor instantiatie van TwoPlayer
-				_removeMenuTimer.start();
-				
+				_removeMenuTimer.start();				
 			}
 			if (_3ButtonIsDown == true)
 			{
 				_removeMenuTimer.addEventListener(TimerEvent.TIMER, RemoveMenu); //Timer voor instantiatie van Options
-				_removeMenuTimer.start();
-				
+				_removeMenuTimer.start();				
 			}
 			if (_4ButtonIsDown == true)
 			{
 				_removeMenuTimer.addEventListener(TimerEvent.TIMER, RemoveMenu); //Timer voor instantiatie van Credits
-				_removeMenuTimer.start();
-				
+				_removeMenuTimer.start();				
 			}
 			function RemoveMenu(e:Event):void
 			{
 				removeChild(_menu);
+				trace("Menu got removed (MAIN)");
 			}
 		}
 		private function OnePlayerChosen(e:Event):void
