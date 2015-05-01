@@ -18,7 +18,7 @@ package
 	{
 		private var _menu:Menu;										//Menu Class wordt aangeroepen
 		private var _GM:GameManager;
-		private var _ShipSelect:ShipSelect;							//DIT IS VOOR TESTING ONLY
+	//	private var _ShipSelect:ShipSelect;							//DIT IS VOOR TESTING ONLY
 		private var _WButtonIsDown:Boolean = false;					//Boolean die kijkt of de "W" knop ingedrukt is
 		private var _AButtonIsDown:Boolean = false;					//Boolean die kijkt of de "A" knop ingedrukt is
 		private var _SButtonIsDown:Boolean = false;					//Boolean die kijkt of de "S" knop ingedrukt is	

@@ -26,13 +26,13 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			bgImage = new backgroundImg();
 			addChild(bgImage);
-			addEventListener(Event.ADDED_TO_STAGE, scrollBG);
+			//addEventListener(Event.ADDED_TO_STAGE, scrollBG);
 		}
-		private function scrollBG(e:Event):void
+		/*private function scrollBG(e:Event):void
 		{
 			scrollSpeed = 10;
 			this.x -= scrollSpeed;
 			trace(this.x);
-		}	
+		}*/
 	}
 }

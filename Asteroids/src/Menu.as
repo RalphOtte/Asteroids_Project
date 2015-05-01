@@ -20,7 +20,6 @@ package
 	{
 		private var _MenuMusic:Sound; 		// MENU MUSIC(muziek nog in de game zetten)
 		private var _GM:GameManager;
-		private var _Cursor:Cursor;
 		
 		private var _MenuSelection:int = 1;
 		
@@ -31,6 +30,9 @@ package
 		[Embed(source="../Assets/MainMenu/menu_astroids.png")]
 		private var _MenuBackground:Class;							  
 		public var _MenuBack:Bitmap;
+		[Embed(source = "../Assets/MainMenu/Pointer.png")]
+		private var _SelectionPointer:Class;
+		public var _Pointer:Bitmap;
 		[Embed(source = "../Assets/MainMenu/SinglePlayerButton.png")]
 		private var _SinglePlayButton:Class;
 		public var _SingleButton:Bitmap;
@@ -60,14 +62,17 @@ package
 			// _MenuMusic = new Sound(new URLRequest("../Assets/Music/MUZIEK")); //Muziek voor menu COMMENT WEGHALEN ALS DE FILE ER WEL IS
 			// _MenuMusic.play(0, 999);
 		
-			_MenuBack = new _MenuBackground;
-			addChild(_MenuBack);
-		
 			_GM = new GameManager;
 			addChild(_GM);
+			
+			_MenuBack = new _MenuBackground;
+			addChild(_MenuBack);
 			 
-			 _SingleButton = new _SinglePlayButton;
-			 addChild(_SingleButton);
+			_Pointer = new _SelectionPointer;
+			addChild(_Pointer);
+			
+			_SingleButton = new _SinglePlayButton;
+			addChild(_SingleButton);
 			_SingleButton.x = stage.stageWidth / 2 - 100;
 			_SingleButton.y = stage.stageHeight / 2 - 100;
 			
@@ -85,10 +90,33 @@ package
 			 addChild(_Credits);
 			 _Credits.x = stage.stageWidth / 2 - 40;
 			 _Credits.y = stage.stageHeight / 2 + 110;
+			 
+			 // DIT IS DE POINTER DIE VERPLAATST
+			 if (_MenuSelection == 1)
+			 {
+				_Pointer.x = stage.stageWidth / 2 - 150;
+				_Pointer.y = stage.stageHeight / 2 - 100;
+			 }
+			 if (_MenuSelection == 2)
+			 {
+				_Pointer.x = stage.stageWidth / 2 - 150;
+				_Pointer.y = stage.stageHeight / 2 - 30;
+			 }
+			 if (_MenuSelection == 3)
+			 {
+				_Pointer.x = stage.stageWidth / 2 - 150;
+				_Pointer.y = stage.stageHeight / 2 + 40;
+			 }
+			 if (_MenuSelection == 4)
+			 {
+				_Pointer.x = stage.stageWidth / 2 - 150;
+				_Pointer.y = stage.stageHeight / 2 + 110;
+			 }
 		}
 		
 		private function checkButtonUp(e:KeyboardEvent):void
 		{
+			trace("checkbuttonUp");
 			if (e.keyCode == 87)
 			{
 				_WButtonIsDown = false;
@@ -105,6 +133,7 @@ package
 		
 		public function checkButtonDown(e:KeyboardEvent):void
 		{
+			trace("checkbuttonDown");
 			if (e.keyCode == 87)
 			{
 				_WButtonIsDown = true;
@@ -121,14 +150,15 @@ package
 		
 		public function loop(e:Event):void 
 		{
-		
+			//trace(_MenuSelection);
 			if (_WButtonIsDown == true)
 			{
-				if (!_MenuSelection == 3)
+				trace("W");
+				if (!_MenuSelection == 4)
 				{
-					_MenuSelection--
+					_MenuSelection -= 1;
 				}
-				else if(_MenuSelection == 3)
+				else if(_MenuSelection == 4)
 				{
 					_MenuSelection = 1;
 				}
@@ -136,11 +166,12 @@ package
 			}
 			if (_SButtonIsDown == true)
 			{
-				if (!_MenuSelection == 3)
+				trace("S");
+				if (!_MenuSelection == 4)
 				{
-					_MenuSelection++
+					_MenuSelection += 1;
 				}
-				else if (_MenuSelection == 3)
+				else if (_MenuSelection == 4)
 				{
 					_MenuSelection = 1;
 				}
@@ -148,6 +179,7 @@ package
 		
 			if(_SpaceButton == true)
 			{
+				trace("SPACE");
 				if (_MenuSelection == 1 )
 				{
 					//POINTER ART KOMT OP OPTIE1
