@@ -70,6 +70,8 @@ package
 			 
 			_Pointer = new _SelectionPointer;
 			addChild(_Pointer);
+			_Pointer.x = stage.stageWidth / 2 - 150;
+			_Pointer.y = stage.stageHeight / 2 - 100;
 			
 			_SingleButton = new _SinglePlayButton;
 			addChild(_SingleButton);
@@ -90,28 +92,7 @@ package
 			 addChild(_Credits);
 			 _Credits.x = stage.stageWidth / 2 - 40;
 			 _Credits.y = stage.stageHeight / 2 + 110;
-			 
-			 // DIT IS DE POINTER DIE VERPLAATST
-			 if (_MenuSelection == 1)
-			 {
-				_Pointer.x = stage.stageWidth / 2 - 150;
-				_Pointer.y = stage.stageHeight / 2 - 100;
-			 }
-			 if (_MenuSelection == 2)
-			 {
-				_Pointer.x = stage.stageWidth / 2 - 150;
-				_Pointer.y = stage.stageHeight / 2 - 30;
-			 }
-			 if (_MenuSelection == 3)
-			 {
-				_Pointer.x = stage.stageWidth / 2 - 150;
-				_Pointer.y = stage.stageHeight / 2 + 40;
-			 }
-			 if (_MenuSelection == 4)
-			 {
-				_Pointer.x = stage.stageWidth / 2 - 150;
-				_Pointer.y = stage.stageHeight / 2 + 110;
-			 }
+	
 		}
 		
 		private function checkButtonUp(e:KeyboardEvent):void
@@ -150,31 +131,55 @@ package
 		
 		public function loop(e:Event):void 
 		{
-			//trace(_MenuSelection);
 			if (_WButtonIsDown == true)
 			{
 				trace("W");
-				if (!_MenuSelection == 4)
+				trace(_MenuSelection);
+				if (_MenuSelection >= 4)
 				{
-					_MenuSelection -= 1;
+					_MenuSelection--;
 				}
-				else if(_MenuSelection == 4)
+				else if(_MenuSelection <= 1)
 				{
-					_MenuSelection = 1;
+					_MenuSelection = 4;
 				}
 				
 			}
 			if (_SButtonIsDown == true)
 			{
 				trace("S");
-				if (!_MenuSelection == 4)
+				trace(_MenuSelection);
+				if (_MenuSelection <= 4)
 				{
-					_MenuSelection += 1;
+					_MenuSelection++;
 				}
-				else if (_MenuSelection == 4)
+				else if (_MenuSelection >= 4)
 				{
 					_MenuSelection = 1;
 				}
+				
+							 // DIT IS DE POINTER DIE VERPLAATST
+			 if (_MenuSelection == 1)
+			 {
+				_Pointer.x = stage.stageWidth / 2 - 150;
+				_Pointer.y = stage.stageHeight / 2 - 100;
+			 }
+			 if (_MenuSelection == 2)
+			 {
+				_Pointer.x = stage.stageWidth / 2 - 150;
+				_Pointer.y = stage.stageHeight / 2 - 30;
+			 }
+			 if (_MenuSelection == 3)
+			 {
+				_Pointer.x = stage.stageWidth / 2 - 150;
+				_Pointer.y = stage.stageHeight / 2 + 40;
+			 }
+			 if (_MenuSelection == 4)
+			 {
+				_Pointer.x = stage.stageWidth / 2 - 150;
+				_Pointer.y = stage.stageHeight / 2 + 110;
+			 }
+			 
 			}
 		
 			if(_SpaceButton == true)
@@ -183,7 +188,7 @@ package
 				if (_MenuSelection == 1 )
 				{
 					//POINTER ART KOMT OP OPTIE1
-				//	_GM.OnePlayerChosen();
+					_GM.OnePlayerChosen();
 					trace("OneplayerChosen (MENU)");
 					dispatchEvent(new Event("RemoveMenu"));
 				}

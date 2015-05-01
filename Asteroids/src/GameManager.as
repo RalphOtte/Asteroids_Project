@@ -32,13 +32,11 @@ package
 		public function OnePlayerChosen():void
 		{
 			_shipSelect.OnePlayerShipSelect();
-			// Levelselect(in ship select aanroepen)
 		}
 		
 		public function TwoPlayerChosen():void
 		{
 			_shipSelect.TwoPlayerShipSelect();
-			//Levelselect(in ship select aanroepen)
 		}
 		public function Options():void
 		{
