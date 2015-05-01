@@ -23,7 +23,7 @@ package
 		private var _3ButtonIsDown:Boolean = false;					//Boolean die kijkt of de "3" knop ingedrukt is	
 		private var _4ButtonIsDown:Boolean = false;					//Boolean die kijkt of de "4" knop ingedrukt is
 		private var _removeMenuTimer:Timer = new Timer (100, 1);	// 0.1 seconde timer, 100 milliseconde
-		
+		private var _BGI:Background;
 		
 		public function Main():void 
 		{
@@ -138,5 +138,13 @@ package
 			// Hier GM aanroepen + dispatchevent met "Credits", de GM pakt deze weer op en voert de functie uit die DispatchEvent "Credits" aanroept.
 		}
 		//VOLGENDE FUNCTIE
+		
+		//-------------------BACKGROUND ADDED TO STAGE--------------//
+		private function AddBg():void
+		{
+			_BGI = new Background;
+			addChild(_BGI);
+		}
+		
 	}
 }
