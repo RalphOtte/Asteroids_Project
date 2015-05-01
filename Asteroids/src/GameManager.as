@@ -35,16 +35,16 @@ package
 			// Levelselect(in ship select aanroepen)
 		}
 		
-		public function TwoPlayerChosen(e:Event):void
+		public function TwoPlayerChosen():void
 		{
 			_shipSelect.TwoPlayerShipSelect();
 			//Levelselect(in ship select aanroepen)
 		}
-		public function Options(e:Event):void
+		public function Options():void
 		{
 			
 		}
-		public function Credits(e:Event):void
+		public function Credits():void
 		{
 			
 		}
