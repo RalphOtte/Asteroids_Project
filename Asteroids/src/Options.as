@@ -162,6 +162,22 @@ package
 		}
 		public function loop(e:Event):void 
 		{
+			if (_Selection == 1)
+			{
+				_SelectionPointer.x = stage.stageWidth / 2 - 550;
+				_SelectionPointer.y = 200;
+			}
+			if (_Selection == 2)
+			{
+				_SelectionPointer.x = stage.stageWidth / 2 - 550;
+				_SelectionPointer.y = 400;
+			}
+			if (_Selection == 3)
+			{
+				_SelectionPointer.x = stage.stageWidth / 2 - 550;
+				_SelectionPointer.y = 600;
+			}
+			
 			trace(_Selection);
 			if (_WIsDown == true)
 			{
@@ -199,25 +215,14 @@ package
 				if (_Selection == 3 || 4)
 				{
 					// Back
+					removeChild(_SelectionPointer);
+					trace("Removed _SelectionPointer (OPTIONS)");
 					removeEventListener(Event.ENTER_FRAME, loop);
+					trace("Removed function loop (OPTIONS)");
 					dispatchEvent(new Event("SpawnMenu"));
 					dispatchEvent(new Event("RemoveOptions"));
+					trace("Dispatched both events (OPTIONS)");
 				}
-			}
-			if (_Selection == 1)
-			{
-				_SelectionPointer.x = stage.stageWidth / 2 - 550;
-				_SelectionPointer.y = 200;
-			}
-			if (_Selection == 2)
-			{
-				_SelectionPointer.x = stage.stageWidth / 2 - 550;
-				_SelectionPointer.y = 400;
-			}
-			if (_Selection == 3)
-			{
-				_SelectionPointer.x = stage.stageWidth / 2 - 550;
-				_SelectionPointer.y = 600;
 			}
 		}
 	}

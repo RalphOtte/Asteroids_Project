@@ -51,8 +51,12 @@ package
 				
 		public function Menu() 
 		{
-			this.addEventListener(Event.ADDED_TO_STAGE, init);
-			
+			this.addEventListener(Event.ADDED_TO_STAGE, init);			
+		}
+		public function reSpawn(e):void
+		{
+			this.init(e);
+			_MenuSelection = 0;
 		}
 		
 		private function init(e:Event):void
@@ -64,17 +68,15 @@ package
 			 
 			// _MenuMusic = new Sound(new URLRequest("../Assets/Music/MUZIEK")); //Muziek voor menu COMMENT WEGHALEN ALS DE FILE ER WEL IS
 			// _MenuMusic.play(0, 999);
-		
-		//	_GM = new GameManager;
-		//	addChild(_GM);
 			
 			_MenuBack = new _MenuBackground;
 			addChild(_MenuBack);
-			 
+			
 			_Pointer = new _SelectionPointer;
 			addChild(_Pointer);
 			_Pointer.x = stage.stageWidth / 2 - 150;
 			_Pointer.y = stage.stageHeight / 2 - 100;
+			trace("Added Pointer (MENU)");
 			
 			_SingleButton = new _SinglePlayButton;
 			addChild(_SingleButton);
@@ -134,6 +136,11 @@ package
 		
 		public function loop(e:Event):void 
 		{
+			if (!this.contains(_Pointer))
+			{
+				trace("Does Menu contain _Pointer? (MENU)");
+				addChild(_Pointer);
+			}
 			// DIT IS DE POINTER DIE VERPLAATST
 			 if (_MenuSelection == 1)
 			 {

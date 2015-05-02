@@ -68,14 +68,18 @@ package
 		private function SpawnOptions(e:Event):void
 		{
 			addChild(_Option);
+			trace("Added Options (MAIN)");
 		}
 		private function SpawnMenu(e:Event):void
 		{
 			addChild(_menu);
+			trace("Added Menu (MAIN)");
+			_menu.reSpawn(e);		// DIT IS DE RESPAWN FUNCTIE BINNEN MENU
 		}
 		private function RemoveOptions(e:Event):void
 		{
 			removeChild(_Option);
+			trace("Removed Options (MAIN)");
 		}
 	}
 }
