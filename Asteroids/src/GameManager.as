@@ -15,6 +15,9 @@ package
 	{
 		private var _menu:Menu;
 		private var _shipSelect:ShipSelect;
+		private var _Options:Options;
+	//  public var _OnePlayer:Boolean = false;
+	//	public var _TwoPlayer:Boolean = false;
 		
 		public function GameManager() 
 		{
@@ -31,18 +34,22 @@ package
 		
 		public function OnePlayerChosen():void
 		{
-			_shipSelect.OnePlayerShipSelect();
+		//	addChild(_shipSelect);
+		//	_OnePlayer = true;
+			//_shipSelect.OnePlayerShipSelect();
 		}
 		
 		public function TwoPlayerChosen():void
 		{
-			_shipSelect.TwoPlayerShipSelect();
+		//	addChild(_shipSelect);
+		//	_TwoPlayer = true;
+		//	_shipSelect.TwoPlayerShipSelect();
 		}
-		public function Options():void
+		public function OptionChosen():void
 		{
-			
+			// _options.FUNCTION();
 		}
-		public function Credits():void
+		public function ExitChosen():void
 		{
 			
 		}

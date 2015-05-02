@@ -6,9 +6,9 @@ package
 	import flash.events.FocusEvent;
 	import flash.media.Sound;
 	import flash.net.URLRequest;
-	import flash.system.System
-	import flash.events.MouseEvent;
+	import flash.system.System;
 	import flash.events.KeyboardEvent;
+	import flash.system.fscommand;
 
 
 	/**
@@ -21,30 +21,33 @@ package
 		private var _MenuMusic:Sound; 		// MENU MUSIC(muziek nog in de game zetten)
 		private var _GM:GameManager;
 		
-		private var _MenuSelection:int = 1;
+		private var _MenuSelection:int = 0;
+		
+		public var _OnePlayer:Boolean = false;
+		public var _TwoPlayer:Boolean = false;
 		
 		private var _WButtonIsDown:Boolean = false;
 		private var _SButtonIsDown:Boolean = false;	
 		private var _SpaceButton:Boolean = false;
 		
-		[Embed(source="../Assets/MainMenu/menu_astroids.png")]
+		[Embed(source="../Assets/Menu's/menu_astroids.png")]
 		private var _MenuBackground:Class;							  
 		public var _MenuBack:Bitmap;
-		[Embed(source = "../Assets/MainMenu/Pointer.png")]
+		[Embed(source = "../Assets/Menu's/Pointer.png")]
 		private var _SelectionPointer:Class;
 		public var _Pointer:Bitmap;
-		[Embed(source = "../Assets/MainMenu/SinglePlayerButton.png")]
+		[Embed(source = "../Assets/Menu's/SinglePlayerButton.png")]
 		private var _SinglePlayButton:Class;
 		public var _SingleButton:Bitmap;
-		[Embed(source = "../Assets/MainMenu/MultiplayerButton.png")]
+		[Embed(source = "../Assets/Menu's/MultiplayerButton.png")]
 		private var _MultiPlayButton:Class;
 		public var _MultiButton:Bitmap;
-		[Embed(source = "../Assets/MainMenu/OptionsButton.png")]
+		[Embed(source = "../Assets/Menu's/OptionsButton.png")]
 		private var _OptionsButton:Class;
 		public var _Options:Bitmap;
-		[Embed(source = "../Assets/MainMenu/QuitButton.png")]
-		private var _CreditsButton:Class;
-		public var _Credits:Bitmap;
+		[Embed(source = "../Assets/Menu's/QuitButton.png")]
+		private var _ExitButton:Class;
+		public var _Exit:Bitmap;
 				
 		public function Menu() 
 		{
@@ -62,8 +65,8 @@ package
 			// _MenuMusic = new Sound(new URLRequest("../Assets/Music/MUZIEK")); //Muziek voor menu COMMENT WEGHALEN ALS DE FILE ER WEL IS
 			// _MenuMusic.play(0, 999);
 		
-			_GM = new GameManager;
-			addChild(_GM);
+		//	_GM = new GameManager;
+		//	addChild(_GM);
 			
 			_MenuBack = new _MenuBackground;
 			addChild(_MenuBack);
@@ -88,10 +91,10 @@ package
 			 _Options.x = stage.stageWidth / 2 - 100;
 			 _Options.y = stage.stageHeight / 2 + 40;
 			 
-			  _Credits = new _CreditsButton;
-			 addChild(_Credits);
-			 _Credits.x = stage.stageWidth / 2 - 40;
-			 _Credits.y = stage.stageHeight / 2 + 110;
+			  _Exit = new _ExitButton;
+			 addChild(_Exit);
+			 _Exit.x = stage.stageWidth / 2 - 40;
+			 _Exit.y = stage.stageHeight / 2 + 110;
 	
 		}
 		
@@ -131,34 +134,7 @@ package
 		
 		public function loop(e:Event):void 
 		{
-			if (_WButtonIsDown == true)
-			{
-				trace("W");
-				trace(_MenuSelection);
-				if (_MenuSelection >= 4)
-				{
-					_MenuSelection--;
-				}
-				else if(_MenuSelection <= 1)
-				{
-					_MenuSelection = 4;
-				}
-				
-			}
-			if (_SButtonIsDown == true)
-			{
-				trace("S");
-				trace(_MenuSelection);
-				if (_MenuSelection <= 4)
-				{
-					_MenuSelection++;
-				}
-				else if (_MenuSelection >= 4)
-				{
-					_MenuSelection = 1;
-				}
-				
-							 // DIT IS DE POINTER DIE VERPLAATST
+			// DIT IS DE POINTER DIE VERPLAATST
 			 if (_MenuSelection == 1)
 			 {
 				_Pointer.x = stage.stageWidth / 2 - 150;
@@ -180,37 +156,70 @@ package
 				_Pointer.y = stage.stageHeight / 2 + 110;
 			 }
 			 
+			if (_WButtonIsDown == true)
+			{
+				trace("W");
+				trace(_MenuSelection);
+				if (_MenuSelection <= 4)
+					{
+						_MenuSelection--;
+					}
+				if(_MenuSelection <= 0)
+				{
+					_MenuSelection = 4;
+				}
+			}
+			
+			if (_SButtonIsDown == true)
+			{
+				trace("S");
+				trace(_MenuSelection);
+				if (_MenuSelection <= 4)
+				{
+					_MenuSelection++;
+				}
+				else if (_MenuSelection >= 4)
+				{
+					_MenuSelection = 1;
+				}			 
 			}
 		
 			if(_SpaceButton == true)
 			{
 				trace("SPACE");
-				if (_MenuSelection == 1 )
+				if (_MenuSelection == 1)
 				{
-					//POINTER ART KOMT OP OPTIE1
-					_GM.OnePlayerChosen();
+					_OnePlayer = true;
+					dispatchEvent(new Event("SpawnShipSelect"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
 					trace("OneplayerChosen (MENU)");
+					removeEventListener(Event.ENTER_FRAME, loop);
+					removeChild(_Pointer);
 					dispatchEvent(new Event("RemoveMenu"));
 				}
-				if (_MenuSelection == 2 )
+				if (_MenuSelection == 2)
 				{
-					//POINTER ART KOMT OP OPTIE2
-				//	_GM.TwoPlayerChosen();
+					_TwoPlayer = true;
+					dispatchEvent(new Event("SpawnShipSelect"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
 					trace("Twoplayerchosen (MENU)");
+					removeChild(_Pointer);
+					removeEventListener(Event.ENTER_FRAME, loop);
 					dispatchEvent(new Event("RemoveMenu"));
 				}
-				if (_MenuSelection == 3 )
+				if (_MenuSelection == 3)
 				{
-					//POINTER ART KOMT OP OPTIE3
-				//	_GM.OptionsChosen();
+					dispatchEvent(new Event("SpawnOptions"));			//Geeft signaal af voor de Main dat hij Options moet spawnen
 					trace("Optionschosen (MENU)");
+					removeChild(_Pointer);
+					removeEventListener(Event.ENTER_FRAME, loop);
 					dispatchEvent(new Event("RemoveMenu"));
 				}
 				if (_MenuSelection == 4)
 				{
-					//POINTER ART KOMT OP OPTIE4
-				//	_GM.CreditsChosen();
+					System.exit(0);				//Stops Flashplayer
+					fscommand("quit");			//Stops Flashplayer
 					trace("Exitchosen (MENU)");
+					removeChild(_Pointer);
+					removeEventListener(Event.ENTER_FRAME, loop);
 					dispatchEvent(new Event("RemoveMenu"));
 				}
 			}

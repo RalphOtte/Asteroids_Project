@@ -13,12 +13,12 @@ package
 		
 		public function LevelSelect() 
 		{
-			//this.addEventListener(Event.ADDED_TO_STAGE, init);	
+			this.addEventListener(Event.ADDED_TO_STAGE, init);	
 		}
 	
 		private function init(e:Event):void 
 		{
-			//removeEventListener(Event.ADDED_TO_STAGE, init);
+			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 		}
 	}

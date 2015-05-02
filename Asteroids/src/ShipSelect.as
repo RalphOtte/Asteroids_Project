@@ -4,12 +4,16 @@ package
 	import flash.events.Event;
 	import flash.display.Bitmap;
 	import flash.events.FocusEvent;
+	import flash.events.KeyboardEvent;
 	/**
 	 * ...
 	 * @author Ralph Otte
 	 */
 	public class ShipSelect extends Sprite
 	{
+		private var _Menu:Menu;
+		
+		
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
 		private var _PlayerShipRed:Class;
 		private var _Ship1:Bitmap;
@@ -19,35 +23,35 @@ package
 		[Embed(source="../Assets/Game/PlayerShips/Schip_groen.png")]
 		private var _PlayershipGreen:Class;
 		private var _Ship3:Bitmap;
-		[Embed(source="../Assets/MainMenu/menu_astroids.png")]
+		[Embed(source="../Assets/Menu's/menu_astroids.png")]
 		private var _Back:Class;
 		private var _BG:Bitmap;
 		// Single button is nu de previous button
-		[Embed(source = "../Assets/MainMenu/SinglePlayerButton.png")]
+		[Embed(source="../Assets/Menu's/Pijl_next.png")]
 		private var _Previous:Class;
 		private var _Prev:Bitmap;
 		// Singlebutton is nu de 2e previous button
-		[Embed(source = "../Assets/MainMenu/SinglePlayerButton.png")]
+		[Embed(source="../Assets/Menu's/Pijl_next.png")]
 		private var _Previous2:Class;
 		private var _Prev2:Bitmap;
 		// Multibutton is nu de next button
-		[Embed(source="../Assets/MainMenu/MultiplayerButton.png")]
+		[Embed(source="../Assets/Menu's/Pijl_next.png")]
 		private var _NextShip:Class;
 		private var _Next:Bitmap;
 		// Multibutton is nu de 2e next button
-		[Embed(source="../Assets/MainMenu/MultiplayerButton.png")]
+		[Embed(source="../Assets/Menu's/Pijl_next.png")]
 		private var _NextShip2:Class;
 		private var _Next2:Bitmap;	
 		// Options button is nu de Confirm button
-		[Embed(source="../Assets/MainMenu/OptionsButton.png")]
+		[Embed(source="../Assets/Menu's/SelectButton.png")]
 		private var _ConfirmChoice:Class;
 		private var _Confirm:Bitmap;
 		// Options button is nu de 2e Confirm button
-		[Embed(source="../Assets/MainMenu/OptionsButton.png")]
+		[Embed(source="../Assets/Menu's/SelectButton.png")]
 		private var _ConfirmChoice2:Class;
 		private var _Confirm2:Bitmap;
 		// Exit button is nu de Back button
-		[Embed(source="../Assets/MainMenu/QuitButton.png")]
+		[Embed(source="../Assets/Menu's/BackButton.png")]
 		private var _ExitSelect:Class;
 		private var _Exit:Bitmap;
 		
@@ -62,32 +66,73 @@ package
 		
 		private function init(e:Event):void 
 		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);			
+			if (_Menu._OnePlayer == true)
+			{
+				OnePlayerShipSelect();
+				
+				_BG = new _Back();
+				addChild(_BG);
+				_Prev = new _Previous();
+				addChild(_Prev);
+				_Next = new _NextShip();
+				addChild(_Next);
+				_Confirm = new _ConfirmChoice();
+				addChild(_Confirm);
+				_Exit = new _ExitSelect();
+				addChild(_Exit);
+				
+				_Prev.x = 400;
+				_Prev.y = stage.stageHeight / 2; 	// TUSSEN DE 700 PX die hier tussen staat komt een plaatje van een schip(degene die gekozen is, afhankelijk van de _selection integer
+				_Next.x = 700;
+				_Next.y = stage.stageHeight / 2;
+				_Confirm.x = 550;	//Deze moet op het midden onder het schip komen
+				_Confirm.x = stage.stageHeight / 2 + 100;
+				_Exit.x = 550; // Deze moet onder Confirm Button komen
+				_Exit.y = stage.stageHeight / 2 + 170;
 			
+			}
+			else if (_Menu._TwoPlayer == true)
+			{
+				TwoPlayerShipSelect();
+			
+			/*	_BG = new _Back();
+				addChild(_BG);
+				_Prev = new _Previous();
+				addChild(_Prev);
+				_Prev.scaleX = -1;		// Scale inverted
+				_Next = new _NextShip();
+				addChild(_Next);
+				_Confirm = new _ConfirmChoice();
+				addChild(_Confirm);
+				_Exit = new _ExitSelect();
+				addChild(_Exit);
+				
+				//Player 2 Buttons
+				_Prev2 - new _Previous2();
+				addChild(_Prev2);
+				_Next2 = new _NextShip2();
+				addChild(_Next2);
+				_Confirm2 = new ConfirmChoice();
+				addChild(Confirm2);
+				
+				
+				_Prev.x = 400;
+				_Prev.y = stage.stageHeight / 2; 	// TUSSEN DE 700 PX die hier tussen staat komt een plaatje van een schip(degene die gekozen is, afhankelijk van de _selection integer
+				_Next.x = 700;
+				_Next.y = stage.stageHeight / 2;
+				_Confirm.x = 550;	//Deze moet op het midden onder het schip komen
+				_Confirm.x = stage.stageHeight / 2 + 100;
+				_Exit.x = 550; // Deze moet onder Confirm Button komen
+				_Exit.y = stage.stageHeight / 2 + 170;
+				*/
+			}
+			removeEventListener(Event.ADDED_TO_STAGE, init);			
 		}
 		
 		public function OnePlayerShipSelect():void
 		{
 			trace("One Player Ship Select  (SHIPSELECT)");
-			_BG = new _Back();
-			addChild(_BG);
-			_Prev = new _Previous();
-			addChild(_Prev);
-			_Next = new _NextShip();
-			addChild(_Next);
-			_Confirm = new _ConfirmChoice();
-			addChild(_Confirm);
-			_Exit = new _ExitSelect();
-			addChild(_Exit);
 			
-			_Prev.x = 400;
-			_Prev.y = stage.stageHeight / 2; 	// TUSSEN DE 700 PX die hier tussen staat komt een plaatje van een schip(degene die gekozen is, afhankelijk van de _selection integer
-			_Next.x = 700;
-			_Next.y = stage.stageHeight / 2;
-			_Confirm.x = 550;	//Deze moet op het midden onder het schip komen
-			_Confirm.x = stage.stageHeight / 2 + 100;
-			_Exit.x = 550; // Deze moet onder Confirm Button komen
-			_Exit.y = stage.stageHeight / 2 + 170;
 			
 			if (_selection == 1)
 			{
@@ -116,34 +161,7 @@ package
 		public function TwoPlayerShipSelect():void
 		{
 			trace("Two Player Ship Select  (SHIPSELECT)");
-		/*	_BG = new _Back();
-			addChild(_BG);
-			_Prev = new _Previous();
-			addChild(_Prev);
-			_Next = new _NextShip();
-			addChild(_Next);
-			_Confirm = new _ConfirmChoice();
-			addChild(_Confirm);
-			_Exit = new _ExitSelect();
-			addChild(_Exit);
-			
-			//Player 2 Buttons
-			_Prev2 - new _Previous2();
-			addChild(_Prev2);
-			_Next2 = new _NextShip2();
-			addChild(_Next2);
-			_Confirm2 = new ConfirmChoice();
-			addChild(Confirm2);
-			
-			
-			_Prev.x = 400;
-			_Prev.y = stage.stageHeight / 2; 	// TUSSEN DE 700 PX die hier tussen staat komt een plaatje van een schip(degene die gekozen is, afhankelijk van de _selection integer
-			_Next.x = 700;
-			_Next.y = stage.stageHeight / 2;
-			_Confirm.x = 550;	//Deze moet op het midden onder het schip komen
-			_Confirm.x = stage.stageHeight / 2 + 100;
-			_Exit.x = 550; // Deze moet onder Confirm Button komen
-			_Exit.y = stage.stageHeight / 2 + 170;
+		/*
 			
 			if (_Oneselection == 1)
 			{
