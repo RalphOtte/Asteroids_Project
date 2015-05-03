@@ -23,9 +23,6 @@ package
 		
 		private var _MenuSelection:int = 0;
 		
-		public var _OnePlayer:Boolean = false;
-		public var _TwoPlayer:Boolean = false;
-		
 		private var _WButtonIsDown:Boolean = false;
 		private var _SButtonIsDown:Boolean = false;	
 		private var _SpaceButton:Boolean = false;
@@ -196,8 +193,8 @@ package
 				trace("SPACE");
 				if (_MenuSelection == 1)
 				{
-					_OnePlayer = true;
-					dispatchEvent(new Event("SpawnShipSelect"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
+				//	_OnePlayer = true;
+					dispatchEvent(new Event("SpawnShipSelect1"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
 					trace("OneplayerChosen (MENU)");
 					removeEventListener(Event.ENTER_FRAME, loop);
 					removeChild(_Pointer);
@@ -205,8 +202,8 @@ package
 				}
 				if (_MenuSelection == 2)
 				{
-					_TwoPlayer = true;
-					dispatchEvent(new Event("SpawnShipSelect"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
+				//	_TwoPlayer = true;
+					dispatchEvent(new Event("SpawnShipSelect2"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
 					trace("Twoplayerchosen (MENU)");
 					removeChild(_Pointer);
 					removeEventListener(Event.ENTER_FRAME, loop);

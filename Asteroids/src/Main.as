@@ -21,11 +21,8 @@ package
 		private var _ShipSelect:ShipSelect;							//DIT IS VOOR TESTING ONLY
 		private var _Option:Options;
 		
-		private var _WButtonIsDown:Boolean = false;					//Boolean die kijkt of de "W" knop ingedrukt is
-		private var _AButtonIsDown:Boolean = false;					//Boolean die kijkt of de "A" knop ingedrukt is
-		private var _SButtonIsDown:Boolean = false;					//Boolean die kijkt of de "S" knop ingedrukt is	
-		private var _DButtonIsDown:Boolean = false;					//Boolean die kijkt of de "D" knop ingedrukt is
-		
+		public var _OnePlayer:Boolean = false;
+		public var _TwoPlayer:Boolean = false;
 		
 		public function Main():void 
 		{
@@ -50,36 +47,48 @@ package
 			_Option = new Options();
 			
 			_menu.addEventListener("RemoveMenu" , RemoveMenu);
-			_menu.addEventListener("SpawnShipSelect" , SpawnShipSelect);
+			_menu.addEventListener("SpawnShipSelect1" , SpawnShipSelect1);
+			_menu.addEventListener("SpawnShipSelect2" , SpawnShipSelect2);
 			_menu.addEventListener("SpawnOptions" , SpawnOptions);
 			_Option.addEventListener("SpawnMenu", SpawnMenu);
 			_Option.addEventListener("RemoveOptions", RemoveOptions);
 		}
+		
+		private function SpawnShipSelect1(e:Event):void
+		{
+			_OnePlayer = true;
+			trace("OnePlayer = true (MAIN)");
+			addChild(_ShipSelect);
+			_ShipSelect.OnePlayerShipSelect();
+		}
+		
+		private function SpawnShipSelect2(e:Event):void
+		{
+			_TwoPlayer = true;
+			trace("TwoPlayer = true (MAIN)");
+			addChild(_ShipSelect);
+			_ShipSelect.TwoPlayerShipSelect();
+		}
+		
 		private function RemoveMenu(e:Event):void
 		{
 			removeChild(_menu);
-			trace("Menu got removed (MAIN)");
 		}
-		private function SpawnShipSelect(e:Event):void
-		{
-			addChild(_ShipSelect);
-			trace("Ship select added(MAIN)");
-		}
+		
 		private function SpawnOptions(e:Event):void
 		{
 			addChild(_Option);
-			trace("Added Options (MAIN)");
 		}
+		
 		private function SpawnMenu(e:Event):void
 		{
 			addChild(_menu);
-			trace("Added Menu (MAIN)");
 			_menu.reSpawn(e);		// DIT IS DE RESPAWN FUNCTIE BINNEN MENU
 		}
+		
 		private function RemoveOptions(e:Event):void
 		{
 			removeChild(_Option);
-			trace("Removed Options (MAIN)");
 		}
 	}
 }
