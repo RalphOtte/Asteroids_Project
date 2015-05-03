@@ -68,6 +68,11 @@ package
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 			super();
 		}
+		public function reSpawn(e):void
+		{
+			this.init(e);
+			_Selection = 0;
+		}
 		
 		private function init(e:Event):void 
 		{
@@ -178,7 +183,6 @@ package
 				_SelectionPointer.y = 600;
 			}
 			
-			trace(_Selection);
 			if (_WIsDown == true)
 			{
 				if (_Selection >= 3)
@@ -214,14 +218,11 @@ package
 				}
 				if (_Selection == 3 || 4)
 				{
-					// Back
+					_Selection = 0;
 					removeChild(_SelectionPointer);
-					trace("Removed _SelectionPointer (OPTIONS)");
 					removeEventListener(Event.ENTER_FRAME, loop);
-					trace("Removed function loop (OPTIONS)");
 					dispatchEvent(new Event("SpawnMenu"));
 					dispatchEvent(new Event("RemoveOptions"));
-					trace("Dispatched both events (OPTIONS)");
 				}
 			}
 		}

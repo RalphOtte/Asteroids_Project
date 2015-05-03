@@ -78,6 +78,7 @@ package
 		private function SpawnOptions(e:Event):void
 		{
 			addChild(_Option);
+			_Option.reSpawn(e);
 		}
 		
 		private function SpawnMenu(e:Event):void

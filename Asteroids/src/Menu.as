@@ -219,8 +219,8 @@ package
 				}
 				if (_MenuSelection == 4)
 				{
-					System.exit(0);				//Stops Flashplayer
 					fscommand("quit");			//Stops Flashplayer
+					System.exit(0);				//Stops Flashplayer
 					trace("Exitchosen (MENU)");
 					removeChild(_Pointer);
 					removeEventListener(Event.ENTER_FRAME, loop);
