@@ -49,9 +49,5 @@ package
 		{
 			// _options.FUNCTION();
 		}
-		public function ExitChosen():void
-		{
-			
-		}
 	}
 }

@@ -29,6 +29,9 @@ package
 		[Embed(source="../Assets/Menu's/menu_options_astroids.png")]
 		private var _BackGround:Class;
 		private var _BG:Bitmap;
+		//Alle pointers (Singleplayer & Multiplayer P1/P2)
+		[Embed(source = "../Assets/Menu's/Pointer.png")]
+		private var 
 		// Single button is nu de previous button
 		[Embed(source="../Assets/Menu's/Pijl_next.png")]
 		private var _Previous:Class;
@@ -151,6 +154,7 @@ package
 			addChild(_BG);
 			_Prev = new _Previous();
 			addChild(_Prev);
+			_Prev.scaleX = -1;
 			_Next = new _NextShip();
 			addChild(_Next);
 			_Confirm = new _ConfirmChoice();
@@ -158,11 +162,11 @@ package
 			_Back = new _BackSelect();
 			addChild(_Back);
 			
-			_Prev.x = 370;
+			_Prev.x = 450;
 			_Prev.y = stage.stageHeight / 2 - 50; 	// TUSSEN DE 700 PX die hier tussen staat komt een plaatje van een schip(degene die gekozen is, afhankelijk van de _selection integer
 			_Next.x = 830;
 			_Next.y = stage.stageHeight / 2 - 50;
-			_Confirm.x = stage.stageWidth /2 - 110;	//Deze moet op het midden onder het schip komen
+			_Confirm.x = stage.stageWidth /2 - 110;	//Deze moet op het midden onder het schip komen .x = 290
 			_Confirm.y = stage.stageHeight / 2 + 70;
 			_Back.x = stage.stageWidth / 2 - 50; // Deze moet onder Confirm Button komen
 			_Back.y = stage.stageHeight / 2 + 120;
@@ -174,32 +178,44 @@ package
 			
 			_BG = new _BackGround();
 			addChild(_BG);
+			//Player 1 art
 			_Prev = new _Previous();
 			addChild(_Prev);
-			_Prev.scaleX = -1;		// Scale inverted
+			_Prev.scaleX = -1;			// Scale inverted
 			_Next = new _NextShip();
 			addChild(_Next);
 			_Confirm = new _ConfirmChoice();
 			addChild(_Confirm);
 			_Back = new _BackSelect();
 			addChild(_Back);
-			
-			//Player 2 Buttons
+			//Player 2 art
 			_Prev2 = new _Previous2();
 			addChild(_Prev2);
+			_Prev2.scaleX = -1;
 			_Next2 = new _NextShip2();
 			addChild(_Next2);
 			_Confirm2 = new _ConfirmChoice2();
 			addChild(_Confirm2);
 			
-			_Prev.x = 400;
-			_Prev.y = stage.stageHeight / 2; 	// TUSSEN DE 700 PX die hier tussen staat komt een plaatje van een schip(degene die gekozen is, afhankelijk van de _selection integer
-			_Next.x = 700;
-			_Next.y = stage.stageHeight / 2;
-			_Confirm.x = 550;	//Deze moet op het midden onder het schip komen
-			_Confirm.x = stage.stageHeight / 2 + 100;
-			_Back.x = 550; // Deze moet onder Confirm Button komen
-			_Back.y = stage.stageHeight / 2 + 170;			
+			//Player 1 buttons art
+			_Prev.x = 200;
+			_Prev.y = stage.stageHeight / 2 - 50;
+			_Next.x = 530;
+			_Next.y = stage.stageHeight / 2 - 50;
+			_Confirm.x = 250;
+			_Confirm.y = stage.stageHeight / 2 + 70;
+
+			//Player 2 buttons art
+			_Prev2.x = 750;
+			_Prev2.y = stage.stageHeight / 2 - 50;
+			_Next2.x = 1080;
+			_Next2.y = stage.stageHeight / 2 - 50;
+			_Confirm2.x = 800;
+			_Confirm2.y = stage.stageHeight / 2 + 70;	
+			
+			// Global back button art
+			_Back.x = 600;
+			_Back.y = stage.stageHeight / 2 + 120;
 		}
 	}
 }

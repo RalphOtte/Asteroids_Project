@@ -53,7 +53,7 @@ package
 			_Option.addEventListener("SpawnMenu", SpawnMenu);
 			_Option.addEventListener("RemoveOptions", RemoveOptions);
 		}
-		
+		// RESPAWN FUNCTIONS
 		private function SpawnShipSelect1(e:Event):void
 		{
 			_OnePlayer = true;
@@ -70,21 +70,21 @@ package
 			_ShipSelect.TwoPlayerShipSelect();
 		}
 		
-		private function RemoveMenu(e:Event):void
-		{
-			removeChild(_menu);
-		}
-		
 		private function SpawnOptions(e:Event):void
 		{
 			addChild(_Option);
-			_Option.reSpawn(e);
+			_Option.reSpawn(e);		// DIT IS DE RESPAWN FUNCTIE BINNEN OPTIONS, DEZE ZORGT ERVOOR DAT ALLE VARIABLES WEER GOED GAAN STAAN EN DAT DE POINTER TERUGKOMT
 		}
 		
 		private function SpawnMenu(e:Event):void
 		{
 			addChild(_menu);
-			_menu.reSpawn(e);		// DIT IS DE RESPAWN FUNCTIE BINNEN MENU
+			_menu.reSpawn(e);		// DIT IS DE RESPAWN FUNCTIE BINNEN MENU, DEZE ZORGT ERVOOR DAT ALLE VARIABLES WEER GOED GAAN STAAN EN DAT DE POINTER TERUGKOMT
+		}
+		// REMOVE FUNCTIONS
+		private function RemoveMenu(e:Event):void
+		{
+			removeChild(_menu);
 		}
 		
 		private function RemoveOptions(e:Event):void
