@@ -31,7 +31,8 @@ package
 		private var _BG:Bitmap;
 		//Alle pointers (Singleplayer & Multiplayer P1/P2)
 		[Embed(source = "../Assets/Menu's/Pointer.png")]
-		private var 
+		private var _Pointer:Class;
+		private var _PointerArt:Bitmap;
 		// Single button is nu de previous button
 		[Embed(source="../Assets/Menu's/Pijl_next.png")]
 		private var _Previous:Class;
@@ -69,14 +70,14 @@ package
 		private function init(e:Event):void 
 		{
 			trace("Adding loops (SHIPSELECT)");
-		//	addEventListener(Event.ENTER_FRAME, loop);
+			addEventListener(Event.ENTER_FRAME, loop);
 			addEventListener(Event.ENTER_FRAME, loop2);
 			removeEventListener(Event.ADDED_TO_STAGE, init);			
 		}
 		
 		private function loop(e:Event):void 		//SINGLEPLAYER SELECTION LOOP
 		{
-			if (_selection == 1)
+		/*	if (_selection == 1)
 			{
 				removeChild(_Ship2);
 				removeChild(_Ship3);
@@ -98,7 +99,7 @@ package
 			{
 				_selection = 1;
 			}
-			
+			*/
 		}
 		private function loop2(e:Event):void 		//MULTIPLAYER SELECTION LOOP
 		{

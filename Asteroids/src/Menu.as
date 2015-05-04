@@ -9,6 +9,7 @@ package
 	import flash.system.System;
 	import flash.events.KeyboardEvent;
 	import flash.system.fscommand;
+	import flash.text.TextField;
 
 
 	/**
@@ -20,6 +21,8 @@ package
 	{
 		private var _MenuMusic:Sound; 		// MENU MUSIC(muziek nog in de game zetten)
 		private var _GM:GameManager;
+		
+		private var _NavigationInstruction:TextField;
 		
 		private var _MenuSelection:int = 0;
 		
@@ -94,6 +97,15 @@ package
 			 addChild(_Exit);
 			 _Exit.x = stage.stageWidth / 2 - 40;
 			 _Exit.y = stage.stageHeight / 2 + 110;
+			 
+			_NavigationInstruction = new TextField();
+			_NavigationInstruction.textColor = 0xFFFFFF;	 // Wit
+			_NavigationInstruction.width = 270;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
+			_NavigationInstruction.height = 20;
+			_NavigationInstruction.scaleX = 1.5;			 	
+			_NavigationInstruction.scaleY = 1.5;
+			_NavigationInstruction.text = "Use W/S to navigate, use SPACE to confirm selection.";
+			addChild(_NavigationInstruction);
 	
 		}
 		
