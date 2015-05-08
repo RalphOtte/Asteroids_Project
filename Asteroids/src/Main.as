@@ -16,13 +16,15 @@ package
 	
 	public class Main extends Sprite 
 	{
-		private var _menu:Menu;										//Menu Class wordt aangeroepen
+		private var _menu:Menu;	
 		private var _GM:GameManager;
-		private var _ShipSelect:ShipSelect;							//DIT IS VOOR TESTING ONLY
+		private var _ShipSelect:ShipSelect;
+		private var _MPShipSelect:MPShipSelect;
 		private var _Option:Options;
-		
-		public var _OnePlayer:Boolean = false;
-		public var _TwoPlayer:Boolean = false;
+		private var _LevelSelect:LevelSelect;
+		private var _Level1:Level_1;
+		private var _Level2:Level_2;
+		private var _Level3:Level_3;
 		
 		public function Main():void 
 		{
@@ -34,7 +36,6 @@ package
 			_GM = new GameManager();
 			addChild(_GM);
 			startMenu();
-			//_ShipSelect.OnePlayerShipSelect(); //DEZE FUNCTIE IS VOOR TESTING ONLY
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -44,7 +45,12 @@ package
 			_menu = new Menu();
 			addChild(_menu);
 			_ShipSelect = new ShipSelect();
+			_MPShipSelect = new MPShipSelect();
 			_Option = new Options();
+			_LevelSelect = new LevelSelect();
+			_Level1 = new Level_1();
+			_Level2 = new Level_2();
+			_Level3 = new Level_3();
 			
 			_menu.addEventListener("RemoveMenu" , RemoveMenu);
 			_menu.addEventListener("SpawnShipSelect1" , SpawnShipSelect1);
@@ -52,22 +58,58 @@ package
 			_menu.addEventListener("SpawnOptions" , SpawnOptions);
 			_Option.addEventListener("SpawnMenu", SpawnMenu);
 			_Option.addEventListener("RemoveOptions", RemoveOptions);
+			_ShipSelect.addEventListener("SpawnMenu", SpawnMenu);
+			_ShipSelect.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
+			_ShipSelect.addEventListener("RemoveShipSelect", RemoveShipSelect);
+			_MPShipSelect.addEventListener("RemoveShipSelect2", RemoveShipSelect2);
+			_MPShipSelect.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
+			_LevelSelect.addEventListener("RemoveLevelSelect", RemoveLevelSelect);
+			_LevelSelect.addEventListener("SpawnLevel_1", SpawnLevel_1);
+			_LevelSelect.addEventListener("SpawnLevel_2", SpawnLevel_2);
+			_LevelSelect.addEventListener("SpawnLevel_3", SpawnLevel_3);
 		}
+		
+		private function SpawnLevel_1(e:Event):void 
+		{
+			trace("SpawnLevel_1");
+		//	addChild(_Level1);
+		//	_Level1.reSpawn(e); (moet nog gemaakt worden)
+		}
+		
+		private function SpawnLevel_2(e:Event):void 
+		{
+			trace("SpawnLevel_2");
+		//	addChild(_Level2);
+		//	_Level2.reSpawn(e); (moet nog gemaakt worden)
+		}
+		
+		private function SpawnLevel_3(e:Event):void 
+		{
+			trace("SpawnLevel_3");
+		//	addChild(_Level3);
+		// _Level3.reSpawn(e); (moet nog gemaakt worden)
+		}
+		
+		private function SpawnLevelSelect(e:Event):void 
+		{
+			addChild(_LevelSelect);
+			_LevelSelect.reSpawn(e);
+			_LevelSelect.AllLevelSelect();
+		}
+		
 		// RESPAWN FUNCTIONS
 		private function SpawnShipSelect1(e:Event):void
 		{
-			_OnePlayer = true;
-			trace("OnePlayer = true (MAIN)");
 			addChild(_ShipSelect);
+			_ShipSelect.reSpawn(e);
 			_ShipSelect.OnePlayerShipSelect();
 		}
 		
 		private function SpawnShipSelect2(e:Event):void
 		{
-			_TwoPlayer = true;
-			trace("TwoPlayer = true (MAIN)");
-			addChild(_ShipSelect);
-			_ShipSelect.TwoPlayerShipSelect();
+			addChild(_MPShipSelect);
+			_MPShipSelect.reSpawn(e);
+			_MPShipSelect.TwoPlayerShipSelect();
 		}
 		
 		private function SpawnOptions(e:Event):void
@@ -86,10 +128,22 @@ package
 		{
 			removeChild(_menu);
 		}
-		
 		private function RemoveOptions(e:Event):void
 		{
 			removeChild(_Option);
+		}
+		private function RemoveShipSelect(e:Event):void 
+		{
+			removeChild(_ShipSelect);
+		}
+		private function RemoveShipSelect2(e:Event):void 
+		{
+			removeChild(_MPShipSelect);
+		}
+		
+		private function RemoveLevelSelect(e:Event):void 
+		{
+			removeChild(_LevelSelect);
 		}
 	}
 }

@@ -5,6 +5,7 @@ package
 	import flash.display.Bitmap;
 	import flash.events.FocusEvent;
 	import flash.events.KeyboardEvent;
+	import flash.text.TextField;
 	/**
 	 * ...
 	 * @author Ralph Otte
@@ -13,54 +14,47 @@ package
 	{
 		private var _Main:Main;
 		
-		private var _selection:int = 1;			//Dit is de Singleplayer selection integer
-		private var _OneSelection:int = 1;		//Dit is de Multiplayer Player 1 selection integer
-		private var _TwoSelection:int = 1;		//Dit is de Multiplayer Player 2 selection integer
+		private var _NavigationInstruction:TextField;
 		
+		private var _Selection:int = 0;			//Dit is de Singleplayer selection integer(Menu navigatie)
+		private var _ShipSelection:int = 1;		//Dit is de integer die reguleert welk ship geselecteerd is.(Ship navigatie)
+		private var _SelectedShip:int = 0;		//Dit is de integer die reguleert welk ship naar het level "meegenomen" wordt.
+		
+		private var _WIsDown:Boolean = false;
+		private var _SIsDown:Boolean = false;
+		private var _SpaceIsDown:Boolean = false;
+		
+		// Singleplayer & Multiplayer P1 Ship set
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
-		private var _PlayerShipRed:Class;
-		private var _Ship1:Bitmap;
+		private var _Ship1:Class;
+		private var _PlayerShipRed:Bitmap;
 		[Embed(source="../Assets/Game/PlayerShips/Schip_blauw.png")]
-		private var _PlayerShipBlue:Class;
-		private var _Ship2:Bitmap;
+		private var _Ship2:Class;
+		private var _PlayerShipBlue:Bitmap;
 		[Embed(source="../Assets/Game/PlayerShips/Schip_groen.png")]
-		private var _PlayershipGreen:Class;
-		private var _Ship3:Bitmap;
+		private var _Ship3:Class;
+		private var _PlayerShipGreen:Bitmap;
+		//Background
 		[Embed(source="../Assets/Menu's/menu_options_astroids.png")]
 		private var _BackGround:Class;
 		private var _BG:Bitmap;
 		//Alle pointers (Singleplayer & Multiplayer P1/P2)
-		[Embed(source = "../Assets/Menu's/Pointer.png")]
+		[Embed(source = "../Assets/Menu's/Pointer.png")]			// Singleplayer Pointer
 		private var _Pointer:Class;
 		private var _PointerArt:Bitmap;
-		// Single button is nu de previous button
+		//Alle buttons
 		[Embed(source="../Assets/Menu's/Pijl_next.png")]
-		private var _Previous:Class;
+		private var _Previous:Class;								// Het nulpunt van deze art is aan de rechterkant om dat het een omgedraaide Nextbutton is.
 		private var _Prev:Bitmap;
-		// Singlebutton is nu de 2e previous button
-		[Embed(source="../Assets/Menu's/Pijl_next.png")]
-		private var _Previous2:Class;
-		private var _Prev2:Bitmap;
-		// Multibutton is nu de next button
 		[Embed(source="../Assets/Menu's/Pijl_next.png")]
 		private var _NextShip:Class;
 		private var _Next:Bitmap;
-		// Multibutton is nu de 2e next button
-		[Embed(source="../Assets/Menu's/Pijl_next.png")]
-		private var _NextShip2:Class;
-		private var _Next2:Bitmap;	
-		// Options button is nu de Confirm button
 		[Embed(source="../Assets/Menu's/SelectButton.png")]
 		private var _ConfirmChoice:Class;
 		private var _Confirm:Bitmap;
-		// Options button is nu de 2e Confirm button
-		[Embed(source="../Assets/Menu's/SelectButton.png")]
-		private var _ConfirmChoice2:Class;
-		private var _Confirm2:Bitmap;
 		[Embed(source="../Assets/Menu's/BackButton.png")]
 		private var _BackSelect:Class;
-		private var _Back:Bitmap;
-		
+		private var _Back:Bitmap;	
 		
 		public function ShipSelect() 
 		{
@@ -69,84 +63,52 @@ package
 		
 		private function init(e:Event):void 
 		{
-			trace("Adding loops (SHIPSELECT)");
 			addEventListener(Event.ENTER_FRAME, loop);
-			addEventListener(Event.ENTER_FRAME, loop2);
-			removeEventListener(Event.ADDED_TO_STAGE, init);			
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
+			stage.addEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
+			removeEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
-		private function loop(e:Event):void 		//SINGLEPLAYER SELECTION LOOP
+		public function reSpawn(e):void
 		{
-		/*	if (_selection == 1)
-			{
-				removeChild(_Ship2);
-				removeChild(_Ship3);
-				addChild(_Ship1);
-			}
-			if (_selection == 2)
-			{
-				removeChild(_Ship1);
-				removeChild(_Ship3);
-				addChild(_Ship2);
-			}
-			if (_selection == 3)
-			{
-				removeChild(_Ship2);
-				removeChild(_Ship1);
-				addChild(_Ship3);
-			}
-			if (_selection == 4)
-			{
-				_selection = 1;
-			}
-			*/
+			this.init(e);
+			_Selection = 1;
+			_ShipSelection = 1;
+			_SelectedShip = 0;
 		}
-		private function loop2(e:Event):void 		//MULTIPLAYER SELECTION LOOP
+		
+		private function checkButtonUp(e:KeyboardEvent):void 
 		{
-		/*	if (_Oneselection == 1)
+			trace("checkbuttonUp (SHIPSELECT)");
+			if (e.keyCode == 87)
 			{
-				removeChild(_Ship2);
-				removeChild(_Ship3);
-				addChild(_Ship1);
+				_WIsDown = false;
 			}
-			if (_Oneselection == 2)
+			if (e.keyCode == 83)
 			{
-				removeChild(_Ship1);
-				removeChild(_Ship3);
-				addChild(_Ship2);
+				_SIsDown = false;
 			}
-			if (_Oneselection == 3)
+			if (e.keyCode == 32)
 			{
-				removeChild(_Ship2);
-				removeChild(_Ship1);
-				addChild(_Ship3);
+				_SpaceIsDown = false;
 			}
-			if (_Oneselection == 4)
+		}
+		
+		private function checkButtonDown(e:KeyboardEvent):void 
+		{
+			trace("checkbuttonDown (SHIPSELECT)");
+			if (e.keyCode == 87)
 			{
-				_Oneselection = 1;
+				_WIsDown = true;
 			}
-			if (_Twoselection == 1)
+			if (e.keyCode == 83)
 			{
-				removeChild(_Ship2);
-				removeChild(_Ship3);
-				addChild(_Ship1);
+				_SIsDown = true;
 			}
-			if (_Twoselection == 2)
+			if (e.keyCode == 32)
 			{
-				removeChild(_Ship1);
-				removeChild(_Ship3);
-				addChild(_Ship2);
+				_SpaceIsDown = true;
 			}
-			if (_Twoselection == 3)
-			{
-				removeChild(_Ship2);
-				removeChild(_Ship1);
-				addChild(_Ship3);
-			}
-			if (_Twoselection == 4)
-			{
-				_Twoselection = 1;
-			}*/
 		}
 		
 		public function OnePlayerShipSelect():void
@@ -162,6 +124,25 @@ package
 			addChild(_Confirm);
 			_Back = new _BackSelect();
 			addChild(_Back);
+			_PointerArt = new _Pointer;
+			addChild(_PointerArt);
+			_PlayerShipRed = new _Ship1();
+			addChild(_PlayerShipRed);
+			_PlayerShipBlue = new _Ship2();
+			addChild(_PlayerShipBlue);
+			_PlayerShipGreen = new _Ship3();
+			addChild(_PlayerShipGreen);
+			
+			_NavigationInstruction = new TextField();
+			_NavigationInstruction.textColor = 0xFFFFFF;	 // Wit
+			_NavigationInstruction.width = 270;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
+			_NavigationInstruction.height = 20;
+			_NavigationInstruction.scaleX = 1.5;			 	
+			_NavigationInstruction.scaleY = 1.5;
+			_NavigationInstruction.x = 850;
+			_NavigationInstruction.y = 0;
+			_NavigationInstruction.text = "Use W/S to navigate, use SPACE to confirm selection.";
+			addChild(_NavigationInstruction);
 			
 			_Prev.x = 450;
 			_Prev.y = stage.stageHeight / 2 - 50; 	// TUSSEN DE 700 PX die hier tussen staat komt een plaatje van een schip(degene die gekozen is, afhankelijk van de _selection integer
@@ -172,51 +153,177 @@ package
 			_Back.x = stage.stageWidth / 2 - 50; // Deze moet onder Confirm Button komen
 			_Back.y = stage.stageHeight / 2 + 120;
 			
+			//Ship art
+			_PlayerShipRed.x = stage.stageWidth / 2 - 90;
+			_PlayerShipRed.y = stage.stageHeight / 2 - 120;
+			_PlayerShipBlue.x = -150;
+			_PlayerShipBlue.y = -150;
+			_PlayerShipGreen.x = -150;
+			_PlayerShipGreen.y = -150;
+			
+			// Pointer(s) art
+			_PointerArt.x = 330;						// 100 px links van _Prev
+			_PointerArt.y = stage.stageHeight / 2 -40;	// net zo hoog als _Prev
 		}
-		public function TwoPlayerShipSelect():void
+		
+		private function loop(e:Event):void 		//SINGLEPLAYER SELECTION LOOP
 		{
-			trace("Two Player Ship Select  (SHIPSELECT)");
+			if (_Selection == 1)
+			{
+				_PointerArt.x = 330;							//Zet de pointer op de juiste plaats
+				_PointerArt.y = stage.stageHeight / 2 - 40;
+				CheckShips();
+			}
+			if (_Selection == 2)
+			{
+				_PointerArt.x = 950 ;
+				_PointerArt.y = stage.stageHeight / 2 - 40;
+				CheckShips();
+			}
+			if (_Selection == 3)
+			{
+				_PointerArt.x = stage.stageWidth / 2 - 220;
+				_PointerArt.y = stage.stageHeight / 2 + 70;
+			}
+			if (_Selection == 4)
+			{
+				_PointerArt.x = stage.stageWidth / 2 - 220;
+				_PointerArt.y = stage.stageHeight / 2 + 130;
+			}
 			
-			_BG = new _BackGround();
-			addChild(_BG);
-			//Player 1 art
-			_Prev = new _Previous();
-			addChild(_Prev);
-			_Prev.scaleX = -1;			// Scale inverted
-			_Next = new _NextShip();
-			addChild(_Next);
-			_Confirm = new _ConfirmChoice();
-			addChild(_Confirm);
-			_Back = new _BackSelect();
-			addChild(_Back);
-			//Player 2 art
-			_Prev2 = new _Previous2();
-			addChild(_Prev2);
-			_Prev2.scaleX = -1;
-			_Next2 = new _NextShip2();
-			addChild(_Next2);
-			_Confirm2 = new _ConfirmChoice2();
-			addChild(_Confirm2);
+			if (_WIsDown == true)
+			{
+				if (_Selection >= 4)
+				{
+					_Selection--;
+				}
+				else if (_Selection <= 1)
+				{
+					_Selection = 4;
+				}
+			}
 			
-			//Player 1 buttons art
-			_Prev.x = 200;
-			_Prev.y = stage.stageHeight / 2 - 50;
-			_Next.x = 530;
-			_Next.y = stage.stageHeight / 2 - 50;
-			_Confirm.x = 250;
-			_Confirm.y = stage.stageHeight / 2 + 70;
-
-			//Player 2 buttons art
-			_Prev2.x = 750;
-			_Prev2.y = stage.stageHeight / 2 - 50;
-			_Next2.x = 1080;
-			_Next2.y = stage.stageHeight / 2 - 50;
-			_Confirm2.x = 800;
-			_Confirm2.y = stage.stageHeight / 2 + 70;	
-			
-			// Global back button art
-			_Back.x = 600;
-			_Back.y = stage.stageHeight / 2 + 120;
+			if (_SIsDown == true)
+			{
+				if (_Selection <= 4)
+				{
+					_Selection++;
+				}
+				else if (_Selection >= 4)
+				{
+					_Selection = 1;
+				}
+			}
+			if (_SpaceIsDown == true)
+			{
+				if (_Selection == 1)	// PREVIOUS BUTTON
+				{
+					_ShipSelection--;
+				}
+				if (_Selection == 2)	// NEXT BUTTON
+				{
+					_ShipSelection++;
+				}
+				if (_Selection == 3)	// CONFIRM BUTTON
+				{
+					// Confirm current Ship & continue to Levelselect
+					WhatShip();		// Deze zet _selectedShip op 1,2 of 3. Deze moet bij de levels weer opgevraagd worden.
+					_Selection = 0;
+					_ShipSelection = 0;
+					removeChild(_PointerArt);
+					removeEventListener(Event.ENTER_FRAME, loop);
+					dispatchEvent(new Event("SpawnLevelSelect"));
+					dispatchEvent(new Event("RemoveShipSelect"));
+				}
+				if (_Selection == 4)	// BACK BUTTON(Back to Menu)
+				{
+					_Selection = 0;
+					_ShipSelection = 0;
+					removeChild(_PointerArt);
+					removeEventListener(Event.ENTER_FRAME, loop);
+					dispatchEvent(new Event("RemoveShipSelect"));
+					dispatchEvent(new Event("SpawnMenu"));
+				}
+			}
 		}
+		
+		private function CheckShips():void
+		{
+			if (_ShipSelection == 1)		// RED
+			{
+				if (_PlayerShipBlue)
+				{
+					_PlayerShipBlue.x = -150;
+					_PlayerShipBlue.y = -150;
+					_PlayerShipRed.x = stage.stageWidth / 2 -90;
+					_PlayerShipRed.y = stage.stageHeight / 2 - 120;
+				}
+				if (_PlayerShipGreen)
+				{
+					_PlayerShipGreen.x = -150;
+					_PlayerShipGreen.y = -150;
+					_PlayerShipRed.x = stage.stageWidth / 2 -90;
+					_PlayerShipRed.y = stage.stageHeight / 2 - 120;
+				}
+			}
+			
+			if (_ShipSelection == 2)		// BLUE
+			{
+				if (_PlayerShipRed)
+				{
+					_PlayerShipRed.x = -150;
+					_PlayerShipRed.y = -150;
+					_PlayerShipBlue.x = stage.stageWidth / 2 -90;
+					_PlayerShipBlue.y = stage.stageHeight / 2 - 120;
+				}
+				if (_PlayerShipGreen)
+				{
+					_PlayerShipGreen.x = -150;
+					_PlayerShipGreen.y = -150;
+					_PlayerShipBlue.x = stage.stageWidth / 2 - 90;
+					_PlayerShipBlue.y = stage.stageHeight / 2 -120;
+				}
+			}
+			if (_ShipSelection == 3)		// GREEN
+			{
+				if (_PlayerShipBlue)
+				{
+					_PlayerShipBlue.x = -150;
+					_PlayerShipBlue.y = -150;
+					_PlayerShipGreen.x = stage.stageWidth / 2 - 90;
+					_PlayerShipGreen.y = stage.stageHeight / 2 -120;
+				}
+				if (_PlayerShipRed)
+				{
+					_PlayerShipRed.x = -150;
+					_PlayerShipRed.y = -150;
+					_PlayerShipGreen.x = stage.stageWidth / 2 - 90;
+					_PlayerShipGreen.y = stage.stageHeight / 2 -120;
+				}
+			}
+			if (_ShipSelection >= 4)
+			{
+				_ShipSelection = 1;
+			}
+			if (_ShipSelection <= 0)
+			{
+				_ShipSelection = 3;
+			}
+		}
+		private function WhatShip():void
+		{
+			if (_PlayerShipRed.x == stage.stageWidth / 2 - 90)
+			{
+				_SelectedShip = 1;
+			}
+			if (_PlayerShipBlue.x == stage.stageWidth / 2 - 90)
+			{
+				_SelectedShip = 2;
+			}
+			if (_PlayerShipGreen.x == stage.stageWidth / 2 - 90)
+			{
+				_SelectedShip = 3;
+			}
+		}	
 	}
 }

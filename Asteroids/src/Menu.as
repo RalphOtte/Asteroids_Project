@@ -111,7 +111,6 @@ package
 		
 		private function checkButtonUp(e:KeyboardEvent):void
 		{
-			trace("checkbuttonUp");
 			if (e.keyCode == 87)
 			{
 				_WButtonIsDown = false;
@@ -128,7 +127,6 @@ package
 		
 		public function checkButtonDown(e:KeyboardEvent):void
 		{
-			trace("checkbuttonDown");
 			if (e.keyCode == 87)
 			{
 				_WButtonIsDown = true;
@@ -147,7 +145,6 @@ package
 		{
 			if (!this.contains(_Pointer))
 			{
-				trace("Does Menu contain _Pointer? (MENU)");
 				addChild(_Pointer);
 			}
 			// DIT IS DE POINTER DIE VERPLAATST
@@ -174,7 +171,6 @@ package
 			 
 			if (_WButtonIsDown == true)
 			{
-				trace("W");
 				trace(_MenuSelection);
 				if (_MenuSelection <= 4)
 					{
@@ -188,7 +184,6 @@ package
 			
 			if (_SButtonIsDown == true)
 			{
-				trace("S");
 				trace(_MenuSelection);
 				if (_MenuSelection <= 4)
 				{
@@ -202,12 +197,10 @@ package
 		
 			if(_SpaceButton == true)
 			{
-				trace("SPACE");
 				if (_MenuSelection == 1)
 				{
 				//	_OnePlayer = true;
 					dispatchEvent(new Event("SpawnShipSelect1"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
-					trace("OneplayerChosen (MENU)");
 					removeEventListener(Event.ENTER_FRAME, loop);
 					removeChild(_Pointer);
 					dispatchEvent(new Event("RemoveMenu"));
@@ -216,7 +209,6 @@ package
 				{
 				//	_TwoPlayer = true;
 					dispatchEvent(new Event("SpawnShipSelect2"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
-					trace("Twoplayerchosen (MENU)");
 					removeChild(_Pointer);
 					removeEventListener(Event.ENTER_FRAME, loop);
 					dispatchEvent(new Event("RemoveMenu"));
@@ -224,7 +216,6 @@ package
 				if (_MenuSelection == 3)
 				{
 					dispatchEvent(new Event("SpawnOptions"));			//Geeft signaal af voor de Main dat hij Options moet spawnen
-					trace("Optionschosen (MENU)");
 					removeChild(_Pointer);
 					removeEventListener(Event.ENTER_FRAME, loop);
 					dispatchEvent(new Event("RemoveMenu"));
@@ -233,7 +224,6 @@ package
 				{
 					fscommand("quit");			//Stops Flashplayer
 					System.exit(0);				//Stops Flashplayer
-					trace("Exitchosen (MENU)");
 					removeChild(_Pointer);
 					removeEventListener(Event.ENTER_FRAME, loop);
 					dispatchEvent(new Event("RemoveMenu"));
