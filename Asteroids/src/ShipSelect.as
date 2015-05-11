@@ -16,13 +16,15 @@ package
 		
 		private var _NavigationInstruction:TextField;
 		
-		private var _Selection:int = 0;			//Dit is de Singleplayer selection integer(Menu navigatie)
+		private var _Selection:int = 1;			//Dit is de Singleplayer selection integer(Menu navigatie)
 		private var _ShipSelection:int = 1;		//Dit is de integer die reguleert welk ship geselecteerd is.(Ship navigatie)
 		private var _SelectedShip:int = 0;		//Dit is de integer die reguleert welk ship naar het level "meegenomen" wordt.
 		
 		private var _WIsDown:Boolean = false;
 		private var _SIsDown:Boolean = false;
 		private var _SpaceIsDown:Boolean = false;
+		
+		public var _Singleplayer:Boolean = false;
 		
 		// Singleplayer & Multiplayer P1 Ship set
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
@@ -74,7 +76,7 @@ package
 			this.init(e);
 			_Selection = 1;
 			_ShipSelection = 1;
-			_SelectedShip = 0;
+			_SelectedShip = 1;
 		}
 		
 		private function checkButtonUp(e:KeyboardEvent):void 
@@ -228,6 +230,7 @@ package
 				{
 					// Confirm current Ship & continue to Levelselect
 					WhatShip();		// Deze zet _selectedShip op 1,2 of 3. Deze moet bij de levels weer opgevraagd worden.
+					_Singleplayer = true;
 					_Selection = 0;
 					_ShipSelection = 0;
 					removeChild(_PointerArt);
@@ -237,7 +240,7 @@ package
 				}
 				if (_Selection == 4)	// BACK BUTTON(Back to Menu)
 				{
-					_Selection = 0;
+					_Selection = 1;
 					_ShipSelection = 0;
 					removeChild(_PointerArt);
 					removeEventListener(Event.ENTER_FRAME, loop);

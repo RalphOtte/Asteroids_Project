@@ -13,6 +13,8 @@ package
 	public class LevelSelect extends Sprite
 	{
 		private var _Main:Main;
+		private var _ShipSelect:ShipSelect;
+		private var _MPShipSelect:MPShipSelect;
 		
 		private var _NavigationInstruction:TextField;
 		
@@ -256,14 +258,26 @@ package
 						dispatchEvent(new Event("SpawnLevel_3"));
 					}
 				}
-				if (_Selection == 4)	// BACK BUTTON(Back to Menu)
+				if (_Selection == 4)	// BACK BUTTON
 				{
-					_Selection = 0;
-					_LevelSelection = 0;
-					removeChild(_PointerArt);
-					removeEventListener(Event.ENTER_FRAME, loop);
-					dispatchEvent(new Event("RemoveLevelSelect"));
-					dispatchEvent(new Event("SpawnSelectedLevel"));
+					if (_ShipSelect._Singleplayer == true)
+					{
+						_Selection = 0;
+						_LevelSelection = 0;
+						removeChild(_PointerArt);
+						removeEventListener(Event.ENTER_FRAME, loop);
+						dispatchEvent(new Event("RemoveLevelSelect"));
+						dispatchEvent(new Event("SpawnLevelSelect"));
+					}
+					else if (_MPShipSelect._Multiplayer == true)
+					{
+						_Selection = 0;
+						_LevelSelection = 0;
+						removeChild(_PointerArt);
+						removeEventListener(Event.ENTER_FRAME, loop);
+						dispatchEvent(new Event("RemoveLevelSelect"));
+						dispatchEvent(new Event("SpawnMPLevelSelect"));
+					}
 				}
 			}
 		}

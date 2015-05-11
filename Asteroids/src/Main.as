@@ -63,10 +63,13 @@ package
 			_ShipSelect.addEventListener("RemoveShipSelect", RemoveShipSelect);
 			_MPShipSelect.addEventListener("RemoveShipSelect2", RemoveShipSelect2);
 			_MPShipSelect.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
+			_MPShipSelect.addEventListener("SpawnMenu", SpawnMenu);
 			_LevelSelect.addEventListener("RemoveLevelSelect", RemoveLevelSelect);
 			_LevelSelect.addEventListener("SpawnLevel_1", SpawnLevel_1);
 			_LevelSelect.addEventListener("SpawnLevel_2", SpawnLevel_2);
 			_LevelSelect.addEventListener("SpawnLevel_3", SpawnLevel_3);
+			_LevelSelect.addEventListener("SpawnLevelSelect", SpawnShipSelect1);
+			_LevelSelect.addEventListener("SpawnMPLevelSelect", SpawnShipSelect2);
 		}
 		
 		private function SpawnLevel_1(e:Event):void 

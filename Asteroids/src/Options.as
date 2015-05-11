@@ -72,6 +72,9 @@ package
 		{
 			this.init(e);
 			_Selection = 0;
+			_WIsDown = false;
+			_SIsDown = false;
+			_SpacebarButton= false;
 		}
 		
 		private function init(e:Event):void 

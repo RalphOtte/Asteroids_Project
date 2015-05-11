@@ -24,7 +24,7 @@ package
 		
 		private var _NavigationInstruction:TextField;
 		
-		private var _MenuSelection:int = 0;
+		private var _MenuSelection:int = 1;
 		
 		private var _WButtonIsDown:Boolean = false;
 		private var _SButtonIsDown:Boolean = false;	
@@ -57,6 +57,9 @@ package
 		{
 			this.init(e);
 			_MenuSelection = 0;
+			_WButtonIsDown = false;
+			_SButtonIsDown = false;
+			_SpaceButton = false;
 		}
 		
 		private function init(e:Event):void
@@ -179,6 +182,10 @@ package
 				if(_MenuSelection <= 0)
 				{
 					_MenuSelection = 4;
+				}
+				if (_MenuSelection == 5)
+				{
+					_MenuSelection--;
 				}
 			}
 			
