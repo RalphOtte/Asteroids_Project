@@ -26,6 +26,8 @@ package
 		
 		private var _P1Chosen:Boolean = false;
 		private var _P2Chosen:Boolean = false;
+		private var _P1Exit:Boolean = false;
+		private var _P2Exit:Boolean = false;
 		
 		private var _WIsDown:Boolean = false;
 		private var _SIsDown:Boolean = false;
@@ -34,6 +36,8 @@ package
 		private var _UpIsDown:Boolean = false;
 		private var _DownIsDown:Boolean = false;
 		private var _EnterIsDown:Boolean = false;
+		
+		public var _Multiplayer:Boolean = false;
 		
 		// Singleplayer & Multiplayer P1 Ship set
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
@@ -301,6 +305,15 @@ package
 				dispatchEvent(new Event("RemoveShipSelect2"));
 				dispatchEvent(new Event("SpawnLevelSelect"));
 			}
+			if (_P1Exit && _P2Exit == true)
+			{
+				trace("Beide spelers willen exit");
+				removeChild(_PointerArt2);
+				removeChild(_PointerArt3);
+				removeEventListener(Event.ENTER_FRAME, loop2);
+				dispatchEvent(new Event("RemoveShipSelect2"));
+				dispatchEvent(new Event("SpawnMenu"));
+			}
 			
 			//Player 1
 		if (_OneSelection == 1)
@@ -377,13 +390,11 @@ package
 				{
 					// Confirm current Ship & continue to Levelselect
 					WhatShip1();
-					// LevelSlect();
+					_Multiplayer = true;
 				}
-				if (_OneSelection == 4)	// BACK BUTTON(Back to Menu)
+				if (_OneSelection >= 4)	// BACK BUTTON(Back to Menu)
 				{
-					removeEventListener(Event.ENTER_FRAME, loop2);
-					dispatchEvent(new Event("RemoveShipSelect2"));
-					dispatchEvent(new Event("SpawnMenu"));
+					_P1Exit = true;
 				}
 			}
 			
@@ -462,13 +473,11 @@ package
 				{
 					// Confirm current Ship & continue to Levelselect
 					WhatShip2();
-					// LevelSlect();
+					_Multiplayer = true;
 				}
-				if (_TwoSelection == 4)	// BACK BUTTON(Back to Menu)
+				if (_TwoSelection >= 4)	// BACK BUTTON(Back to Menu)
 				{
-					removeEventListener(Event.ENTER_FRAME, loop2);
-					dispatchEvent(new Event("RemoveShipSelect2"));
-					dispatchEvent(new Event("SpawnMenu"));
+					_P2Exit = true;
 				}
 			}
 		}
