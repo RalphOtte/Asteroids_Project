@@ -18,9 +18,7 @@
 		
 		public function KeyboardController() 
 		{
-			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
-			
 		}
 		
 		private function init(e:Event):void 
@@ -32,19 +30,19 @@
 		
 		private function keyDown(e:KeyboardEvent):void
 		{
-			if (e.keyCode == 87)
+			if (e.keyCode == 87 || 38)
 			{
 				_WButtonIsDown = true;
 			}
-			if (e.keyCode == 65)
+			if (e.keyCode == 65 || 37)
 			{
 				_AButtonIsDown = true;
 			}
-			if (e.keyCode == 83)
+			if (e.keyCode == 83 || 40)
 			{
 				_SButtonIsDown = true;
 			}
-			if (e.keyCode == 68)
+			if (e.keyCode == 68 || 39)
 			{
 				_DButtonIsDown = true;
 			}
@@ -69,22 +67,22 @@
 		
 		private function keyUp(e:KeyboardEvent):void
 		{
-			if (e.keyCode == 87)
+			if (e.keyCode == 87 || 38)
 			{
 				_WButtonIsDown = false;
 				trace("ik werk niet meer voor W");
 			}
-			if (e.keyCode == 65)
+			if (e.keyCode == 65 || 37)
 			{
 				_AButtonIsDown = false;
 				trace("ik werk niet meer voor A");
 			}
-			if (e.keyCode == 83)
+			if (e.keyCode == 83 || 40)
 			{
 				_SButtonIsDown = false;
 				trace("ik werk niet meer voor S");
 			}
-			if (e.keyCode == 68)
+			if (e.keyCode == 68 || 39)
 			{
 				_DButtonIsDown = false;
 				trace("ik werk niet meer voor D");
