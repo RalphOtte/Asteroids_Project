@@ -14,10 +14,9 @@ package
 		
 		
 		public function Level_3() 
-		{
-			
+		{	
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
-			addChild(_bg);
+		
 		}
 		
 		private function init(e:Event):void 

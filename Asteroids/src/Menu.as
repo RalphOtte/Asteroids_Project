@@ -104,7 +104,7 @@ package
 			 
 			_NavigationInstruction = new TextField();
 			_NavigationInstruction.textColor = 0xFFFFFF;	 // Wit
-			_NavigationInstruction.width = 270;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
+			_NavigationInstruction.width = 370;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
 			_NavigationInstruction.height = 20;
 			_NavigationInstruction.scaleX = 1.5;			 	
 			_NavigationInstruction.scaleY = 1.5;

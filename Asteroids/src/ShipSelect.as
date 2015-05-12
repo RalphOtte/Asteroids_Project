@@ -81,7 +81,6 @@ package
 		
 		private function checkButtonUp(e:KeyboardEvent):void 
 		{
-			trace("checkbuttonUp (SHIPSELECT)");
 			if (e.keyCode == 87)
 			{
 				_WIsDown = false;
@@ -98,7 +97,6 @@ package
 		
 		private function checkButtonDown(e:KeyboardEvent):void 
 		{
-			trace("checkbuttonDown (SHIPSELECT)");
 			if (e.keyCode == 87)
 			{
 				_WIsDown = true;
@@ -234,6 +232,8 @@ package
 					_Selection = 0;
 					_ShipSelection = 0;
 					removeChild(_PointerArt);
+					stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
+					stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
 					removeEventListener(Event.ENTER_FRAME, loop);
 					dispatchEvent(new Event("SpawnLevelSelect"));
 					dispatchEvent(new Event("RemoveShipSelect"));

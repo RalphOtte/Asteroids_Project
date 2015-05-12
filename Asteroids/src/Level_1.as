@@ -11,6 +11,20 @@ package
 	 */
 	public class Level_1 extends Sprite
 	{
+		//variables
+		
+		//Intro op Tile 1
+		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
+		private var _CurtainUp:Class;
+		private var _Curtain1:Bitmap;
+		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
+		private var _CurtainDown:Class;
+		private var _Curtain2:Bitmap;
+		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
+		private var _CurtainFade:Class;
+		private var _Curtain3:Bitmap;
+		
+		
 		public function Level_1() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -19,13 +33,27 @@ package
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			_Curtain1 = new _CurtainUp();
+			_Curtain2 = new _CurtainDown();
+			_Curtain3 = new _CurtainFade();
+			
+			Tile1(e);
+		}
+		
+		private function loop(e:Event):void 
+		{
+			_Curtain3.alpha -= 5;
+			
 		}
 		
 		private function Tile1(e:Event):void
 		{
-			
-			
+		//	addChild(_Curtain1);
+		//	addChild(_Curtain2);
+			addChild(_Curtain3);
+			addEventListener(Event.ADDED_TO_STAGE, loop);
 		}
+		
 		private function Tile2(e:Event):void
 		{
 			

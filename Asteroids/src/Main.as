@@ -54,6 +54,7 @@ package
 			_Level2 = new Level_2();
 			_Level3 = new Level_3();
 			_Credits = new Credits();
+		
 			/*
 			 * ADDITIONELE INFO
 			 * 
@@ -75,7 +76,7 @@ package
 			_Option.addEventListener("RemoveOptions", RemoveOptions);
 			_ShipSelect.addEventListener("SpawnMenu", SpawnMenu);
 			_ShipSelect.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
-			_ShipSelect.addEventListener("RemoveShipSelect", RemoveShipSelect);
+			_ShipSelect.addEventListener("RemoveShipSelect", RemoveShipSelect1);
 			_MPShipSelect.addEventListener("RemoveShipSelect2", RemoveShipSelect2);
 			_MPShipSelect.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
 			_MPShipSelect.addEventListener("SpawnMenu", SpawnMenu);
@@ -97,7 +98,7 @@ package
 		private function SpawnLevel_1(e:Event):void 
 		{
 			trace("SpawnLevel_1");
-		//	addChild(_Level1);
+			addChild(_Level1);
 		//	_Level1.reSpawn(e); (moet nog gemaakt worden)
 		}
 		
@@ -157,7 +158,7 @@ package
 		{
 			removeChild(_Option);
 		}
-		private function RemoveShipSelect(e:Event):void 
+		private function RemoveShipSelect1(e:Event):void 
 		{
 			removeChild(_ShipSelect);
 		}
