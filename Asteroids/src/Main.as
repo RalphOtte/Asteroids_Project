@@ -111,8 +111,8 @@ package
 		private function SpawnLevel_3(e:Event):void 
 		{
 			trace("SpawnLevel_3");
-		//	addChild(_Level3);
-		// _Level3.reSpawn(e); (moet nog gemaakt worden)
+			addChild(_Level3);
+		//	_Level3.reSpawn(e); (moet nog gemaakt worden)
 		}
 		
 		private function SpawnLevelSelect(e:Event):void 

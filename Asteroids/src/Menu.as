@@ -108,7 +108,7 @@ package
 			_NavigationInstruction.height = 20;
 			_NavigationInstruction.scaleX = 1.5;			 	
 			_NavigationInstruction.scaleY = 1.5;
-			_NavigationInstruction.text = "Use W/S to navigate, use SPACE to confirm selection.";
+			_NavigationInstruction.text = "Use W/S or arrow up/down to navigate, use SPACE to confirm selection.";
 			addChild(_NavigationInstruction);
 	
 		}
@@ -123,6 +123,16 @@ package
 			{
 				_SButtonIsDown = false;
 			}
+			
+			if (e.keyCode == 38)
+			{
+				_WButtonIsDown = false;
+			}
+			if (e.keyCode == 40)
+			{
+				_SButtonIsDown = false;
+			}
+			
 			if (e.keyCode == 32)
 			{
 				_SpaceButton = false;
@@ -143,6 +153,16 @@ package
 			{
 				_SButtonIsDown = true;
 			}
+			
+			if (e.keyCode == 38)
+			{
+				_WButtonIsDown = true;
+			}
+			if (e.keyCode == 40)
+			{
+				_SButtonIsDown = true;
+			}
+			
 			if (e.keyCode == 32)
 			{
 				_SpaceButton = true;

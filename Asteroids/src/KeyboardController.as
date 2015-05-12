@@ -30,19 +30,19 @@
 		
 		private function keyDown(e:KeyboardEvent):void
 		{
-			if (e.keyCode == 87 || 38)
+			if (e.keyCode == 87)
 			{
 				_WButtonIsDown = true;
 			}
-			if (e.keyCode == 65 || 37)
+			if (e.keyCode == 65)
 			{
 				_AButtonIsDown = true;
 			}
-			if (e.keyCode == 83 || 40)
+			if (e.keyCode == 83)
 			{
 				_SButtonIsDown = true;
 			}
-			if (e.keyCode == 68 || 39)
+			if (e.keyCode == 68)
 			{
 				_DButtonIsDown = true;
 			}
@@ -67,22 +67,22 @@
 		
 		private function keyUp(e:KeyboardEvent):void
 		{
-			if (e.keyCode == 87 || 38)
+			if (e.keyCode == 87)
 			{
 				_WButtonIsDown = false;
 				trace("ik werk niet meer voor W");
 			}
-			if (e.keyCode == 65 || 37)
+			if (e.keyCode == 65)
 			{
 				_AButtonIsDown = false;
 				trace("ik werk niet meer voor A");
 			}
-			if (e.keyCode == 83 || 40)
+			if (e.keyCode == 83)
 			{
 				_SButtonIsDown = false;
 				trace("ik werk niet meer voor S");
 			}
-			if (e.keyCode == 68 || 39)
+			if (e.keyCode == 68)
 			{
 				_DButtonIsDown = false;
 				trace("ik werk niet meer voor D");
