@@ -18,9 +18,7 @@
 		
 		public function KeyboardController() 
 		{
-			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
-			
 		}
 		
 		private function init(e:Event):void 

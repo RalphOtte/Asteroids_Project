@@ -12,13 +12,23 @@ package
 	public class Level_2 extends Sprite
 	{
 		
+<<<<<<< HEAD
 		public function Level_2() 
+=======
+		private var _bg:Background = new Background();
+		private var _tileCount:int;
+		
+		public function Level_3() 
+>>>>>>> origin/master
 		{
+			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
+			addChild(_bg);
 		}
 		
 		private function init(e:Event):void 
 		{
+<<<<<<< HEAD
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 		}
@@ -126,7 +136,10 @@ package
 		{
 			
 			
+=======
+			removeEventListener(Event.ADDED_TO_STAGE, init);	
+			trace("level_3 is now spawned");
+>>>>>>> origin/master
 		}	
 	}
-
 }

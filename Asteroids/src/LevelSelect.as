@@ -242,7 +242,6 @@ package
 					if (_SelectedLevel == 2)
 					{
 						// To be made
-						trace("To be made (LEVELSELECT)");
 						removeChild(_PointerArt);
 						removeEventListener(Event.ENTER_FRAME, loop);
 						dispatchEvent(new Event("RemoveLevelSelect"));

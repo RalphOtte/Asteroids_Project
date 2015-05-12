@@ -27,6 +27,7 @@ package
 		private var _Level3:Level_3;
 		private var _Credits:Credits;
 		
+		
 		public function Main():void 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);
@@ -110,8 +111,8 @@ package
 		private function SpawnLevel_3(e:Event):void 
 		{
 			trace("SpawnLevel_3");
-		//	addChild(_Level3);
-		// _Level3.reSpawn(e); (moet nog gemaakt worden)
+			addChild(_Level3);
+		//	_Level3.reSpawn(e); (moet nog gemaakt worden)
 		}
 		
 		private function SpawnLevelSelect(e:Event):void 

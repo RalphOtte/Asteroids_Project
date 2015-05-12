@@ -11,7 +11,6 @@ package
 	 */
 	public class Level_1 extends Sprite
 	{
-		
 		public function Level_1() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -20,8 +19,9 @@ package
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
 		}
+<<<<<<< HEAD
+=======
 		
 		private function Tile1(e:Event):void
 		{
@@ -77,12 +77,16 @@ package
 		{
 			
 			
+<<<<<<< HEAD
 		}
 		private function Tile12(e:Event):void
 		{
 			
 			
 		}	
+=======
+		}*/
+>>>>>>> origin/master
+>>>>>>> origin/master
 	}
-
 }
