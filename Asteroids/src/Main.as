@@ -25,6 +25,7 @@ package
 		private var _Level1:Level_1;
 		private var _Level2:Level_2;
 		private var _Level3:Level_3;
+		private var _Credits:Credits;
 		
 		public function Main():void 
 		{
@@ -51,11 +52,24 @@ package
 			_Level1 = new Level_1();
 			_Level2 = new Level_2();
 			_Level3 = new Level_3();
-			
+			_Credits = new Credits();
+			/*
+			 * ADDITIONELE INFO
+			 * 
+			 * Alle classes hebben een spawn en een remove functie/dispatch
+			 * Hierdoor kan elk(e) class/object elkander aanroepen.
+			 * 
+			 * De reSpawn funcies zijn bedoeld om alle variabelen weer goed te zetten zoals die horen(Die blijven natuurlijk "oud" staan in het geheugen, ook nadat de class weggehaald is.
+			 * Al deze EventListeners zijn die functies die aangeroepen kunnen worden, maar alleen vanuit bepaalde classes/objecten.
+			 * Deze zijn aangeduid met bijvoorbeeld _menu of _MPShipSelect
+			 * De .(punt) die ertussen staat verbind de class met de EventListener, betekenende dat de main alleen voor een dispatch luistert vanuit die class(uiteraard kan er ook een global zijn)
+			 * 
+			 * */
 			_menu.addEventListener("RemoveMenu" , RemoveMenu);
 			_menu.addEventListener("SpawnShipSelect1" , SpawnShipSelect1);
 			_menu.addEventListener("SpawnShipSelect2" , SpawnShipSelect2);
 			_menu.addEventListener("SpawnOptions" , SpawnOptions);
+			_menu.addEventListener("SpawnCredits", SpawnCredits);
 			_Option.addEventListener("SpawnMenu", SpawnMenu);
 			_Option.addEventListener("RemoveOptions", RemoveOptions);
 			_ShipSelect.addEventListener("SpawnMenu", SpawnMenu);
@@ -70,6 +84,13 @@ package
 			_LevelSelect.addEventListener("SpawnLevel_3", SpawnLevel_3);
 			_LevelSelect.addEventListener("SpawnLevelSelect", SpawnShipSelect1);
 			_LevelSelect.addEventListener("SpawnMPLevelSelect", SpawnShipSelect2);
+		}
+		
+		private function SpawnCredits(e:Event):void 
+		{
+			trace("SpawnCredits");
+		// 	addChild(_Credits);
+		//	_Credits.reSpawn(e)
 		}
 		
 		private function SpawnLevel_1(e:Event):void 

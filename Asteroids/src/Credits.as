@@ -9,10 +9,10 @@ package
 	 * ...
 	 * @author Ralph Otte
 	 */
-	public class Level_1 extends Sprite
+	public class Credits extends Sprite
 	{
 		
-		public function Level_1() 
+		public function Credits() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}

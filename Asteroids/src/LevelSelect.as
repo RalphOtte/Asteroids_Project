@@ -18,7 +18,7 @@ package
 		
 		private var _NavigationInstruction:TextField;
 		
-		private var _Selection:int = 0;	
+		private var _Selection:int = 1;	
 		private var _LevelSelection:int = 1;
 		private var _SelectedLevel:int = 0;		
 		

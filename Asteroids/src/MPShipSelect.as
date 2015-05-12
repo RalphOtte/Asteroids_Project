@@ -63,10 +63,7 @@ package
 		[Embed(source="../Assets/Menu's/menu_options_astroids.png")]
 		private var _BackGround:Class;
 		private var _BG:Bitmap;
-		//Alle pointers (Singleplayer & Multiplayer P1/P2)
-		[Embed(source = "../Assets/Menu's/Pointer.png")]			// Singleplayer Pointer
-		private var _Pointer:Class;
-		private var _PointerArt:Bitmap;
+		//Alle pointers
 		[Embed(source = "../Assets/Menu's/Pointer.png")]			// Multiplayer P1 Pointer
 		private var _Pointer2:Class;
 		private var _PointerArt2:Bitmap;
@@ -95,6 +92,13 @@ package
 		[Embed(source="../Assets/Menu's/BackButton.png")]
 		private var _BackSelect:Class;
 		private var _Back:Bitmap;	
+		[Embed(source = "../Assets/Menu's/P1HasSelected.png")]
+		private var _P1HasSelected:Class;
+		private var _P1Selected:Bitmap;
+		[Embed(source = "../Assets/Menu's/P2HasSelected.png")]
+		private var _P2HasSelected:Class;
+		private var _P2Selected:Bitmap;
+		
 		
 		public function MPShipSelect() 
 		{
@@ -120,6 +124,8 @@ package
 			_TwoSelection = 1;
 			_P1Chosen = false;
 			_P2Chosen = false;
+			_P1Exit = false;
+			_P2Exit = false;
 		}
 		
 		private function checkButtonUp(e:KeyboardEvent):void 
@@ -226,6 +232,9 @@ package
 			_PlayerShipGreen2 = new _Ship6();
 			addChild(_PlayerShipGreen2);
 			
+			_P1Selected = new _P1HasSelected();
+			_P2Selected = new _P2HasSelected();
+			
 			//Player 1 instructions
 			_NavigationInstruction = new TextField();
 			_NavigationInstruction.textColor = 0xFFFFFF;	 // Wit
@@ -240,8 +249,8 @@ package
 			
 			//Player 2  instructions
 			_NavigationInstruction2 = new TextField();
-			_NavigationInstruction2.textColor = 0xFFFFFF;	 // Wit
-			_NavigationInstruction2.width = 540;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
+			_NavigationInstruction2.textColor = 0xFFFFFF;	 		// Wit
+			_NavigationInstruction2.width = 540;				 	// Dit is de "available" aantal pixels waarop de text wordt laten zien
 			_NavigationInstruction2.height = 20;
 			_NavigationInstruction2.scaleX = 1.5;			 	
 			_NavigationInstruction2.scaleY = 1.5;
@@ -301,18 +310,20 @@ package
 			{
 				// Zodra deze 2 TRUE zijn, gaat het spel door naar LevelSelect
 				trace("BEIDE SPELERS HEBBEN GEKOZEN");
-				removeEventListener(Event.ENTER_FRAME, loop2);
-				dispatchEvent(new Event("RemoveShipSelect2"));
 				dispatchEvent(new Event("SpawnLevelSelect"));
-			}
-			if (_P1Exit && _P2Exit == true)
-			{
-				trace("Beide spelers willen exit");
 				removeChild(_PointerArt2);
 				removeChild(_PointerArt3);
 				removeEventListener(Event.ENTER_FRAME, loop2);
 				dispatchEvent(new Event("RemoveShipSelect2"));
+			}
+			if (_P1Exit && _P2Exit == true)
+			{
+				trace("Beide spelers willen exit");
 				dispatchEvent(new Event("SpawnMenu"));
+				removeChild(_PointerArt2);
+				removeChild(_PointerArt3);
+				removeEventListener(Event.ENTER_FRAME, loop2);
+				dispatchEvent(new Event("RemoveShipSelect2"));
 			}
 			
 			//Player 1
@@ -320,7 +331,7 @@ package
 			{
 				_PointerArt2.x = 110;
 				_PointerArt2.y = stage.stageHeight / 2 - 40;
-				CheckShips1();		//Aparte maken voor player 1 en 2
+				CheckShips1();
 			}
 			if (_OneSelection == 2)
 			{
@@ -362,6 +373,7 @@ package
 					_OneSelection = 1;
 				}
 			}
+			
 			if (_SpaceIsDown == true)
 			{
 				if (_OneSelection == 1)	// PREVIOUS BUTTON
@@ -388,9 +400,11 @@ package
 				}
 				if (_OneSelection == 3)	// CONFIRM BUTTON
 				{
-					// Confirm current Ship & continue to Levelselect
 					WhatShip1();
 					_Multiplayer = true;
+					addChild(_P1Selected);
+					_P1Selected.x = 250;
+					_P1Selected.y = stage.stageHeight /2 + 120;
 				}
 				if (_OneSelection >= 4)	// BACK BUTTON(Back to Menu)
 				{
@@ -474,6 +488,9 @@ package
 					// Confirm current Ship & continue to Levelselect
 					WhatShip2();
 					_Multiplayer = true;
+					addChild(_P2Selected);
+					_P2Selected.x = 800;
+					_P2Selected.y = stage.stageHeight / 2 + 120;
 				}
 				if (_TwoSelection >= 4)	// BACK BUTTON(Back to Menu)
 				{

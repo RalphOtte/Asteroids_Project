@@ -29,6 +29,7 @@ package
 		private var _WButtonIsDown:Boolean = false;
 		private var _SButtonIsDown:Boolean = false;	
 		private var _SpaceButton:Boolean = false;
+		private var _CButton:Boolean = false;
 		
 		[Embed(source="../Assets/Menu's/menu_astroids.png")]
 		private var _MenuBackground:Class;							  
@@ -60,6 +61,7 @@ package
 			_WButtonIsDown = false;
 			_SButtonIsDown = false;
 			_SpaceButton = false;
+			_CButton = false;
 		}
 		
 		private function init(e:Event):void
@@ -79,7 +81,6 @@ package
 			addChild(_Pointer);
 			_Pointer.x = stage.stageWidth / 2 - 150;
 			_Pointer.y = stage.stageHeight / 2 - 100;
-			trace("Added Pointer (MENU)");
 			
 			_SingleButton = new _SinglePlayButton;
 			addChild(_SingleButton);
@@ -126,6 +127,10 @@ package
 			{
 				_SpaceButton = false;
 			}
+			/*if (e.keyCode == "C")	// Hier nog de keycode voor C
+			{
+				_CButton = false;
+			}*/
 		}
 		
 		public function checkButtonDown(e:KeyboardEvent):void
@@ -142,6 +147,10 @@ package
 			{
 				_SpaceButton = true;
 			}
+			/*if (e.keyCode == "C")	// Hier nog de keycode voor C
+			{
+				_CButton = true;
+			}*/
 		}
 		
 		public function loop(e:Event):void 
@@ -174,7 +183,6 @@ package
 			 
 			if (_WButtonIsDown == true)
 			{
-				trace(_MenuSelection);
 				if (_MenuSelection <= 4)
 					{
 						_MenuSelection--;
@@ -191,7 +199,6 @@ package
 			
 			if (_SButtonIsDown == true)
 			{
-				trace(_MenuSelection);
 				if (_MenuSelection <= 4)
 				{
 					_MenuSelection++;
@@ -206,7 +213,6 @@ package
 			{
 				if (_MenuSelection == 1)
 				{
-				//	_OnePlayer = true;
 					dispatchEvent(new Event("SpawnShipSelect1"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
 					removeEventListener(Event.ENTER_FRAME, loop);
 					removeChild(_Pointer);
@@ -214,7 +220,6 @@ package
 				}
 				if (_MenuSelection == 2)
 				{
-				//	_TwoPlayer = true;
 					dispatchEvent(new Event("SpawnShipSelect2"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
 					removeChild(_Pointer);
 					removeEventListener(Event.ENTER_FRAME, loop);
@@ -231,6 +236,13 @@ package
 				{
 					fscommand("quit");			//Stops Flashplayer
 					System.exit(0);				//Stops Flashplayer
+					removeChild(_Pointer);
+					removeEventListener(Event.ENTER_FRAME, loop);
+					dispatchEvent(new Event("RemoveMenu"));
+				}
+				if (_CButton == true)
+				{
+					dispatchEvent(new Event("SpawnCredits"));
 					removeChild(_Pointer);
 					removeEventListener(Event.ENTER_FRAME, loop);
 					dispatchEvent(new Event("RemoveMenu"));

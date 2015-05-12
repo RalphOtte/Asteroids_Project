@@ -31,23 +31,5 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);					
 		}
-		
-		public function OnePlayerChosen():void
-		{
-		//	addChild(_shipSelect);
-		//	_OnePlayer = true;
-			//_shipSelect.OnePlayerShipSelect();
-		}
-		
-		public function TwoPlayerChosen():void
-		{
-		//	addChild(_shipSelect);
-		//	_TwoPlayer = true;
-		//	_shipSelect.TwoPlayerShipSelect();
-		}
-		public function OptionChosen():void
-		{
-			// _options.FUNCTION();
-		}
 	}
 }
