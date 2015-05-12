@@ -20,8 +20,6 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 		}
-<<<<<<< HEAD
-=======
 		
 		private function Tile1(e:Event):void
 		{
@@ -76,17 +74,11 @@ package
 		private function Tile11(e:Event):void
 		{
 			
-			
-<<<<<<< HEAD
 		}
 		private function Tile12(e:Event):void
 		{
 			
 			
 		}	
-=======
-		}*/
->>>>>>> origin/master
->>>>>>> origin/master
 	}
 }

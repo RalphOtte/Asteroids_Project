@@ -9,17 +9,11 @@ package
 	 * ...
 	 * @author Ralph Otte
 	 */
-	public class Level_2 extends Sprite
+	public class Level_3 extends Sprite
 	{
 		
-<<<<<<< HEAD
-		public function Level_2() 
-=======
-		private var _bg:Background = new Background();
-		private var _tileCount:int;
 		
 		public function Level_3() 
->>>>>>> origin/master
 		{
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -28,11 +22,10 @@ package
 		
 		private function init(e:Event):void 
 		{
-<<<<<<< HEAD
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 		}
-				private function Tile1(e:Event):void
+		private function Tile1(e:Event):void
 		{
 			
 			
@@ -135,11 +128,6 @@ package
 		private function Tile21(e:Event):void
 		{
 			
-			
-=======
-			removeEventListener(Event.ADDED_TO_STAGE, init);	
-			trace("level_3 is now spawned");
->>>>>>> origin/master
 		}	
 	}
 }
