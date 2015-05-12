@@ -23,6 +23,66 @@ package
 			
 		}
 		
+	//	private function Tile1(e:Event.ADDED_TO_STAGE, init);
+	//	{
+	//		
+	//		
+	//	}
+	/*	private function Tile2(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}
+		private function Tile3(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}
+		private function Tile4(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}
+		private function Tile5(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}
+		private function Tile6(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}
+		private function Tile7(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}
+		private function Tile8(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}
+		private function Tile9(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}
+		private function Tile10(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}
+		private function Tile11(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}
+		private function Tile12(e:Event.ADDED_TO_STAGE, init);
+		{
+			
+			
+		}*/
 	}
 
 }
