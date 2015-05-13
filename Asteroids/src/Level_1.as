@@ -51,6 +51,9 @@ package
 			_Curtain2.y -= 5;
 			_Curtain3.alpha -= 0.01;
 			
+			trace(_Player.x);
+			trace(_Player.y);
+			
 			//Tile 2 
 		}
 		
@@ -61,6 +64,8 @@ package
 			addChild(_Curtain2);
 			addChild(_Curtain3);
 			addChild(_Player);
+			_Player.x = stage.stageWidth / 5;
+			_Player.y = stage.stageHeight / 2;
 			addEventListener(Event.ENTER_FRAME, loop);
 		}
 		
