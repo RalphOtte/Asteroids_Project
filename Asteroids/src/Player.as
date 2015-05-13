@@ -1,4 +1,4 @@
-package  
+﻿package  
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -24,6 +24,11 @@ package
 		[Embed(source="../Assets/Game/PlayerShips/Schip_groen.png")]
 		private var _Ship3:Class;
 		private var _GreenShip:Bitmap;
+		
+		private var _WButtonIsDown = false;
+		private var _AButtonIsDown = false;
+		private var _SButtonIsDown = false;
+		private var _DButtonIsDown = false;
 		
 		public function Player() 
 		{
@@ -61,5 +66,77 @@ package
 				_GreenShip.y = stage.stageHeight/2;
 			}
 		}
+		public function KeyboardController() 
+		{
+			this.addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function init(e:Event):void 
+		{
+			this.removeEventListener(Event.ADDED_TO_STAGE, init);
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
+			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
+		}
+		
+		private function keyDown(e:KeyboardEvent):void
+		{
+			if (e.keyCode == 87)
+			{
+				_WButtonIsDown = true;
+			}
+			if (e.keyCode == 65)
+			{
+				_AButtonIsDown = true;
+			}
+			if (e.keyCode == 83)
+			{
+				_SButtonIsDown = true;
+			}
+			if (e.keyCode == 68)
+			{
+				_DButtonIsDown = true;
+			}
+			//-----------------------------//
+			if (_WButtonIsDown == true)
+			{
+				trace("ik werk als W");
+			}
+			if (_AButtonIsDown == true)
+			{
+				trace("ik werk als A");
+			}
+			if (_SButtonIsDown == true)
+			{
+				trace("ik werk als S");
+			}
+			if (_DButtonIsDown == true)
+			{
+				trace("ik werk als D");
+			}
+		}
+		
+		private function keyUp(e:KeyboardEvent):void
+		{
+			if (e.keyCode == 87)
+			{
+				_WButtonIsDown = false;
+				trace("ik werk niet meer voor W");
+			}
+			if (e.keyCode == 65)
+			{
+				_AButtonIsDown = false;
+				trace("ik werk niet meer voor A");
+			}
+			if (e.keyCode == 83)
+			{
+				_SButtonIsDown = false;
+				trace("ik werk niet meer voor S");
+			}
+			if (e.keyCode == 68)
+			{
+				_DButtonIsDown = false;
+				trace("ik werk niet meer voor D");
+			}
+		}		
 	}
 }
