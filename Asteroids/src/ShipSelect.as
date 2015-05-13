@@ -18,7 +18,7 @@ package
 		
 		private var _Selection:int = 1;			//Dit is de Singleplayer selection integer(Menu navigatie)
 		private var _ShipSelection:int = 1;		//Dit is de integer die reguleert welk ship geselecteerd is.(Ship navigatie)
-		private var _SelectedShip:int = 0;		//Dit is de integer die reguleert welk ship naar het level "meegenomen" wordt.
+		public var _SelectedShip:int = 0;		//Dit is de integer die reguleert welk ship naar het level "meegenomen" wordt.
 		
 		private var _WIsDown:Boolean = false;
 		private var _SIsDown:Boolean = false;
