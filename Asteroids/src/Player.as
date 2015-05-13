@@ -1,4 +1,4 @@
-﻿package  
+package  
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -36,6 +36,9 @@
 		}
 		private function init(e:Event):void
 		{
+			this.removeEventListener(Event.ADDED_TO_STAGE, init);
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
+			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 			_RedShip = new _Ship1(); 
 			_BlueShip = new _Ship2();
 			_GreenShip = new _Ship3();
@@ -69,13 +72,6 @@
 		public function KeyboardController() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
-		}
-		
-		private function init(e:Event):void 
-		{
-			this.removeEventListener(Event.ADDED_TO_STAGE, init);
-			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
-			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 		}
 		
 		private function keyDown(e:KeyboardEvent):void

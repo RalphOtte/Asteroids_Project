@@ -15,6 +15,7 @@ package
 		private var _Background:Background = new Background;
 		private var _ShipSelect:ShipSelect;
 		private var _MPShipSelect:MPShipSelect;
+		private var _Player:Player = new Player;
 		
 		//Intro op Tile 1
 		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
@@ -46,6 +47,8 @@ package
 		private function loop(e:Event):void 
 		{
 			//Tile 1
+			_Curtain1.y += 5;
+			_Curtain2.y -= 5;
 			_Curtain3.alpha -= 0.02;
 			
 			//Tile 2 
@@ -54,8 +57,8 @@ package
 		private function Tile1(e:Event):void
 		{
 			addChild(_Background);
-		//	addChild(_Curtain1);
-		//	addChild(_Curtain2);
+			addChild(_Curtain1);
+			addChild(_Curtain2);
 			addChild(_Curtain3);
 			addEventListener(Event.ENTER_FRAME, loop);
 		}
