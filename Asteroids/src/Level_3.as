@@ -11,22 +11,23 @@ package
 	 */
 	public class Level_3 extends Sprite
 	{
-		
+		private var _bg:Background = new Background();
 		
 		public function Level_3() 
+		{
+			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		{	
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
-		
 		}
 		
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
+			Tile1(e);
 		}
+		
 		private function Tile1(e:Event):void
 		{
-			
 			
 		}
 		private function Tile2(e:Event):void
