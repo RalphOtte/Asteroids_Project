@@ -308,20 +308,21 @@ package
 			//Check of beide spelers geselecteerd hebben
 			if ( _P1Chosen == true && _P2Chosen == true)
 			{
-				// Zodra deze 2 TRUE zijn, gaat het spel door naar LevelSelect
-				trace("BEIDE SPELERS HEBBEN GEKOZEN");
 				dispatchEvent(new Event("SpawnLevelSelect"));
 				removeChild(_PointerArt2);
 				removeChild(_PointerArt3);
+				stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
+				stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
 				removeEventListener(Event.ENTER_FRAME, loop2);
 				dispatchEvent(new Event("RemoveShipSelect2"));
 			}
 			if (_P1Exit && _P2Exit == true)
 			{
-				trace("Beide spelers willen exit");
 				dispatchEvent(new Event("SpawnMenu"));
 				removeChild(_PointerArt2);
 				removeChild(_PointerArt3);
+				stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
+				stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
 				removeEventListener(Event.ENTER_FRAME, loop2);
 				dispatchEvent(new Event("RemoveShipSelect2"));
 			}
@@ -485,7 +486,6 @@ package
 				}
 				if (_TwoSelection == 3)	// CONFIRM BUTTON
 				{
-					// Confirm current Ship & continue to Levelselect
 					WhatShip2();
 					_Multiplayer = true;
 					addChild(_P2Selected);

@@ -350,7 +350,7 @@ package
 			{
 				_SelectedLevel = 1;
 			}
-			if (_Level1.x == stage.stageWidth / 2 - 90)
+			if (_Level2.x == stage.stageWidth / 2 - 90)
 			{
 				_SelectedLevel = 2;
 			}

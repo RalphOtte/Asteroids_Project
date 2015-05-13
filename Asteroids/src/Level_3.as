@@ -16,6 +16,8 @@ package
 		public function Level_3() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
+		{	
+			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
 		private function init(e:Event):void 
