@@ -49,7 +49,7 @@ package
 			//Tile 1
 			_Curtain1.y += 5;
 			_Curtain2.y -= 5;
-			_Curtain3.alpha -= 0.02;
+			_Curtain3.alpha -= 0.01;
 			
 			//Tile 2 
 		}
@@ -60,6 +60,7 @@ package
 			addChild(_Curtain1);
 			addChild(_Curtain2);
 			addChild(_Curtain3);
+			addChild(_Player);
 			addEventListener(Event.ENTER_FRAME, loop);
 		}
 		
