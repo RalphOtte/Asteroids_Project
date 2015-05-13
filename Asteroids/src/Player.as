@@ -14,7 +14,7 @@ package
 	
 	public class Player extends Sprite
 	{
-		private var _ShipSelect:ShipSelect;
+		private var _Main:Main;
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
 		private var _Ship1:Class;
 		private var _RedShip:Bitmap;
@@ -46,21 +46,25 @@ package
 		
 		public function SpawnShip():void
 		{
-			if (_ShipSelect._SelectedShip == 1)
+			if (_Main._SelectedShip == 1)
 			{
-				//spawn red ship
+				//Spawn Red Ship
 				addChild(_RedShip);
 				//position ship
 				_RedShip.x = stage.stageWidth/8;
 				_RedShip.y = stage.stageHeight/2;
-			}else if (_ShipSelect._SelectedShip == 2)
+			}
+			
+			if (_Main._SelectedShip == 2)
 			{
 				//spawn blue ship
 				addChild(_BlueShip);
 				//position ship
 				_BlueShip.x = stage.stageWidth/8;
 				_BlueShip.y = stage.stageHeight/2;
-			}else if(_ShipSelect._SelectedShip == 3)
+			}
+			
+			if(_Main._SelectedShip == 3)
 			{
 				//spawn green ship
 				addChild(_GreenShip);

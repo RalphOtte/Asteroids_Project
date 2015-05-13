@@ -27,6 +27,9 @@ package
 		private var _Level3:Level_3;
 		private var _Credits:Credits;
 		
+		public var _SelectedShip:int = 1;
+		public var _SelectedShipP1:int = 1;
+		public var _SelectedShipP2:int = 1;		
 		
 		public function Main():void 
 		{
@@ -77,6 +80,9 @@ package
 			_ShipSelect.addEventListener("SpawnMenu", SpawnMenu);
 			_ShipSelect.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
 			_ShipSelect.addEventListener("RemoveShipSelect", RemoveShipSelect1);
+			_ShipSelect.addEventListener("_SelectedShip=1", SelectedShip1);
+			_ShipSelect.addEventListener("_SelectedShip=2", SelectedShip2);
+			_ShipSelect.addEventListener("_SelectedShip=3", SelectedShip3);
 			_MPShipSelect.addEventListener("RemoveShipSelect2", RemoveShipSelect2);
 			_MPShipSelect.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
 			_MPShipSelect.addEventListener("SpawnMenu", SpawnMenu);
@@ -148,6 +154,21 @@ package
 		{
 			addChild(_menu);
 			_menu.reSpawn(e);		// DIT IS DE RESPAWN FUNCTIE BINNEN MENU, DEZE ZORGT ERVOOR DAT ALLE VARIABLES WEER GOED GAAN STAAN EN DAT DE POINTER TERUGKOMT
+		}
+		
+		private function SelectedShip1(e):void 
+		{
+			_SelectedShip = 1;
+		}
+		
+		private function SelectedShip2(e):void 
+		{
+			_SelectedShip = 2;
+		}
+		
+		private function SelectedShip3(e):void 
+		{
+			_SelectedShip = 3;
 		}
 		// REMOVE FUNCTIONS
 		private function RemoveMenu(e:Event):void

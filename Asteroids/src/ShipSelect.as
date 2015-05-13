@@ -318,14 +318,17 @@ package
 			if (_PlayerShipRed.x == stage.stageWidth / 2 - 90)
 			{
 				_SelectedShip = 1;
+				dispatchEvent(new Event("_SelectedShip=1"));
 			}
 			if (_PlayerShipBlue.x == stage.stageWidth / 2 - 90)
 			{
 				_SelectedShip = 2;
+				dispatchEvent(new Event("_SelectedShip=2"));
 			}
 			if (_PlayerShipGreen.x == stage.stageWidth / 2 - 90)
 			{
 				_SelectedShip = 3;
+				dispatchEvent(new Event("_SelectedShip=3"));
 			}
 		}	
 	}
