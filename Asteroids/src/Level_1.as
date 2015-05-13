@@ -1,4 +1,4 @@
-package  
+﻿package  src
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
@@ -50,7 +50,7 @@ package
 			_Curtain1.y += 5;
 			_Curtain2.y -= 5;
 			_Curtain3.alpha -= 0.01;
-			
+			//trace (_Player.x,_Player.y);
 			//Tile 2 
 		}
 		
@@ -61,6 +61,8 @@ package
 			addChild(_Curtain2);
 			addChild(_Curtain3);
 			addChild(_Player);
+			_Player.x = 200;
+			_Player.y = 200;
 			addEventListener(Event.ENTER_FRAME, loop);
 		}
 		

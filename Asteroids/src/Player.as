@@ -1,4 +1,4 @@
-package  
+﻿package  src
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -39,13 +39,16 @@ package
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
+			SpawnShip();
 			_RedShip = new _Ship1(); 
 			_BlueShip = new _Ship2();
 			_GreenShip = new _Ship3();
 		}
 		
-		public function SpawnShip():void
+		public function SpawnShip():void  //spawnship werkt nog niet
 		{
+			trace(_Main._SelectedShip + "ekhfjgfejrfg");
+			
 			if (_Main._SelectedShip == 1)
 			{
 				//Spawn Red Ship
