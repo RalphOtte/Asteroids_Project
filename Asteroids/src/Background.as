@@ -10,7 +10,7 @@ package
 	 */
 	public class Background extends Sprite 
 	{
-		[Embed(source="../Assets/Game/Backgrounds/placeholderBG.png")]
+		[Embed(source="../Assets/Game/Backgrounds/Space.jpg")]
 		private var backgroundImg:Class;
 		private var bgImage:Bitmap;
 		

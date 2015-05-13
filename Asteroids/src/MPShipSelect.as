@@ -305,30 +305,9 @@ package
 		// ALLE 2 PLAYER DINGEN
 		private function loop2(e:Event):void 		//MULTIPLAYER SELECTION LOOP
 		{
-			//Check of beide spelers geselecteerd hebben
-			if ( _P1Chosen == true && _P2Chosen == true)
-			{
-				dispatchEvent(new Event("SpawnLevelSelect"));
-				removeChild(_PointerArt2);
-				removeChild(_PointerArt3);
-				stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
-				stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
-				removeEventListener(Event.ENTER_FRAME, loop2);
-				dispatchEvent(new Event("RemoveShipSelect2"));
-			}
-			if (_P1Exit && _P2Exit == true)
-			{
-				dispatchEvent(new Event("SpawnMenu"));
-				removeChild(_PointerArt2);
-				removeChild(_PointerArt3);
-				stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
-				stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
-				removeEventListener(Event.ENTER_FRAME, loop2);
-				dispatchEvent(new Event("RemoveShipSelect2"));
-			}
 			
 			//Player 1
-		if (_OneSelection == 1)
+			if (_OneSelection == 1)
 			{
 				_PointerArt2.x = 110;
 				_PointerArt2.y = stage.stageHeight / 2 - 40;
@@ -497,6 +476,28 @@ package
 					_P2Exit = true;
 				}
 			}
+				
+			if ( _P1Chosen == true && _P2Chosen == true)
+			{
+				dispatchEvent(new Event("SpawnLevelSelect"));
+				removeChild(_PointerArt2);
+				removeChild(_PointerArt3);
+				stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
+				stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
+				removeEventListener(Event.ENTER_FRAME, loop2);
+				dispatchEvent(new Event("RemoveShipSelect2"));
+			}
+			if (_P1Exit && _P2Exit == true)
+			{
+				dispatchEvent(new Event("SpawnMenu"));
+				removeChild(_PointerArt2);
+				removeChild(_PointerArt3);
+				stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
+				stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
+				removeEventListener(Event.ENTER_FRAME, loop2);
+				dispatchEvent(new Event("RemoveShipSelect2"));
+			}
+			
 		}
 		private function CheckShips1():void
 		{

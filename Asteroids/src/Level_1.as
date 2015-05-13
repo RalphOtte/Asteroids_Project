@@ -12,6 +12,9 @@ package
 	public class Level_1 extends Sprite
 	{
 		//variables
+		private var _Background:Background = new Background;
+		private var _ShipSelect:ShipSelect;
+		private var _MPShipSelect:MPShipSelect;
 		
 		//Intro op Tile 1
 		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
@@ -42,16 +45,19 @@ package
 		
 		private function loop(e:Event):void 
 		{
-			_Curtain3.alpha -= 5;
+			//Tile 1
+			_Curtain3.alpha -= 0.02;
 			
+			//Tile 2 
 		}
 		
 		private function Tile1(e:Event):void
 		{
+			addChild(_Background);
 		//	addChild(_Curtain1);
 		//	addChild(_Curtain2);
 			addChild(_Curtain3);
-			addEventListener(Event.ADDED_TO_STAGE, loop);
+			addEventListener(Event.ENTER_FRAME, loop);
 		}
 		
 		private function Tile2(e:Event):void

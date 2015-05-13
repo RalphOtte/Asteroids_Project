@@ -81,7 +81,7 @@ package
 		
 		private function checkButtonUp(e:KeyboardEvent):void 
 		{
-			trace("checkbuttonUp (SHIPSELECT)");
+			trace("checkbuttonUp (LEVELSELECT)");
 			if (e.keyCode == 87)
 			{
 				_WIsDown = false;
@@ -98,7 +98,7 @@ package
 		
 		private function checkButtonDown(e:KeyboardEvent):void 
 		{
-			trace("checkbuttonDown (SHIPSELECT)");
+			trace("checkbuttonDown (LEVELSELECT)");
 			if (e.keyCode == 87)
 			{
 				_WIsDown = true;
@@ -235,6 +235,8 @@ package
 						//Tutorial level
 						trace("Tutorial Level (LEVELSELECT)");
 						removeChild(_PointerArt);
+						stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
+						stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
 						removeEventListener(Event.ENTER_FRAME, loop);
 						dispatchEvent(new Event("RemoveLevelSelect"));
 						dispatchEvent(new Event("SpawnLevel_1"));
@@ -243,6 +245,8 @@ package
 					{
 						// To be made
 						removeChild(_PointerArt);
+						stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
+						stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
 						removeEventListener(Event.ENTER_FRAME, loop);
 						dispatchEvent(new Event("RemoveLevelSelect"));
 						dispatchEvent(new Event("SpawnLevel_2"));
