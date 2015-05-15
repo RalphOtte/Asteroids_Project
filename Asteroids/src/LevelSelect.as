@@ -15,6 +15,7 @@ package
 		private var _Main:Main;
 		private var _ShipSelect:ShipSelect;
 		private var _MPShipSelect:MPShipSelect;
+		private var _GM:GameManager = new GameManager;
 		
 		private var _NavigationInstruction:TextField;
 		
@@ -202,6 +203,10 @@ package
 				else if (_Selection <= 1)
 				{
 					_Selection = 4;
+				}
+				else if (_Selection <= 3 || 3)
+				{
+					_Selection--;
 				}
 			}
 			

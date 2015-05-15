@@ -196,6 +196,10 @@ package
 				{
 					_Selection = 3;
 				}
+				else if (_Selection <= 2 || 2)
+				{
+					_Selection--;
+				}
 			}
 			
 			if (_SIsDown == true)

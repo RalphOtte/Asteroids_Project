@@ -11,6 +11,8 @@ package
 	 */
 	public class Level_1 extends Sprite
 	{
+		private var _GM:GameManager = new GameManager;;
+		
 		//variables
 		private var _Background:Background = new Background;
 		private var _ShipSelect:ShipSelect;
@@ -28,6 +30,17 @@ package
 		private var _CurtainFade:Class;
 		private var _Curtain3:Bitmap;
 		
+		//Schepen
+		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
+		private var _Ship1:Class;
+		private var _RedShip:Bitmap;
+		[Embed(source = "../Assets/Game/PlayerShips/Schip_blauw.png")]
+		private var _Ship2:Class;
+		private var _BlueShip:Bitmap;
+		[Embed(source="../Assets/Game/PlayerShips/Schip_groen.png")]
+		private var _Ship3:Class;
+		private var _GreenShip:Bitmap;
+		
 		
 		public function Level_1() 
 		{
@@ -40,19 +53,18 @@ package
 			_Curtain1 = new _CurtainUp();
 			_Curtain2 = new _CurtainDown();
 			_Curtain3 = new _CurtainFade();
-			
+			_RedShip = new _Ship1(); 
+			_BlueShip = new _Ship2();
+			_GreenShip = new _Ship3();
 			Tile1(e);
 		}
 		
 		private function loop(e:Event):void 
-		{
+		{	
 			//Tile 1
-			_Curtain1.y += 5;
-			_Curtain2.y -= 5;
-			_Curtain3.alpha -= 0.01;
-			
-			trace(_Player.x);
-			trace(_Player.y);
+			_Curtain1.y += 8;
+			_Curtain2.y -= 8;
+			_Curtain3.alpha -= 0.004;
 			
 			//Tile 2 
 		}
@@ -60,10 +72,14 @@ package
 		private function Tile1(e:Event):void
 		{
 			addChild(_Background);
+			trace(_GM._SelectedShip + " BEFORE");
+			addChild(_Player);
+			trace(_GM._SelectedShip + " AFTER");
 			addChild(_Curtain1);
 			addChild(_Curtain2);
 			addChild(_Curtain3);
-			addChild(_Player);
+			_Player.scaleX = 0.5;
+			_Player.scaleY = 0.5;
 			_Player.x = stage.stageWidth / 5;
 			_Player.y = stage.stageHeight / 2;
 			addEventListener(Event.ENTER_FRAME, loop);

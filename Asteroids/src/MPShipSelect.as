@@ -111,6 +111,12 @@ package
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			addEventListener(Event.ENTER_FRAME, MultiMode);
+		}
+		
+		private function MultiMode(e:Event):void 
+		{
+			dispatchEvent(new Event("MultiMode"));
 		}
 		
 		public function reSpawn(e):void
@@ -300,6 +306,7 @@ package
 			_PointerArt3.x = 650;
 			_PointerArt3.y = stage.stageHeight / 2 -40;
 			_PointerArt3.scaleX = -1;
+			
 		}
 		
 		// ALLE 2 PLAYER DINGEN
@@ -339,6 +346,10 @@ package
 				else if (_OneSelection <= 1)
 				{
 					_OneSelection = 4;
+				}
+				else if (_OneSelection <= 3 || 3)
+				{
+					_OneSelection--;
 				}
 			}
 			
@@ -425,6 +436,10 @@ package
 				else if (_TwoSelection <= 1)
 				{
 					_TwoSelection = 4;
+				}
+				else if (_TwoSelection <= 3 || 3)
+				{
+					_TwoSelection--;
 				}
 			}
 			

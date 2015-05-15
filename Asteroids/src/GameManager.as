@@ -13,23 +13,21 @@ package
 	 */
 	public class GameManager extends Sprite
 	{
-		private var _menu:Menu;
-		private var _shipSelect:ShipSelect;
-		private var _Options:Options;
-	//  public var _OnePlayer:Boolean = false;
-	//	public var _TwoPlayer:Boolean = false;
+		public var _Singleplayer:Boolean = false;
+		public var _Multiplayer:Boolean = false;
+		
+		public var _SelectedShip:int = 1;
+		public var _SelectedShipP1:int = 1;
+		public var _SelectedShipP2:int = 1;	
 		
 		public function GameManager() 
 		{
-			// Functie voor Score/Recordtijd
-			// Functie voor de finish + new record ja/nee						
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
-			_shipSelect = new ShipSelect;
 		}
 		
 		private function init(e:Event):void
 		{
-			removeEventListener(Event.ADDED_TO_STAGE, init);					
+			removeEventListener(Event.ADDED_TO_STAGE, init);
 		}
 	}
 }

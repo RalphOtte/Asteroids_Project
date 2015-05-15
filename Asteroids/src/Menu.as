@@ -110,7 +110,6 @@ package
 			_NavigationInstruction.scaleY = 1.5;
 			_NavigationInstruction.text = "Use W/S or arrow up/down to navigate, use SPACE to confirm selection.";
 			addChild(_NavigationInstruction);
-	
 		}
 		
 		private function checkButtonUp(e:KeyboardEvent):void

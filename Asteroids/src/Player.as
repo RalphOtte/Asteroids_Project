@@ -13,8 +13,16 @@ package
 	 */
 	
 	public class Player extends Sprite
-	{
-		private var _Main:Main;
+	{	
+		private var _GM:GameManager = new GameManager;
+		
+		private var _SelectedSkin:int = 1;
+		
+		private var _WButtonIsDown = false;
+		private var _AButtonIsDown = false;
+		private var _SButtonIsDown = false;
+		private var _DButtonIsDown = false;
+		
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
 		private var _Ship1:Class;
 		private var _RedShip:Bitmap;
@@ -25,11 +33,6 @@ package
 		private var _Ship3:Class;
 		private var _GreenShip:Bitmap;
 		
-		private var _WButtonIsDown = false;
-		private var _AButtonIsDown = false;
-		private var _SButtonIsDown = false;
-		private var _DButtonIsDown = false;
-		
 		public function Player() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -37,45 +40,40 @@ package
 		private function init(e:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
+			addEventListener(Event.ENTER_FRAME, Skin);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 			_RedShip = new _Ship1(); 
 			_BlueShip = new _Ship2();
 			_GreenShip = new _Ship3();
+			addEventListener(Event.ADDED_TO_STAGE, CheckSkin);
 		}
 		
-		public function SpawnShip():void
+		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
 		{
-			if (_Main._SelectedShip == 1)
-			{
-				//Spawn Red Ship
-				addChild(_RedShip);
-				//position ship
-				_RedShip.x = stage.stageWidth/8;
-				_RedShip.y = stage.stageHeight/2;
-			}
-			
-			if (_Main._SelectedShip == 2)
-			{
-				//spawn blue ship
-				addChild(_BlueShip);
-				//position ship
-				_BlueShip.x = stage.stageWidth/8;
-				_BlueShip.y = stage.stageHeight/2;
-			}
-			
-			if(_Main._SelectedShip == 3)
-			{
-				//spawn green ship
-				addChild(_GreenShip);
-				//position ship
-				_GreenShip.x = stage.stageWidth/8;
-				_GreenShip.y = stage.stageHeight/2;
-			}
+		//	trace(_SelectedSkin + " PLAYER SKIN INT " + _GM._SelectedShip + " GM SKIN INT");
+			_SelectedSkin = _GM._SelectedShip;
+		//	trace(_SelectedSkin + " PLAYER SKIN INT " + _GM._SelectedShip + " GM SKIN INT");
 		}
-		public function KeyboardController() 
+		
+		private function CheckSkin(e:Event):void 
 		{
-			this.addEventListener(Event.ADDED_TO_STAGE, init);
+			
+			if (_SelectedSkin == 1)
+			{
+				trace("1 (PLAYER)");
+				addChild(_RedShip);
+			}
+			else if (_SelectedSkin == 2)
+			{
+				trace("2 (PLAYER)");
+				addChild(_BlueShip);
+			}
+			else if (_SelectedSkin == 3)
+			{
+				trace("3 (PLAYER)");
+				addChild(_GreenShip);
+			}
 		}
 		
 		private function keyDown(e:KeyboardEvent):void

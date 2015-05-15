@@ -27,9 +27,9 @@ package
 		private var _Level3:Level_3;
 		private var _Credits:Credits;
 		
-		public var _SelectedShip:int = 1;
-		public var _SelectedShipP1:int = 1;
-		public var _SelectedShipP2:int = 1;		
+	//	public var _SelectedShip:int = 1;
+	//	public var _SelectedShipP1:int = 1;
+	//	public var _SelectedShipP2:int = 1;		
 		
 		public function Main():void 
 		{
@@ -83,9 +83,11 @@ package
 			_ShipSelect.addEventListener("_SelectedShip=1", SelectedShip1);
 			_ShipSelect.addEventListener("_SelectedShip=2", SelectedShip2);
 			_ShipSelect.addEventListener("_SelectedShip=3", SelectedShip3);
+			_ShipSelect.addEventListener("SingleMode", SingleMode);
 			_MPShipSelect.addEventListener("RemoveShipSelect2", RemoveShipSelect2);
 			_MPShipSelect.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
 			_MPShipSelect.addEventListener("SpawnMenu", SpawnMenu);
+			_MPShipSelect.addEventListener("MultiMode", Multimode);
 			_LevelSelect.addEventListener("RemoveLevelSelect", RemoveLevelSelect);
 			_LevelSelect.addEventListener("SpawnLevel_1", SpawnLevel_1);
 			_LevelSelect.addEventListener("SpawnLevel_2", SpawnLevel_2);
@@ -94,30 +96,36 @@ package
 			_LevelSelect.addEventListener("SpawnMPLevelSelect", SpawnShipSelect2);
 		}
 		
+		private function SingleMode(e:Event):void 
+		{
+			_GM._Singleplayer = true;
+		}
+		
+		private function Multimode(e:Event):void 
+		{
+			_GM._Multiplayer = true;
+		}
+		
 		private function SpawnCredits(e:Event):void 
 		{
-			trace("SpawnCredits");
 		// 	addChild(_Credits);
 		//	_Credits.reSpawn(e)
 		}
 		
 		private function SpawnLevel_1(e:Event):void 
 		{
-			trace("SpawnLevel_1");
 			addChild(_Level1);
 		//	_Level1.reSpawn(e); (moet nog gemaakt worden)
 		}
 		
 		private function SpawnLevel_2(e:Event):void 
 		{
-			trace("SpawnLevel_2");
 		//	addChild(_Level2);
 		//	_Level2.reSpawn(e); (moet nog gemaakt worden)
 		}
 		
 		private function SpawnLevel_3(e:Event):void 
 		{
-			trace("SpawnLevel_3");
 			addChild(_Level3);
 		//	_Level3.reSpawn(e); (moet nog gemaakt worden)
 		}
@@ -158,18 +166,22 @@ package
 		
 		private function SelectedShip1(e):void 
 		{
-			_SelectedShip = 1;
+			trace(_GM._SelectedShip + "GM MAIN1");
+			_GM._SelectedShip = 1;
 		}
 		
 		private function SelectedShip2(e):void 
 		{
-			_SelectedShip = 2;
+			trace(_GM._SelectedShip + "GM MAIN2");
+			_GM._SelectedShip = 2;
 		}
 		
 		private function SelectedShip3(e):void 
 		{
-			_SelectedShip = 3;
+			trace(_GM._SelectedShip + "GM MAIN3");
+			_GM._SelectedShip = 3;
 		}
+		
 		// REMOVE FUNCTIONS
 		private function RemoveMenu(e:Event):void
 		{

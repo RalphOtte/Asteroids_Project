@@ -13,12 +13,12 @@ package
 	public class ShipSelect extends Sprite
 	{
 		private var _Main:Main;
+		private var _GM:GameManager = new GameManager;
 		
 		private var _NavigationInstruction:TextField;
 		
 		private var _Selection:int = 1;			//Dit is de Singleplayer selection integer(Menu navigatie)
 		private var _ShipSelection:int = 1;		//Dit is de integer die reguleert welk ship geselecteerd is.(Ship navigatie)
-		public var _SelectedShip:int = 0;		//Dit is de integer die reguleert welk ship naar het level "meegenomen" wordt.
 		
 		private var _WIsDown:Boolean = false;
 		private var _SIsDown:Boolean = false;
@@ -60,7 +60,7 @@ package
 		
 		public function ShipSelect() 
 		{
-			this.addEventListener(Event.ADDED_TO_STAGE, init);	
+			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
 		private function init(e:Event):void 
@@ -69,6 +69,12 @@ package
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			addEventListener(Event.ENTER_FRAME, SingleMode);
+		}
+		
+		private function SingleMode(e:Event):void 
+		{
+			dispatchEvent(new Event("SingleMode"));
 		}
 		
 		public function reSpawn(e):void
@@ -76,7 +82,6 @@ package
 			this.init(e);
 			_Selection = 1;
 			_ShipSelection = 1;
-			_SelectedShip = 1;
 		}
 		
 		private function checkButtonUp(e:KeyboardEvent):void 
@@ -164,6 +169,7 @@ package
 			// Pointer(s) art
 			_PointerArt.x = 330;						// 100 px links van _Prev
 			_PointerArt.y = stage.stageHeight / 2 -40;	// net zo hoog als _Prev
+			
 		}
 		
 		private function loop(e:Event):void 		//SINGLEPLAYER SELECTION LOOP
@@ -201,6 +207,10 @@ package
 				{
 					_Selection = 4;
 				}
+				else if (_Selection <= 3 || 3)
+				{
+					_Selection--;
+				}
 			}
 			
 			if (_SIsDown == true)
@@ -227,7 +237,9 @@ package
 				if (_Selection == 3)	// CONFIRM BUTTON
 				{
 					// Confirm current Ship & continue to Levelselect
-					WhatShip();		// Deze zet _selectedShip op 1,2 of 3. Deze moet bij de levels weer opgevraagd worden.
+					trace(_GM._SelectedShip + " GM BEFORE");		// Traced 1
+					WhatShip();
+					trace(_GM._SelectedShip + " GM AFTER");			// Traced 1
 					_Singleplayer = true;
 					_Selection = 0;
 					_ShipSelection = 0;
@@ -315,19 +327,16 @@ package
 		}
 		private function WhatShip():void
 		{
-			if (_PlayerShipRed.x == stage.stageWidth / 2 - 90)
+			if (_ShipSelection == 1)
 			{
-				_SelectedShip = 1;
 				dispatchEvent(new Event("_SelectedShip=1"));
 			}
-			if (_PlayerShipBlue.x == stage.stageWidth / 2 - 90)
+			else if (_ShipSelection == 2)
 			{
-				_SelectedShip = 2;
 				dispatchEvent(new Event("_SelectedShip=2"));
 			}
-			if (_PlayerShipGreen.x == stage.stageWidth / 2 - 90)
+			else if (_ShipSelection == 3)
 			{
-				_SelectedShip = 3;
 				dispatchEvent(new Event("_SelectedShip=3"));
 			}
 		}	
