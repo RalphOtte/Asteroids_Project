@@ -25,11 +25,7 @@ package
 		private var _Level1:Level_1;
 		private var _Level2:Level_2;
 		private var _Level3:Level_3;
-		private var _Credits:Credits;
-		
-	//	public var _SelectedShip:int = 1;
-	//	public var _SelectedShipP1:int = 1;
-	//	public var _SelectedShipP2:int = 1;		
+		private var _Credits:Credits;	
 		
 		public function Main():void 
 		{
@@ -80,10 +76,10 @@ package
 			_ShipSelect.addEventListener("SpawnMenu", SpawnMenu);
 			_ShipSelect.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
 			_ShipSelect.addEventListener("RemoveShipSelect", RemoveShipSelect1);
-			_ShipSelect.addEventListener("_SelectedShip=1", SelectedShip1);
-			_ShipSelect.addEventListener("_SelectedShip=2", SelectedShip2);
-			_ShipSelect.addEventListener("_SelectedShip=3", SelectedShip3);
 			_ShipSelect.addEventListener("SingleMode", SingleMode);
+			_ShipSelect.addEventListener("Skin_1", Skin_1);
+			_ShipSelect.addEventListener("Skin_1", Skin_2);
+			_ShipSelect.addEventListener("Skin_1", Skin_3);
 			_MPShipSelect.addEventListener("RemoveShipSelect2", RemoveShipSelect2);
 			_MPShipSelect.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
 			_MPShipSelect.addEventListener("SpawnMenu", SpawnMenu);
@@ -164,21 +160,16 @@ package
 			_menu.reSpawn(e);		// DIT IS DE RESPAWN FUNCTIE BINNEN MENU, DEZE ZORGT ERVOOR DAT ALLE VARIABLES WEER GOED GAAN STAAN EN DAT DE POINTER TERUGKOMT
 		}
 		
-		private function SelectedShip1(e):void 
+		private function Skin_1(e:Event):void 
 		{
-			trace(_GM._SelectedShip + "GM MAIN1");
 			_GM._SelectedShip = 1;
 		}
-		
-		private function SelectedShip2(e):void 
+		private function Skin_2(e:Event):void 
 		{
-			trace(_GM._SelectedShip + "GM MAIN2");
 			_GM._SelectedShip = 2;
 		}
-		
-		private function SelectedShip3(e):void 
+		private function Skin_3(e:Event):void 
 		{
-			trace(_GM._SelectedShip + "GM MAIN3");
 			_GM._SelectedShip = 3;
 		}
 		

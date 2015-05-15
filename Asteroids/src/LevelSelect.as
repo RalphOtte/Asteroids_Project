@@ -82,7 +82,6 @@ package
 		
 		private function checkButtonUp(e:KeyboardEvent):void 
 		{
-			trace("checkbuttonUp (LEVELSELECT)");
 			if (e.keyCode == 87)
 			{
 				_WIsDown = false;
@@ -99,7 +98,6 @@ package
 		
 		private function checkButtonDown(e:KeyboardEvent):void 
 		{
-			trace("checkbuttonDown (LEVELSELECT)");
 			if (e.keyCode == 87)
 			{
 				_WIsDown = true;
@@ -233,12 +231,12 @@ package
 				}
 				if (_Selection == 3)	// CONFIRM BUTTON
 				{
+					trace(_GM._SelectedShip + " BEFORE (LEVELSELECT)"); //traced 1
 					// Confirm current level
 					WhatLevel();		// Deze zet _selectedLevel op 1,2 of 3. Deze moet bij de levels weer opgevraagd worden.
+					trace(_GM._SelectedShip + " AFTER (LEVELSELECT)");	//traced 1
 					if (_SelectedLevel == 1)
 					{
-						//Tutorial level
-						trace("Tutorial Level (LEVELSELECT)");
 						removeChild(_PointerArt);
 						stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
 						stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
@@ -248,7 +246,6 @@ package
 					}
 					if (_SelectedLevel == 2)
 					{
-						// To be made
 						removeChild(_PointerArt);
 						stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
 						stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
@@ -258,8 +255,6 @@ package
 					}
 					if (_SelectedLevel == 3)
 					{
-						// Dev-Branch.
-						trace("Dev-Branch test level");
 						removeChild(_PointerArt);
 						removeEventListener(Event.ENTER_FRAME, loop);
 						dispatchEvent(new Event("RemoveLevelSelect"));

@@ -72,9 +72,9 @@ package
 		private function Tile1(e:Event):void
 		{
 			addChild(_Background);
-			trace(_GM._SelectedShip + " BEFORE");
+			trace(_GM._SelectedShip + " BEFORE (LEVEL_1)");
 			addChild(_Player);
-			trace(_GM._SelectedShip + " AFTER");
+			trace(_GM._SelectedShip + " AFTER (LEVEL_1)");
 			addChild(_Curtain1);
 			addChild(_Curtain2);
 			addChild(_Curtain3);

@@ -40,7 +40,7 @@ package
 		private function init(e:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
-			addEventListener(Event.ENTER_FRAME, Skin);
+			addEventListener(Event.ADDED_TO_STAGE, Skin);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 			_RedShip = new _Ship1(); 
@@ -51,9 +51,7 @@ package
 		
 		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
 		{
-		//	trace(_SelectedSkin + " PLAYER SKIN INT " + _GM._SelectedShip + " GM SKIN INT");
 			_SelectedSkin = _GM._SelectedShip;
-		//	trace(_SelectedSkin + " PLAYER SKIN INT " + _GM._SelectedShip + " GM SKIN INT");
 		}
 		
 		private function CheckSkin(e:Event):void 
@@ -61,17 +59,17 @@ package
 			
 			if (_SelectedSkin == 1)
 			{
-				trace("1 (PLAYER)");
+				trace("Skin 1 (PLAYER)");
 				addChild(_RedShip);
 			}
 			else if (_SelectedSkin == 2)
 			{
-				trace("2 (PLAYER)");
+				trace("Skin 2 (PLAYER)");
 				addChild(_BlueShip);
 			}
 			else if (_SelectedSkin == 3)
 			{
-				trace("3 (PLAYER)");
+				trace("Skin 3 (PLAYER)");
 				addChild(_GreenShip);
 			}
 		}

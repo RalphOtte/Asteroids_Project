@@ -392,7 +392,6 @@ package
 				if (_OneSelection == 3)	// CONFIRM BUTTON
 				{
 					WhatShip1();
-					_Multiplayer = true;
 					addChild(_P1Selected);
 					_P1Selected.x = 250;
 					_P1Selected.y = stage.stageHeight /2 + 120;
@@ -481,7 +480,6 @@ package
 				if (_TwoSelection == 3)	// CONFIRM BUTTON
 				{
 					WhatShip2();
-					_Multiplayer = true;
 					addChild(_P2Selected);
 					_P2Selected.x = 800;
 					_P2Selected.y = stage.stageHeight / 2 + 120;
@@ -494,6 +492,7 @@ package
 				
 			if ( _P1Chosen == true && _P2Chosen == true)
 			{
+				_Multiplayer = true;
 				dispatchEvent(new Event("SpawnLevelSelect"));
 				removeChild(_PointerArt2);
 				removeChild(_PointerArt3);

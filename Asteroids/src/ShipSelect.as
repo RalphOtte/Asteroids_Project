@@ -69,7 +69,7 @@ package
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			addEventListener(Event.ENTER_FRAME, SingleMode);
+			addEventListener(Event.ADDED_TO_STAGE, SingleMode);
 		}
 		
 		private function SingleMode(e:Event):void 
@@ -237,10 +237,10 @@ package
 				if (_Selection == 3)	// CONFIRM BUTTON
 				{
 					// Confirm current Ship & continue to Levelselect
-					trace(_GM._SelectedShip + " GM BEFORE");		// Traced 1
-					WhatShip();
-					trace(_GM._SelectedShip + " GM AFTER");			// Traced 1
+					trace(_GM._SelectedShip + " GM BEFORE (SHIPSELECT)");		// Traced 1
 					_Singleplayer = true;
+					WhatShip();
+					trace(_GM._SelectedShip + " GM AFTER (SHIPSELECT)");			// Traced gekozen, na deze wordt hij weer op 1 gezet.
 					_Selection = 0;
 					_ShipSelection = 0;
 					removeChild(_PointerArt);
@@ -329,16 +329,19 @@ package
 		{
 			if (_ShipSelection == 1)
 			{
-				dispatchEvent(new Event("_SelectedShip=1"));
+				_GM.P1_1();
+				dispatchEvent(new Event("Skin_1"));
 			}
 			else if (_ShipSelection == 2)
 			{
-				dispatchEvent(new Event("_SelectedShip=2"));
+				_GM.P1_2();
+				dispatchEvent(new Event("Skin_2"));
 			}
 			else if (_ShipSelection == 3)
 			{
-				dispatchEvent(new Event("_SelectedShip=3"));
+				_GM.P1_3();
+				dispatchEvent(new Event("Skin_3"));
 			}
-		}	
+		}
 	}
 }

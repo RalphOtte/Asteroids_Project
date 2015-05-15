@@ -17,7 +17,6 @@ package
 		public var _Multiplayer:Boolean = false;
 		
 		public var _SelectedShip:int = 1;
-		public var _SelectedShipP1:int = 1;
 		public var _SelectedShipP2:int = 1;	
 		
 		public function GameManager() 
@@ -28,6 +27,39 @@ package
 		private function init(e:Event):void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		public function P1_1():void
+		{
+			trace("1");
+			_SelectedShip = 1;
+		}
+		
+		public function P1_2():void
+		{
+			trace("2");
+			_SelectedShip = 2;
+		}
+		
+		public function P1_3():void
+		{
+			trace("3");
+			_SelectedShip = 3;
+		}
+		
+		public function P2_1():void
+		{
+			_SelectedShipP2 = 1;
+		}
+		
+		public function P2_2():void
+		{
+			_SelectedShipP2 = 2;
+		}
+		
+		public function P2_3():void
+		{
+			_SelectedShipP2 = 3;
 		}
 	}
 }
