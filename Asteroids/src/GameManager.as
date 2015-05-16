@@ -31,19 +31,19 @@ package
 		
 		public function P1_1():void
 		{
-			trace("1");
+			trace("1 (GAMEMANAGER)");
 			_SelectedShip = 1;
 		}
 		
 		public function P1_2():void
 		{
-			trace("2");
+			trace("2 (GAMEMANAGER)");
 			_SelectedShip = 2;
 		}
 		
 		public function P1_3():void
 		{
-			trace("3");
+			trace("3 (GAMEMANAGER)");
 			_SelectedShip = 3;
 		}
 		

@@ -240,9 +240,7 @@ package
 					trace(_GM._SelectedShip + " GM BEFORE (SHIPSELECT)");		// Traced 1
 					_Singleplayer = true;
 					WhatShip();
-					trace(_GM._SelectedShip + " GM AFTER (SHIPSELECT)");			// Traced gekozen, na deze wordt hij weer op 1 gezet.
-					_Selection = 0;
-					_ShipSelection = 0;
+					trace(_GM._SelectedShip + " GM AFTER (SHIPSELECT)");			// Traced gekozen, na deze wordt hij weer op 1 gezet. Het weghalen van deze class heeft geen invloed. Iets in ShipSelect?
 					removeChild(_PointerArt);
 					stage.removeEventListener(KeyboardEvent.KEY_DOWN, checkButtonDown);
 					stage.removeEventListener(KeyboardEvent.KEY_UP, checkButtonUp);
@@ -331,16 +329,19 @@ package
 			{
 				_GM.P1_1();
 				dispatchEvent(new Event("Skin_1"));
+				trace(_GM._SelectedShip + " GM 1 (SHIPSELECT)");
 			}
 			else if (_ShipSelection == 2)
 			{
 				_GM.P1_2();
 				dispatchEvent(new Event("Skin_2"));
+				trace(_GM._SelectedShip + " GM 2 (SHIPSELECT)");
 			}
 			else if (_ShipSelection == 3)
 			{
 				_GM.P1_3();
 				dispatchEvent(new Event("Skin_3"));
+				trace(_GM._SelectedShip + " GM 3 (SHIPSELECT)");
 			}
 		}
 	}

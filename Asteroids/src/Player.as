@@ -16,12 +16,12 @@ package
 	{	
 		private var _GM:GameManager = new GameManager;
 		
-		private var _SelectedSkin:int = 1;
+		public var _SelectedSkin:int = 1;
 		
-		private var _WButtonIsDown = false;
-		private var _AButtonIsDown = false;
-		private var _SButtonIsDown = false;
-		private var _DButtonIsDown = false;
+		private var _WButtonIsDown:Boolean = false;
+		private var _AButtonIsDown:Boolean = false;
+		private var _SButtonIsDown:Boolean = false;
+		private var _DButtonIsDown:Boolean = false;
 		
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
 		private var _Ship1:Class;
@@ -51,7 +51,8 @@ package
 		
 		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
 		{
-			_SelectedSkin = _GM._SelectedShip;
+			trace(_SelectedSkin + "DERP");
+		//	_SelectedSkin = _GM._SelectedShip;
 		}
 		
 		private function CheckSkin(e:Event):void 

@@ -17,7 +17,7 @@ package
 	public class Main extends Sprite 
 	{
 		private var _menu:Menu;	
-		private var _GM:GameManager;
+		private var _GM:GameManager = new GameManager;
 		private var _ShipSelect:ShipSelect;
 		private var _MPShipSelect:MPShipSelect;
 		private var _Option:Options;
@@ -26,6 +26,7 @@ package
 		private var _Level2:Level_2;
 		private var _Level3:Level_3;
 		private var _Credits:Credits;	
+		private var _Player:Player = new Player;
 		
 		public function Main():void 
 		{
@@ -162,15 +163,15 @@ package
 		
 		private function Skin_1(e:Event):void 
 		{
-			_GM._SelectedShip = 1;
+			_Player._SelectedSkin = 1;
 		}
 		private function Skin_2(e:Event):void 
 		{
-			_GM._SelectedShip = 2;
+			_Player._SelectedSkin = 2;
 		}
 		private function Skin_3(e:Event):void 
 		{
-			_GM._SelectedShip = 3;
+			_Player._SelectedSkin = 3;
 		}
 		
 		// REMOVE FUNCTIONS
