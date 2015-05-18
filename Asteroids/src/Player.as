@@ -1,4 +1,4 @@
-package  
+﻿package  src
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -39,6 +39,7 @@ package
 		}
 		private function init(e:Event):void
 		{
+			addEventListener(Event.ENTER_FRAME, loop);
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ADDED_TO_STAGE, Skin);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
@@ -74,6 +75,28 @@ package
 				addChild(_GreenShip);
 			}
 		}
+		private function loop(e:Event):void
+		{
+			if (_WButtonIsDown == true)
+			{
+				this.rotation += 5;
+			}
+			
+			if (_AButtonIsDown == true)
+			{
+				this.rotation += 5;
+			}
+			
+			if (_SButtonIsDown == true)
+			{
+				
+			}
+			
+			if (_DButtonIsDown == true)
+			{
+				
+			}
+		}
 		
 		private function keyDown(e:KeyboardEvent):void
 		{
@@ -94,23 +117,10 @@ package
 				_DButtonIsDown = true;
 			}
 			//-----------------------------//
-			if (_WButtonIsDown == true)
-			{
-				trace("ik werk als W");
-			}
-			if (_AButtonIsDown == true)
-			{
-				trace("ik werk als A");
-			}
-			if (_SButtonIsDown == true)
-			{
-				trace("ik werk als S");
-			}
-			if (_DButtonIsDown == true)
-			{
-				trace("ik werk als D");
-			}
+			
 		}
+		
+		
 		
 		private function keyUp(e:KeyboardEvent):void
 		{

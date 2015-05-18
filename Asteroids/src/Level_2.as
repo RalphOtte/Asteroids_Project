@@ -1,4 +1,4 @@
-package  
+﻿package  src
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
