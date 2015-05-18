@@ -79,22 +79,55 @@
 		{
 			if (_WButtonIsDown == true)
 			{
-				this.rotation += 5;
+				if ((this.rotation == 90) || (this.rotation <= 90))
+				{
+					this.rotation -= 6;
+				}
+				
+				else ((this.rotation == 270) && (this.rotation >= 270))
+				{
+					this.rotation += 6;
+				}
+				
 			}
 			
 			if (_AButtonIsDown == true)
 			{
-				this.rotation += 5;
+				if ((this.rotation == 0) && (this.rotation <= 0))
+				{
+					this.rotation += 6;
+				}
+				
+				else ((this.rotation == 270) && (this.rotation >= 270))
+				{
+					this.rotation -= 6;
+				}
 			}
 			
 			if (_SButtonIsDown == true)
 			{
+				if ((this.rotation >= 90) && (this.rotation <= 180))
+				{
+					this.rotation += 6;
+				}
 				
+				else ((this.rotation >= 180) && (this.rotation <= 270))
+				{
+					this.rotation -= 6;
+				}
 			}
 			
 			if (_DButtonIsDown == true)
 			{
+				if ((this.rotation >= 0) && (this.rotation <= 90))
+				{
+					this.rotation += 6;
+				}
 				
+				else ((this.rotation >= 90) && (this.rotation <= 180))
+				{
+					this.rotation -= 6;
+				}
 			}
 		}
 		
