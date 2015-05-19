@@ -61,17 +61,17 @@ package
 			
 			if (_SelectedSkin == 1)
 			{
-				trace("Skin 1 (PLAYER)");
+			//	trace("Skin 1 (PLAYER)");
 				addChild(_RedShip);
 			}
 			else if (_SelectedSkin == 2)
 			{
-				trace("Skin 2 (PLAYER)");
+			//	trace("Skin 2 (PLAYER)");
 				addChild(_BlueShip);
 			}
 			else if (_SelectedSkin == 3)
 			{
-				trace("Skin 3 (PLAYER)");
+			//	trace("Skin 3 (PLAYER)");
 				addChild(_GreenShip);
 			}
 		}

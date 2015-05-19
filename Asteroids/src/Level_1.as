@@ -95,15 +95,15 @@ package
 				_IntroText1.textColor = 0xFFFFFF;	 // Wit
 				_IntroText1.width = 370;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
 				_IntroText1.height = 20;
-				_IntroText1.scaleX = 1.5;			 	
-				_IntroText1.scaleY = 1.5;
+				_IntroText1.scaleX = 2;			 	
+				_IntroText1.scaleY = 2;
 				_IntroText1.x = 400;
 				_IntroText1.y = 50;
 				_IntroText1.text = "Good morning, pilot.";
 				addChild(_IntroText1);
 				_Text1 = true;
 				_1SecTimer.addEventListener(TimerEvent.TIMER, Intro);
-				_1SecTimer.start()
+				_1SecTimer.start();
 				
 				/*
 				 * Wat de text hierboven doet is hij laat de text zien, zet de boolean dat text 1 geweest is op true, en start een timer. 
@@ -118,37 +118,44 @@ package
 			//Tile 2(misschien in aparte loop voor iedere tile) 
 		}
 		
-		private function Intro():void
+		private function Intro(e):void
 		{
 			if (_Text1 == true)
 			{
+				//_IntroText1.text = "";		//Werkt niet
+				//_IntroText1.y = -200;			//Werkt niet
+				//_IntroText1.parent.removeChild(_IntroText1);
 				_IntroText2 = new TextField();
 				_IntroText2.textColor = 0xFFFFFF;	 // Wit
 				_IntroText2.width = 370;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
 				_IntroText2.height = 20;
-				_IntroText2.scaleX = 1.5;			 	
-				_IntroText2.scaleY = 1.5;
+				_IntroText2.scaleX = 2;			 	
+				_IntroText2.scaleY = 2;
 				_IntroText2.x = 400;
 				_IntroText2.y = 50;
 				_IntroText2.text = "Text 2";
 				addChild(_IntroText2);
-				_Text1 = false;
-				_Text2 = true;
 				_1SecTimer.addEventListener(TimerEvent.TIMER, Intro);
 				_1SecTimer.start()
+				_Text1 = false;
+				_Text2 = true;
+				trace("Start text 3");
 			}
 			else if (_Text2 == true)
 			{
 				//Start text 3
+				trace("TEXT 3");
+				_Text2 = false;
+				//_Text3 = true;
 			}
 		}
 		
 		private function Tile1(e:Event):void
 		{
 			addChild(_Background);
-			trace(_GM._SelectedShip + " BEFORE (LEVEL_1)");
+			//trace(_GM._SelectedShip + " BEFORE (LEVEL_1)");
 			addChild(_Player);
-			trace(_GM._SelectedShip + " AFTER (LEVEL_1)");
+			//trace(_GM._SelectedShip + " AFTER (LEVEL_1)");
 			addChild(_Curtain1);
 			addChild(_Curtain2);
 			addChild(_Curtain3);
