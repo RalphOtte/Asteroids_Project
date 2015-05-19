@@ -1,4 +1,4 @@
-﻿package src
+package
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -72,6 +72,7 @@
 			_menu.addEventListener("SpawnShipSelect2" , SpawnShipSelect2);
 			_menu.addEventListener("SpawnOptions" , SpawnOptions);
 			_menu.addEventListener("SpawnCredits", SpawnCredits);
+			_menu.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
 			_Option.addEventListener("SpawnMenu", SpawnMenu);
 			_Option.addEventListener("RemoveOptions", RemoveOptions);
 			_ShipSelect.addEventListener("SpawnMenu", SpawnMenu);
