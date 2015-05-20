@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿package  
+=======
+package
+>>>>>>> origin/master
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -232,14 +236,16 @@
 			{
 				if (_MenuSelection == 1)
 				{
-					dispatchEvent(new Event("SpawnShipSelect1"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
+				//	dispatchEvent(new Event("SpawnShipSelect1"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
+					dispatchEvent(new Event("SpawnLevelSelect"));
 					removeEventListener(Event.ENTER_FRAME, loop);
 					removeChild(_Pointer);
 					dispatchEvent(new Event("RemoveMenu"));
 				}
 				if (_MenuSelection == 2)
 				{
-					dispatchEvent(new Event("SpawnShipSelect2"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
+				//	dispatchEvent(new Event("SpawnShipSelect2"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
+					dispatchEvent(new Event("SpawnLevelSelect"));
 					removeChild(_Pointer);
 					removeEventListener(Event.ENTER_FRAME, loop);
 					dispatchEvent(new Event("RemoveMenu"));

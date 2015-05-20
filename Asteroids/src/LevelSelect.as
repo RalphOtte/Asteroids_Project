@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿package  
+=======
+package
+>>>>>>> origin/master
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -231,10 +235,10 @@
 				}
 				if (_Selection == 3)	// CONFIRM BUTTON
 				{
-					trace(_GM._SelectedShip + " BEFORE (LEVELSELECT)"); //traced 1
+				//	trace(_GM._SelectedShip + " BEFORE (LEVELSELECT)"); //traced 1
 					// Confirm current level
 					WhatLevel();		// Deze zet _selectedLevel op 1,2 of 3. Deze moet bij de levels weer opgevraagd worden.
-					trace(_GM._SelectedShip + " AFTER (LEVELSELECT)");	//traced 1
+				//	trace(_GM._SelectedShip + " AFTER (LEVELSELECT)");	//traced 1
 					if (_SelectedLevel == 1)
 					{
 						removeChild(_PointerArt);

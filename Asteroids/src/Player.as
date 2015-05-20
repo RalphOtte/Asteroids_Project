@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿package  
+=======
+package
+>>>>>>> origin/master
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -61,17 +65,17 @@
 			
 			if (_SelectedSkin == 1)
 			{
-				trace("Skin 1 (PLAYER)");
+			//	trace("Skin 1 (PLAYER)");
 				addChild(_RedShip);
 			}
 			else if (_SelectedSkin == 2)
 			{
-				trace("Skin 2 (PLAYER)");
+			//	trace("Skin 2 (PLAYER)");
 				addChild(_BlueShip);
 			}
 			else if (_SelectedSkin == 3)
 			{
-				trace("Skin 3 (PLAYER)");
+			//	trace("Skin 3 (PLAYER)");
 				addChild(_GreenShip);
 			}
 		}
@@ -79,22 +83,55 @@
 		{
 			if (_WButtonIsDown == true)
 			{
-				this.rotation += 5;
+				if ((this.rotation == 90) || (this.rotation <= 90))
+				{
+					this.rotation -= 6;
+				}
+				
+				else ((this.rotation == 270) && (this.rotation >= 270))
+				{
+					this.rotation += 6;
+				}
+				
 			}
 			
 			if (_AButtonIsDown == true)
 			{
-				this.rotation += 5;
+				if ((this.rotation == 0) && (this.rotation <= 0))
+				{
+					this.rotation += 6;
+				}
+				
+				else ((this.rotation == 270) && (this.rotation >= 270))
+				{
+					this.rotation -= 6;
+				}
 			}
 			
 			if (_SButtonIsDown == true)
 			{
+				if ((this.rotation >= 90) && (this.rotation <= 180))
+				{
+					this.rotation += 6;
+				}
 				
+				else ((this.rotation >= 180) && (this.rotation <= 270))
+				{
+					this.rotation -= 6;
+				}
 			}
 			
 			if (_DButtonIsDown == true)
 			{
+				if ((this.rotation >= 0) && (this.rotation <= 90))
+				{
+					this.rotation += 6;
+				}
 				
+				else ((this.rotation >= 90) && (this.rotation <= 180))
+				{
+					this.rotation -= 6;
+				}
 			}
 		}
 		
