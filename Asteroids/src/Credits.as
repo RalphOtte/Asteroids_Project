@@ -1,4 +1,4 @@
-﻿package  src
+﻿package  
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
@@ -11,7 +11,6 @@
 	 */
 	public class Credits extends Sprite
 	{
-		
 		public function Credits() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -20,9 +19,6 @@
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
 		}
-		
 	}
-
 }

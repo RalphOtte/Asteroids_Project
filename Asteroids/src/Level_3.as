@@ -1,4 +1,4 @@
-﻿package  src
+﻿package  
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
@@ -15,6 +15,7 @@
 		private var _ShipSelect:ShipSelect;
 		private var _MPShipSelect:MPShipSelect;
 		private var _Player:Player = new Player;
+		private var _BackgroundArray:Array = new Array(Background,Background,Background);
 		
 		//Intro op Tile 1
 		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
@@ -29,6 +30,7 @@
 		
 		public function Level_3() 
 		{
+			//trace("background array is this long:"_BackgroundArray.length);
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -48,20 +50,24 @@
 			_Curtain1.y += 5;
 			_Curtain2.y -= 5;
 			_Curtain3.alpha -= 0.001;
+			_bg.x -= 1;
 		}
 		
 		private function Tile1(e:Event):void
 		{
 			addChild(_bg);
+			addChild(_Player);
 			addChild(_Curtain1);
 			addChild(_Curtain2);
 			addChild(_Curtain3);
-			addChild(_Player);
+			_Player.scaleX = 0.5;
+			_Player.scaleY = 0.5;
+			_Player.x = stage.stageWidth / 5;
+			_Player.y = stage.stageHeight / 2;
 			addEventListener(Event.ENTER_FRAME, loop);
 		}
 		private function Tile2(e:Event):void
 		{
-			
 			
 		}
 		private function Tile3(e:Event):void

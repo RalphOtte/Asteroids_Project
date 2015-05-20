@@ -1,4 +1,4 @@
-﻿package  src
+﻿package 
 {
 	import flash.events.KeyboardEvent;
 	import flash.events.Event;
