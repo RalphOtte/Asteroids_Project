@@ -91,28 +91,38 @@ package
 		{
 			if (_WButtonIsDown == true)
 			{
-				if ((this.rotation == 0) || (this.rotation == 180))
+				if ((this.rotation >= -180) || (this.rotation <= -180))
 				{
 					this.rotation += 6;
 				}
 				
-				else ((this.rotation == 270) || (this.rotation == 90))
+				else if ((this.rotation >= -180))
 				{
-					this.rotation -= 6;
+					this.rotation += 6;
+				}
+				
+				else if (this.rotation == 0)
+				{
+					this.rotation = 0;
 				}
 				
 			}
 			
 			if (_AButtonIsDown == true)
 			{
-				if ((this.rotation >= -90) && (this.rotation <= -90))
+				if ((this.rotation >= 180) ||(this.rotation <= -90))
 				{
 					this.rotation += 6;
 				}
 				
-				else ((this.rotation <= 0) && (this.rotation >= 0))
+				else if((this.rotation == 180) || (this.rotation <= 180))
 				{
 					this.rotation -= 6;
+				}
+				
+				else if (this.rotation == -90)
+				{
+					this.rotation = -90;
 				}
 			}
 			
@@ -123,9 +133,14 @@ package
 					this.rotation += 6;
 				}
 				
-				else ((this.rotation >= 180) && (this.rotation <= 270))
+				else if((this.rotation >= 180) || (this.rotation <= 270))
 				{
 					this.rotation -= 6;
+				}
+				
+				else if (this.rotation == 180)
+				{
+					this.rotation = 180;
 				}
 			}
 			
@@ -136,9 +151,14 @@ package
 					this.rotation += 6;
 				}
 				
-				else ((this.rotation >= 180) && (this.rotation <= 270))
+				else if((this.rotation >= 180) || (this.rotation <= 270))
 				{
 					this.rotation -= 6;
+				}
+				
+				else if (this.rotation == 90)
+				{
+					this.rotation = 90;
 				}
 			}
 		}
