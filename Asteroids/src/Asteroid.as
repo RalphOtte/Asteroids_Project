@@ -8,10 +8,14 @@ package
 	 * ...
 	 * @author Ralph Otte
 	 */
-	public class Enemy extends Sprite;
+	public class Asteroid extends Sprite
 	{
 		
-		public function Enemy() 
+		[Embed(source = "../Assets/Game/Obstacles/astroide.png")]
+		private var _Astr:Class;
+		private var _Asteroid:Bitmap;
+		
+		public function Asteroid() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -19,10 +23,9 @@ package
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			addChild(_Asteroid);
 			
 		}
-				private function Tile1(e:Event):void
-		{
 		
 	}
 
