@@ -45,13 +45,19 @@
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 			_RedShip = new _Ship1(); 
-				//trace(_RedShip+"rs");
-			
+
 			_RedShip.x -= (185 / 2);
 			_RedShip.y -= (142 / 2);
 			
 			_BlueShip = new _Ship2();
+			
+			_BlueShip.x -= (187 / 2);
+			_BlueShip.y -= (131 / 2);
+			
 			_GreenShip = new _Ship3();
+			
+			_GreenShip.x -= (164 / 2);
+			_GreenShip.y -= (146 / 2);
 			addEventListener(Event.ADDED_TO_STAGE, CheckSkin);
 			
 		}
