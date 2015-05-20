@@ -60,12 +60,9 @@ package
 		private var Controls:Class;
 		private var ControlSettings:Bitmap;
 		// Placeholders voor controls
-		[Embed(source="../Assets/Menu's/Controls_1PlaceHolder.png")]
+		[Embed(source="../Assets/Menu's/control_settings.png")]
 		private var _CTRLS1:Class;
 		private var _Controls1:Bitmap;
-		[Embed(source="../Assets/Menu's/Controls_2PlaceHolder.png")]
-		private var _CTRLS2:Class;
-		private var _Controls2:Bitmap;
 		
 		public function Options() 
 		{
@@ -112,11 +109,6 @@ package
 			addChild(_Controls1);
 			_Controls1.x = stage.stageWidth / 2 + 120;
 			_Controls1.y = 250;
-			
-			_Controls2 = new _CTRLS2();
-			addChild(_Controls2);
-			_Controls2.x = stage.stageWidth / 2 + 120;
-			_Controls2.y = 450;
 			
 			_SoundArt = new _Sound();
 			addChild(_SoundArt);

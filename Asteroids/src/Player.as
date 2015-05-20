@@ -56,7 +56,6 @@ package
 		
 		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
 		{
-			trace(_SelectedSkin + "DERP");
 		//	_SelectedSkin = _GM._SelectedShip;
 		}
 		
@@ -152,9 +151,7 @@ package
 			if (e.keyCode == 68)
 			{
 				_DButtonIsDown = true;
-			}
-			//-----------------------------//
-			
+			}			
 		}
 		
 		
@@ -164,22 +161,18 @@ package
 			if (e.keyCode == 87)
 			{
 				_WButtonIsDown = false;
-				trace("ik werk niet meer voor W");
 			}
 			if (e.keyCode == 65)
 			{
 				_AButtonIsDown = false;
-				trace("ik werk niet meer voor A");
 			}
 			if (e.keyCode == 83)
 			{
 				_SButtonIsDown = false;
-				trace("ik werk niet meer voor S");
 			}
 			if (e.keyCode == 68)
 			{
 				_DButtonIsDown = false;
-				trace("ik werk niet meer voor D");
 			}
 		}		
 	}
