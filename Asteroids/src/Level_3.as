@@ -1,4 +1,8 @@
-package
+<<<<<<< HEAD
+﻿package  
+=======
+﻿package
+>>>>>>> origin/master
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
@@ -12,11 +16,10 @@ package
 	public class Level_3 extends Sprite
 	{
 		private var _bg:Background = new Background();
-		private var _bg1:Background = new Background();
 		private var _ShipSelect:ShipSelect;
 		private var _MPShipSelect:MPShipSelect;
 		private var _Player:Player = new Player;
-		private var _BackgroundArray:Array;
+		private var _BackgroundArray:Array = new Array(Background,Background,Background);
 		
 		//Intro op Tile 1
 		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
@@ -31,8 +34,6 @@ package
 		
 		public function Level_3() 
 		{
-			_BackgroundArray = new Array;
-			_BackgroundArray.push(_bg);
 			//trace("background array is this long:"_BackgroundArray.length);
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -53,25 +54,12 @@ package
 			_Curtain1.y += 5;
 			_Curtain2.y -= 5;
 			_Curtain3.alpha -= 0.001;
-			_bg.x -= 10;
-			_bg1.x -= 10;
-			trace(_bg.x);
-			if (_bg.x <= -1280)
-			{
-				_bg.x = 1280;
-			}
-			if (_bg1.x <= -1280)
-			{
-				_bg1.x = 1280;
-			}
+			_bg.x -= 1;
 		}
 		
 		private function Tile1(e:Event):void
 		{
 			addChild(_bg);
-			_bg.x = 0;
-			addChild(_bg1);
-			_bg1.x = 1280;
 			addChild(_Player);
 			addChild(_Curtain1);
 			addChild(_Curtain2);
@@ -80,8 +68,6 @@ package
 			_Player.scaleY = 0.5;
 			_Player.x = stage.stageWidth / 5;
 			_Player.y = stage.stageHeight / 2;
-			
-			
 			addEventListener(Event.ENTER_FRAME, loop);
 		}
 		private function Tile2(e:Event):void
