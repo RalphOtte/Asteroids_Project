@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿package  
-=======
-package
->>>>>>> origin/master
+﻿package  src
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -49,9 +45,21 @@ package
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 			_RedShip = new _Ship1(); 
+
+			_RedShip.x -= (185 / 2);
+			_RedShip.y -= (142 / 2);
+			
 			_BlueShip = new _Ship2();
+			
+			_BlueShip.x -= (187 / 2);
+			_BlueShip.y -= (131 / 2);
+			
 			_GreenShip = new _Ship3();
+			
+			_GreenShip.x -= (164 / 2);
+			_GreenShip.y -= (146 / 2);
 			addEventListener(Event.ADDED_TO_STAGE, CheckSkin);
+			
 		}
 		
 		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
@@ -65,17 +73,17 @@ package
 			
 			if (_SelectedSkin == 1)
 			{
-			//	trace("Skin 1 (PLAYER)");
+				trace("Skin 1 (PLAYER)");
 				addChild(_RedShip);
 			}
 			else if (_SelectedSkin == 2)
 			{
-			//	trace("Skin 2 (PLAYER)");
+				trace("Skin 2 (PLAYER)");
 				addChild(_BlueShip);
 			}
 			else if (_SelectedSkin == 3)
 			{
-			//	trace("Skin 3 (PLAYER)");
+				trace("Skin 3 (PLAYER)");
 				addChild(_GreenShip);
 			}
 		}
@@ -83,26 +91,26 @@ package
 		{
 			if (_WButtonIsDown == true)
 			{
-				if ((this.rotation == 90) || (this.rotation <= 90))
-				{
-					this.rotation -= 6;
-				}
-				
-				else ((this.rotation == 270) && (this.rotation >= 270))
+				if ((this.rotation == 0) || (this.rotation == 180))
 				{
 					this.rotation += 6;
+				}
+				
+				else ((this.rotation == 270) || (this.rotation == 90))
+				{
+					this.rotation -= 6;
 				}
 				
 			}
 			
 			if (_AButtonIsDown == true)
 			{
-				if ((this.rotation == 0) && (this.rotation <= 0))
+				if ((this.rotation >= -90) && (this.rotation <= -90))
 				{
 					this.rotation += 6;
 				}
 				
-				else ((this.rotation == 270) && (this.rotation >= 270))
+				else ((this.rotation <= 0) && (this.rotation >= 0))
 				{
 					this.rotation -= 6;
 				}
@@ -128,7 +136,7 @@ package
 					this.rotation += 6;
 				}
 				
-				else ((this.rotation >= 90) && (this.rotation <= 180))
+				else ((this.rotation >= 180) && (this.rotation <= 270))
 				{
 					this.rotation -= 6;
 				}

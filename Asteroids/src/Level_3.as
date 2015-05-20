@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-﻿package  
-=======
 ﻿package
->>>>>>> origin/master
+
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
@@ -22,10 +19,10 @@
 		private var _BackgroundArray:Array = new Array(Background,Background,Background);
 		
 		//Intro op Tile 1
-		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
+		[Embed(source="../Assets/Game/Miscelaneous/Level_3.png")]
 		private var _CurtainUp:Class;
 		private var _Curtain1:Bitmap;
-		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
+		[Embed(source="../Assets/Game/Miscelaneous/Onderkant_gate.png")]
 		private var _CurtainDown:Class;
 		private var _Curtain2:Bitmap;
 		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
@@ -51,9 +48,9 @@
 		private function loop(e:Event):void
 		{
 			//Tile 1
-			_Curtain1.y += 5;
-			_Curtain2.y -= 5;
-			_Curtain3.alpha -= 0.001;
+			_Curtain1.y -= 3;
+			_Curtain2.y += 3;
+			_Curtain3.alpha -= 0.004;
 			_bg.x -= 1;
 		}
 		
@@ -64,6 +61,8 @@
 			addChild(_Curtain1);
 			addChild(_Curtain2);
 			addChild(_Curtain3);
+			_Curtain1.y = 50;
+			_Curtain2.y = stage.stageHeight / 2 + 50;
 			_Player.scaleX = 0.5;
 			_Player.scaleY = 0.5;
 			_Player.x = stage.stageWidth / 5;
