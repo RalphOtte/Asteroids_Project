@@ -137,11 +137,6 @@ package
 				{
 					this.rotation -= 6;
 				}
-				
-				else if (this.rotation == 180)
-				{
-					this.rotation = 180;
-				}
 			}
 			
 			if (_DButtonIsDown == true)
@@ -154,11 +149,6 @@ package
 				else if((this.rotation >= 180) || (this.rotation <= 270))
 				{
 					this.rotation -= 6;
-				}
-				
-				else if (this.rotation == 90)
-				{
-					this.rotation = 90;
 				}
 			}
 		}
