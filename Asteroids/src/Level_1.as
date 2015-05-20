@@ -134,7 +134,6 @@ package
 			addChild(_asteroid);
 			_asteroid.scaleX = 0.5;
 			_asteroid.scaleY = 0.5
-			_asteroid.rotation = 30;
 			_asteroid.x = stage.stageWidth;
 			_asteroid.y = stage.stageHeight / 2;
 			addEventListener(Event.ENTER_FRAME, loop1);
