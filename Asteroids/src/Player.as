@@ -1,5 +1,4 @@
-package
-
+﻿package  src
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -46,13 +45,20 @@ package
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 			_RedShip = new _Ship1(); 
+				//trace(_RedShip+"rs");
+			
+			_RedShip.x -= (185 / 2);
+			_RedShip.y -= (142 / 2);
+			
 			_BlueShip = new _Ship2();
 			_GreenShip = new _Ship3();
 			addEventListener(Event.ADDED_TO_STAGE, CheckSkin);
+			
 		}
 		
 		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
 		{
+			trace(_SelectedSkin + "DERP");
 		//	_SelectedSkin = _GM._SelectedShip;
 		}
 		
@@ -61,17 +67,17 @@ package
 			
 			if (_SelectedSkin == 1)
 			{
-			//	trace("Skin 1 (PLAYER)");
+				trace("Skin 1 (PLAYER)");
 				addChild(_RedShip);
 			}
 			else if (_SelectedSkin == 2)
 			{
-			//	trace("Skin 2 (PLAYER)");
+				trace("Skin 2 (PLAYER)");
 				addChild(_BlueShip);
 			}
 			else if (_SelectedSkin == 3)
 			{
-			//	trace("Skin 3 (PLAYER)");
+				trace("Skin 3 (PLAYER)");
 				addChild(_GreenShip);
 			}
 		}
@@ -79,22 +85,12 @@ package
 		{
 			if (_WButtonIsDown == true)
 			{
-				if ((this.rotation == 0) || (this.rotation <= 0))
+				if ((this.rotation == 0) || (this.rotation == 180))
 				{
 					this.rotation += 6;
 				}
 				
-				else if((this.rotation == 90) && (this.rotation >= 90))
-				{
-					this.rotation -= 6;
-				}
-				
-				else if((this.rotation == 180) && (this.rotation >= 180))
-				{
-					this.rotation -= 6;
-				}
-				
-				else ((this.rotation == 270) && (this.rotation >= 270))
+				else ((this.rotation == 270) || (this.rotation == 90))
 				{
 					this.rotation -= 6;
 				}
@@ -103,12 +99,12 @@ package
 			
 			if (_AButtonIsDown == true)
 			{
-				if ((this.rotation == -90) && (this.rotation <= -90))
+				if ((this.rotation >= -90) && (this.rotation <= -90))
 				{
 					this.rotation += 6;
 				}
 				
-				else ((this.rotation == 0) && (this.rotation >= 0))
+				else ((this.rotation <= 0) && (this.rotation >= 0))
 				{
 					this.rotation -= 6;
 				}
@@ -158,7 +154,9 @@ package
 			if (e.keyCode == 68)
 			{
 				_DButtonIsDown = true;
-			}			
+			}
+			//-----------------------------//
+			
 		}
 		
 		
@@ -168,18 +166,22 @@ package
 			if (e.keyCode == 87)
 			{
 				_WButtonIsDown = false;
+				trace("ik werk niet meer voor W");
 			}
 			if (e.keyCode == 65)
 			{
 				_AButtonIsDown = false;
+				trace("ik werk niet meer voor A");
 			}
 			if (e.keyCode == 83)
 			{
 				_SButtonIsDown = false;
+				trace("ik werk niet meer voor S");
 			}
 			if (e.keyCode == 68)
 			{
 				_DButtonIsDown = false;
+				trace("ik werk niet meer voor D");
 			}
 		}		
 	}
