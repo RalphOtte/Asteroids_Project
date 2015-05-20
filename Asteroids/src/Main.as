@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿package 
-=======
 package
->>>>>>> origin/master
 {
 	import flash.display.Sprite;
 	import flash.events.Event;

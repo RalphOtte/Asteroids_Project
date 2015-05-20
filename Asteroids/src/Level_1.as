@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-﻿package 
-=======
 package
->>>>>>> origin/master
+
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
@@ -39,10 +36,10 @@ package
 		
 		
 		//Intro op Tile 1
-		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
+		[Embed(source="../Assets/Game/Miscelaneous/Tutorial.png")]
 		private var _CurtainUp:Class;
 		private var _Curtain1:Bitmap;
-		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
+		[Embed(source="../Assets/Game/Miscelaneous/Onderkant_gate.png")]
 		private var _CurtainDown:Class;
 		private var _Curtain2:Bitmap;
 		[Embed(source = "../Assets/Menu's/CutsceneCurtain.png")]
@@ -87,8 +84,8 @@ package
 		private function loop1(e:Event):void 
 		{	
 			//Tile 1
-			_Curtain1.y += 8;
-			_Curtain2.y -= 8;
+			_Curtain1.y -= 3;		
+			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
 			
 			//Player
@@ -160,9 +157,11 @@ package
 			//trace(_GM._SelectedShip + " BEFORE (LEVEL_1)");
 			addChild(_Player);
 			//trace(_GM._SelectedShip + " AFTER (LEVEL_1)");
-			addChild(_Curtain1);
-			addChild(_Curtain2);
-			addChild(_Curtain3);
+			addChild(_Curtain1);	// Up
+			addChild(_Curtain2);	// Down
+			addChild(_Curtain3);	// Fade
+			_Curtain1.y = 50;
+			_Curtain2.y = stage.stageHeight / 2 + 50;
 			_Player.scaleX = 0.5;
 			_Player.scaleY = 0.5;
 			_Player.rotation = 90;

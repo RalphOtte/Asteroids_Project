@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-﻿package  
-=======
 package
->>>>>>> origin/master
+
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
