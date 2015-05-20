@@ -1,4 +1,4 @@
-﻿package
+package
 
 {
 	import flash.display.Bitmap;
@@ -13,6 +13,7 @@
 	public class Level_3 extends Sprite
 	{
 		private var _bg:Background = new Background();
+		private var _bg1:Background = new Background();
 		private var _ShipSelect:ShipSelect;
 		private var _MPShipSelect:MPShipSelect;
 		private var _Player:Player = new Player;
@@ -51,12 +52,24 @@
 			_Curtain1.y -= 3;
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
-			_bg.x -= 1;
+			_bg.x -= 5;
+			_bg1.x -= 5;
+			
+			if (_bg.x <= -1280)
+			{
+				_bg.x = 1280;
+			}
+			if (_bg1.x <= -1280)
+			{
+				_bg1.x <= -1280;
+			}
 		}
 		
 		private function Tile1(e:Event):void
 		{
 			addChild(_bg);
+			addChild(_bg1);
+			_bg1.x = 1280;
 			addChild(_Player);
 			addChild(_Curtain1);
 			addChild(_Curtain2);
