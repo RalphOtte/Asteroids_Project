@@ -15,13 +15,14 @@ package
 	 */
 	public class Level_1 extends Sprite
 	{
-		private var _GM:GameManager = new GameManager;;
 		
 		//variables
 		private var _Background:Background = new Background;
 		private var _ShipSelect:ShipSelect;
 		private var _MPShipSelect:MPShipSelect;
 		private var _Player:Player = new Player;
+		private var _GM:GameManager = new GameManager;
+		private var _asteroid:Asteroid = new Asteroid;
 		
 		//Alle Timers
 		private var _1SecTimer:Timer = new Timer(1000);
@@ -78,7 +79,7 @@ package
 			_RedShip = new _Ship1(); 
 			_BlueShip = new _Ship2();
 			_GreenShip = new _Ship3();
-			Tile1(e);
+			Tile1();
 		}
 		
 		private function loop1(e:Event):void 
@@ -88,6 +89,15 @@ package
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
 			
+			/*
+			if ((_Curtain1.y = -720) && (_Curtain2.y = 1440))
+			{
+				removeChild(_Curtain1);
+				removeChild(_Curtain2);
+				removeChild(_Curtain3);
+			}
+			*/
+			
 			//Player
 			if (_Player.x == stage.stageWidth / 2)
 			{
@@ -95,11 +105,17 @@ package
 			}
 			else(_Player.x += 5)
 			
+			if (_asteroid.hitTestObject(_Player))
+			{
+				trace("derp");
+			}
+			else (_asteroid.x -= 5)
+			
 			
 			//Tile 2(misschien in aparte loop voor iedere tile) 
 		}
 		
-		private function Tile1(e:Event):void
+		private function Tile1():void
 		{
 			addChild(_Background);
 			//trace(_GM._SelectedShip + " BEFORE (LEVEL_1)");
@@ -115,6 +131,12 @@ package
 			_Player.rotation = 90;
 			_Player.x = -250;
 			_Player.y = stage.stageHeight / 2;
+			addChild(_asteroid);
+			_asteroid.scaleX = 0.5;
+			_asteroid.scaleY = 0.5
+			_asteroid.rotation = 30;
+			_asteroid.x = stage.stageWidth;
+			_asteroid.y = stage.stageHeight / 2;
 			addEventListener(Event.ENTER_FRAME, loop1);
 		}
 		
