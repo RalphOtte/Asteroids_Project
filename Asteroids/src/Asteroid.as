@@ -13,8 +13,8 @@ package
 		private var _rotate:int = 0;
 		
 		[Embed(source = "../Assets/Game/Obstacles/astroide.png")]
-		private var _Astr:Class;
-		private var _Asteroid:Bitmap;
+		private var _astr:Class;
+		private var _asteroid:Bitmap;
 		
 		public function Asteroid() 
 		{
@@ -25,10 +25,10 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ADDED_TO_STAGE, rotating);
-			_Asteroid = new _Astr();
-			addChild(_Asteroid);
-			_Asteroid.x -= 280 / 2;
-			_Asteroid.y -= 208 / 2;
+			_asteroid = new _astr();
+			addChild(_asteroid);
+			_asteroid.x -= 280 / 2;
+			_asteroid.y -= 208 / 2;
 			addEventListener(Event.ENTER_FRAME, loop);
 			loop(e);
 		}

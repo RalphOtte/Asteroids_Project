@@ -91,14 +91,14 @@ package
 		{
 			if (_WButtonIsDown == true)
 			{
-				if ((this.rotation >= -180) || (this.rotation <= -180))
+				if ((this.rotation >= 180) || (this.rotation <= 0 ))
 				{
 					this.rotation += 6;
 				}
 				
-				else if ((this.rotation >= -180))
+				else if ((this.rotation <= 180) || (this.rotation >= 0 ))
 				{
-					this.rotation += 6;
+					this.rotation -= 6;
 				}
 				
 				else if (this.rotation == 0)
@@ -171,8 +171,6 @@ package
 			{
 				_DButtonIsDown = true;
 			}
-			//-----------------------------//
-			
 		}
 		
 		
@@ -182,22 +180,18 @@ package
 			if (e.keyCode == 87)
 			{
 				_WButtonIsDown = false;
-				trace("ik werk niet meer voor W");
 			}
 			if (e.keyCode == 65)
 			{
 				_AButtonIsDown = false;
-				trace("ik werk niet meer voor A");
 			}
 			if (e.keyCode == 83)
 			{
 				_SButtonIsDown = false;
-				trace("ik werk niet meer voor S");
 			}
 			if (e.keyCode == 68)
 			{
 				_DButtonIsDown = false;
-				trace("ik werk niet meer voor D");
 			}
 		}		
 	}
