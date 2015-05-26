@@ -17,7 +17,8 @@ package
 		private var _ShipSelect:ShipSelect;
 		private var _MPShipSelect:MPShipSelect;
 		private var _Player:Player = new Player;
-		private var _BackgroundArray:Array = new Array(Background,Background,Background);
+		private var _BackgroundArray:Array = new Array(Background, Background, Background);
+		private var _TileCounter:int;
 		
 		//Intro op Tile 1
 		[Embed(source="../Assets/Game/Miscelaneous/Level_3.png")]
@@ -48,20 +49,45 @@ package
 		
 		private function loop(e:Event):void
 		{
-			//Tile 1
+			//hangar doors
 			_Curtain1.y -= 3;
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
-			_bg.x -= 5;
-			_bg1.x -= 5;
 			
-			if (_bg.x <= -1280)
+			//background movement
+			
+			if (_TileCounter <= 4)
 			{
-				_bg.x = 1280;
-			}
-			if (_bg1.x <= -1280)
+				_bg.x -= 5;
+				_bg1.x -= 5;
+				if (_bg.x <= -1280)
+				{
+					_bg.x = 1280;
+					_TileCounter++;
+					trace("tile " + _TileCounter);
+				}
+				if (_bg1.x <= -1280)
+				{
+					_bg1.x = 1280;
+					_TileCounter++;
+					trace("tile " + _TileCounter);
+				}
+			}else if (_TileCounter > 2)
 			{
-				_bg1.x <= -1280;
+				_bg.y -= 5;
+				_bg1.y -= 5;
+				if (_bg.y <= 0)
+				{
+					_bg.y = 1440;
+					_TileCounter++;
+					trace("tile " + _TileCounter);
+				}
+				if (_bg1.y <= 0)
+				{
+					_bg1.y - 1440;
+					_TileCounter++;
+					trace("tile " + _TileCounter);
+				}
 			}
 		}
 		
@@ -81,104 +107,6 @@ package
 			_Player.x = stage.stageWidth / 5;
 			_Player.y = stage.stageHeight / 2;
 			addEventListener(Event.ENTER_FRAME, loop);
-		}
-		private function Tile2(e:Event):void
-		{
-			
-		}
-		private function Tile3(e:Event):void
-		{
-			
-			
-		}
-		private function Tile4(e:Event):void
-		{
-			
-			
-		}
-		private function Tile5(e:Event):void
-		{
-			
-			
-		}
-		private function Tile6(e:Event):void
-		{
-			
-			
-		}
-		private function Tile7(e:Event):void
-		{
-			
-			
-		}
-		private function Tile8(e:Event):void
-		{
-			
-			
-		}
-		private function Tile9(e:Event):void
-		{
-			
-			
-		}
-		private function Tile10(e:Event):void
-		{
-			
-			
-		}
-		private function Tile11(e:Event):void
-		{
-			
-			
-		}
-		private function Tile12(e:Event):void
-		{
-			
-			
-		}
-		private function Tile13(e:Event):void
-		{
-			
-			
-		}	
-		private function Tile14(e:Event):void
-		{
-			
-			
-		}	
-		private function Tile15(e:Event):void
-		{
-			
-			
-		}	
-		private function Tile16(e:Event):void
-		{
-			
-			
-		}	
-		private function Tile17(e:Event):void
-		{
-			
-			
-		}	
-		private function Tile18(e:Event):void
-		{
-			
-			
-		}	
-		private function Tile19(e:Event):void
-		{
-			
-			
-		}	
-		private function Tile20(e:Event):void
-		{
-			
-			
-		}
-		private function Tile21(e:Event):void
-		{
-			
 		}	
 	}
 }
