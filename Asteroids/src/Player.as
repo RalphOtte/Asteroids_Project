@@ -1,4 +1,4 @@
-package
+﻿package src
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -22,6 +22,7 @@ package
 		private var _AButtonIsDown:Boolean = false;
 		private var _SButtonIsDown:Boolean = false;
 		private var _DButtonIsDown:Boolean = false;
+		private var _ShiftButtonIsDown:Boolean = false;
 		
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
 		private var _Ship1:Class;
@@ -89,14 +90,22 @@ package
 		}
 		private function loop(e:Event):void
 		{
+			var radian:Number = this.rotation
+			
 			if (_WButtonIsDown == true)
 			{
 				if ((this.rotation >= 180) || (this.rotation <= 0 ))
 				{
 					this.rotation += 6;
 				}
-				
-				else if ((this.rotation <= 180) || (this.rotation >= 0 ))
+				//else if ((this.rotation <= 180) || (this.rotation >= 0 ))
+
+
+				//else if ((this.rotation >= -180))
+
+				else if((this.rotation >= 270) || (this.rotation <= 90))
+
+
 				{
 					this.rotation -= 6;
 				}
@@ -115,7 +124,11 @@ package
 					this.rotation += 6;
 				}
 				
-				else if((this.rotation == 180) || (this.rotation <= 180))
+
+				//else if((this.rotation == 180) || (this.rotation <= 180))
+
+				else if((this.rotation >= 0) || (this.rotation <= 0))
+					
 				{
 					this.rotation -= 6;
 				}
@@ -151,6 +164,11 @@ package
 					this.rotation -= 6;
 				}
 			}
+			
+			if (_ShiftButtonIsDown == true)
+			{
+				trace ("ik schiet!"); //later komt hier addChild(bullet);
+			}
 		}
 		
 		private function keyDown(e:KeyboardEvent):void
@@ -170,6 +188,10 @@ package
 			if (e.keyCode == 68)
 			{
 				_DButtonIsDown = true;
+			}
+			if (e.keyCode == 16)
+			{
+				_ShiftButtonIsDown = true;
 			}
 		}
 		
@@ -192,6 +214,10 @@ package
 			if (e.keyCode == 68)
 			{
 				_DButtonIsDown = false;
+			}
+			if (e.keyCode == 16)
+			{
+				_ShiftButtonIsDown = false;
 			}
 		}		
 	}
