@@ -34,6 +34,7 @@
 		private var _Ship3:Class;
 		private var _GreenShip:Bitmap;
 		
+		
 		public function Player() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -88,88 +89,39 @@
 				addChild(_GreenShip);
 			}
 		}
+		
 		private function loop(e:Event):void
 		{
-			var radian:Number = this.rotation
+			//var radian:Number = this.rotation
 			
 			if (_WButtonIsDown == true)
 			{
-				if ((this.rotation >= 180) || (this.rotation <= 0 ))
-				{
-					this.rotation += 6;
-				}
-				//else if ((this.rotation <= 180) || (this.rotation >= 0 ))
-
-
-				//else if ((this.rotation >= -180))
-
-				else if((this.rotation >= 270) || (this.rotation <= 90))
-
-
-				{
-					this.rotation -= 6;
-				}
-				
-				else if (this.rotation == 0)
-				{
-					this.rotation = 0;
-				}
-				
+				this.rotation -= 5;
 			}
 			
 			if (_AButtonIsDown == true)
 			{
-				if ((this.rotation >= 180) ||(this.rotation <= -90))
-				{
-					this.rotation += 6;
-				}
-				
-
-				//else if((this.rotation == 180) || (this.rotation <= 180))
-
-				else if((this.rotation >= 0) || (this.rotation <= 0))
-					
-				{
-					this.rotation -= 6;
-				}
-				
-				else if (this.rotation == -90)
-				{
-					this.rotation = -90;
-				}
+				this.x -= 6;
 			}
 			
 			if (_SButtonIsDown == true)
 			{
-				if ((this.rotation >= 90) && (this.rotation <= 180))
-				{
-					this.rotation += 6;
-				}
-				
-				else if((this.rotation >= 180) || (this.rotation <= 270))
-				{
-					this.rotation -= 6;
-				}
+				this.rotation += 5;
 			}
 			
 			if (_DButtonIsDown == true)
 			{
-				if ((this.rotation >= 0) && (this.rotation <= 90))
-				{
-					this.rotation += 6;
-				}
-				
-				else if((this.rotation >= 180) || (this.rotation <= 270))
-				{
-					this.rotation -= 6;
-				}
+				this.x += 5;
 			}
-			
+			//-------DO NOT TOUCH THIS-------\\
 			if (_ShiftButtonIsDown == true)
 			{
-				trace ("ik schiet!"); //later komt hier addChild(bullet);
+				//trace ("Bullet spawned (WEAPON)");
+				//addChild(Bullet);
 			}
+			
 		}
+		
 		
 		private function keyDown(e:KeyboardEvent):void
 		{
