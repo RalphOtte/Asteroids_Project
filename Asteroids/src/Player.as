@@ -96,22 +96,22 @@
 			
 			if (_WButtonIsDown == true)
 			{
-				this.rotation -= 5;
+				this.x += 5;
 			}
 			
 			if (_AButtonIsDown == true)
 			{
-				this.x -= 6;
+				this.rotation -= 5;
 			}
 			
 			if (_SButtonIsDown == true)
 			{
-				this.rotation += 5;
+				this.x -= 6;
 			}
 			
 			if (_DButtonIsDown == true)
 			{
-				this.x += 5;
+				this.rotation += 5;
 			}
 			//-------DO NOT TOUCH THIS-------\\
 			if (_ShiftButtonIsDown == true)
