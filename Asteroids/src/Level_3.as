@@ -1,5 +1,4 @@
 package
-
 {
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
@@ -19,6 +18,7 @@ package
 		private var _Player:Player = new Player;
 		private var _BackgroundArray:Array = new Array(Background, Background, Background);
 		private var _TileCounter:int;
+		//private var bgs:Array = new Array;
 		
 		//Intro op Tile 1
 		[Embed(source="../Assets/Game/Miscelaneous/Level_3.png")]
@@ -39,6 +39,8 @@ package
 		
 		private function init(e:Event):void 
 		{
+			//bgs[0] = _bg; 
+			//bgs[1] = _bg1;
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			_Curtain1 = new _CurtainUp();
 			_Curtain2 = new _CurtainDown();
@@ -54,39 +56,62 @@ package
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
 			
-			//background movement
-			
-			if (_TileCounter <= 4)
+			//Level generator
+			if (_TileCounter <= 1)
 			{
 				_bg.x -= 5;
 				_bg1.x -= 5;
 				if (_bg.x <= -1280)
 				{
-					_bg.x = 1280;
+					//bgs[(Math.abs(_TileCounter%2)-1)]
 					_TileCounter++;
+					_bg.x = 1280;
 					trace("tile " + _TileCounter);
+					trace("this is bg0");
 				}
 				if (_bg1.x <= -1280)
 				{
-					_bg1.x = 1280;
+					//bgs[_TileCounter%2]
 					_TileCounter++;
+					_bg1.x = 1280;
 					trace("tile " + _TileCounter);
+					trace("this is bg1");
 				}
-			}else if (_TileCounter > 2)
+			}else if (_TileCounter > 1)
 			{
+				_bg.x = 0;
 				_bg.y -= 5;
 				_bg1.y -= 5;
-				if (_bg.y <= 0)
+				
+				trace("bg is op "+_bg1.x+","+_bg.y);
+				trace("bg1 is op "+_bg1.x+","+_bg1.y);
+				
+				/*
+				for (var i:int = 0; i < 2; i++) 
 				{
-					_bg.y = 1440;
+					bgs[i].y -= 5;
+					if (bgs[i] < -720)
+					{
+						bgs[i].y += 1440;
+					}
+				}*/
+				
+				
+				if (_bg.y <= -720)
+				{
+					//bgs[(Math.abs(_TileCounter%2)-1)]
 					_TileCounter++;
+					_bg.y += 1440;
 					trace("tile " + _TileCounter);
+					trace("this is bg0");
+					
 				}
-				if (_bg1.y <= 0)
+				if (_bg1.y <= -720)
 				{
-					_bg1.y - 1440;
 					_TileCounter++;
+					_bg1.y += 1440;
 					trace("tile " + _TileCounter);
+					trace("this is bg1");
 				}
 			}
 		}
@@ -95,7 +120,15 @@ package
 		{
 			addChild(_bg);
 			addChild(_bg1);
-			_bg1.x = 1280;
+			if (_TileCounter <= 1)
+			{
+				_bg1.y = 0;
+				_bg1.x = 1280;
+			}else if (_TileCounter > 1)
+			{
+				_bg1.y = 720;
+				_bg1.x = 0
+			}
 			addChild(_Player);
 			addChild(_Curtain1);
 			addChild(_Curtain2);
