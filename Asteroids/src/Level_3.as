@@ -84,7 +84,7 @@ package
 				}
 				if (_bg1.y <= 0)
 				{
-					_bg1.y - 1440;
+					_bg1.y = 1440;
 					_TileCounter++;
 					trace("tile " + _TileCounter);
 				}
