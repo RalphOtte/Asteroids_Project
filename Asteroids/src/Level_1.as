@@ -23,6 +23,7 @@ package
 		private var _Player:Player = new Player;
 		private var _GM:GameManager = new GameManager;
 		private var _asteroid:Asteroid = new Asteroid;
+		private var _enemy:Enemy = new Enemy;
 		
 		//Alle Timers
 		private var _1SecTimer:Timer = new Timer(1000);
@@ -34,6 +35,12 @@ package
 		//Alle text
 		private var _IntroText1:TextField;
 		private var _IntroText2:TextField;
+		
+		private var cx:Number = _Player.x - _enemy.x;
+		private var cy:Number = _Player.y - _enemy.y;
+		
+		private var Radians:Number = Math.atan2(cy, cx);
+		private var Degrees:Number = Radians * 180 / Math.PI;
 		
 		
 		//Intro op Tile 1
@@ -73,6 +80,7 @@ package
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			stage.addEventListener(Event.ENTER_FRAME, enemyLookAtPlayer);
 			_Curtain1 = new _CurtainUp();
 			_Curtain2 = new _CurtainDown();
 			_Curtain3 = new _CurtainFade();
@@ -80,6 +88,11 @@ package
 			_BlueShip = new _Ship2();
 			_GreenShip = new _Ship3();
 			Tile1();
+		}
+		
+		private function enemyLookAtPlayer(e:Event):void
+		{
+			_enemy.rotation = Degrees;
 		}
 		
 		private function loop1(e:Event):void 
@@ -133,9 +146,15 @@ package
 			_Player.y = stage.stageHeight / 2;
 		//	addChild(_asteroid);
 		//	_asteroid.scaleX = 0.5;
-		//	_asteroid.scaleY = 0.5
+		//	_asteroid.scaleY = 0.5;
 		//	_asteroid.x = stage.stageWidth;
 		//	_asteroid.y = stage.stageHeight / 2;
+			addChild(_enemy);
+			_enemy.scaleX = 1;
+			_enemy.scaleY = 1;
+			_asteroid.x = stage.stageWidth;
+			_asteroid.y = (stage.stageHeight / 4) * 3
+			
 			addEventListener(Event.ENTER_FRAME, loop1);
 		}
 		

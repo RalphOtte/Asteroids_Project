@@ -8,8 +8,12 @@ package
 	 * ...
 	 * @author Ralph Otte
 	 */
-	public class Enemy extends Sprite;
+	public class Enemy extends Sprite
 	{
+		
+		[Embed(source = "../Assets/Game/Enemies/Enemy_Yellow.png")]
+		private var _enemyShip:Class;
+		private var _eShip:Bitmap;
 		
 		public function Enemy() 
 		{
@@ -19,11 +23,7 @@ package
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			
+			addChild(_eShip);
 		}
-				private function Tile1(e:Event):void
-		{
-		
 	}
-
 }
