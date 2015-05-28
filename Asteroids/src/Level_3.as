@@ -108,10 +108,6 @@ package
 				}
 				if (_bg1.y <= -720)
 				{
-<<<<<<< HEAD
-					_bg1.y = 1440;
-=======
->>>>>>> origin/master
 					_TileCounter++;
 					_bg1.y += 1440;
 					trace("tile " + _TileCounter);
