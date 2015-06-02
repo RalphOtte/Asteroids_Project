@@ -2,9 +2,12 @@ package
 
 {
 	import flash.display.Bitmap;
+	import flash.display.Loader;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -66,6 +69,12 @@ package
 		private var _Ship3:Class;
 		private var _GreenShip:Bitmap;
 		
+		// Stoplicht
+		[Embed(source="../Assets/Game/Miscelaneous/Stoplicht.swf")]  //, symbol="scene1ID"
+		private var _Stoplicht:Class;
+		private var _Stoplicht:MovieClip = new _Stoplicht();
+		
+		
 		/*
 		 * Denk dat het het beste is om te kijken als een volgende tile geactiveerd wordt dat er dan een switch of dergelijke wordt omgezet
 		 * En dan de volgende loop aan te roepen tegelijk met de nieuwe tile, en dan de oude dingen weg te halen.
@@ -103,19 +112,24 @@ package
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
 			
-			/*
-			if ((_Curtain1.y = -720) && (_Curtain2.y = 1440))
+			if (_Intro == true)
 			{
 				removeChild(_Curtain1);
 				removeChild(_Curtain2);
 				removeChild(_Curtain3);
 			}
-			*/
+			
 			
 			//Player
 			if (_Player.x == stage.stageWidth / 2)
 			{
+				trace("LOADER");
+				addChild(Stoplicht);
+				_Stoplicht.x = stage.stageWidth / 2 ;
+				_Stoplicht.y = 200;
 				_Intro = true;
+				_Stoplicht.play(); 
+				
 			}
 			else(_Player.x += 5)
 			
