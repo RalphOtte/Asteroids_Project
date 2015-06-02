@@ -31,6 +31,7 @@ package
 		//Alle IntroTextBools
 		private var _Text1:Boolean = false;
 		private var _Text2:Boolean = false;
+		private var _Intro:Boolean = false;
 		
 		//Alle text
 		private var _IntroText1:TextField;
@@ -114,7 +115,7 @@ package
 			//Player
 			if (_Player.x == stage.stageWidth / 2)
 			{
-				
+				_Intro = true;
 			}
 			else(_Player.x += 5)
 			
@@ -149,68 +150,13 @@ package
 		//	_asteroid.scaleY = 0.5;
 		//	_asteroid.x = stage.stageWidth;
 		//	_asteroid.y = stage.stageHeight / 2;
-			addChild(_enemy);
-			_enemy.scaleX = 1;
-			_enemy.scaleY = 1;
+		//	addChild(_enemy);
+		//	_enemy.scaleX = 1;
+		//	_enemy.scaleY = 1;
 			_asteroid.x = stage.stageWidth;
 			_asteroid.y = (stage.stageHeight / 4) * 3
 			
 			addEventListener(Event.ENTER_FRAME, loop1);
 		}
-		
-		private function Tile2(e:Event):void
-		{
-			
-			
-		}
-		private function Tile3(e:Event):void
-		{
-			
-			
-		}
-		private function Tile4(e:Event):void
-		{
-			
-			
-		}
-		private function Tile5(e:Event):void
-		{
-			
-			
-		}
-		private function Tile6(e:Event):void
-		{
-			
-			
-		}
-		private function Tile7(e:Event):void
-		{
-			
-			
-		}
-		private function Tile8(e:Event):void
-		{
-			
-			
-		}
-		private function Tile9(e:Event):void
-		{
-			
-			
-		}
-		private function Tile10(e:Event):void
-		{
-			
-			
-		}
-		private function Tile11(e:Event):void
-		{
-			
-		}
-		private function Tile12(e:Event):void
-		{
-			
-			
-		}	
 	}
 }
