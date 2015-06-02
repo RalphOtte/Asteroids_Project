@@ -1,4 +1,4 @@
-package
+﻿package src
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -14,6 +14,7 @@ package
 	
 	public class Player extends Sprite
 	{	
+		private var _bullet:Bullet = new Bullet;
 		private var _GM:GameManager = new GameManager;
 		
 		public var _SelectedSkin:int = 1;
@@ -23,6 +24,8 @@ package
 		private var _SButtonIsDown:Boolean = false;
 		private var _DButtonIsDown:Boolean = false;
 		private var _ShiftButtonIsDown:Boolean = false;
+		
+		
 		
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
 		private var _Ship1:Class;
@@ -95,28 +98,30 @@ package
 			
 			if (_WButtonIsDown == true)
 			{
-				this.x += 5;
+				this.y -= 10;
 			}
 			
 			if (_AButtonIsDown == true)
 			{
-				this.rotation -= 5;
+				this.x -= 10;
 			}
 			
 			if (_SButtonIsDown == true)
 			{
-				this.x -= 6;
+				this.y += 10;
 			}
 			
 			if (_DButtonIsDown == true)
 			{
-				this.rotation += 5;
+				this.x += 10;
 			}
-			//-------DO NOT TOUCH THIS-------\\
+			
 			if (_ShiftButtonIsDown == true)
 			{
-				//trace ("Bullet spawned (WEAPON)");
-				//addChild(Bullet);
+				trace ("Bullet spawned (WEAPON)");
+				addChild(_bullet);
+				_bullet.x = this.x;
+				_bullet.y = this.y;
 			}
 			
 		}
