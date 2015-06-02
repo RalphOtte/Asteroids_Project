@@ -14,6 +14,8 @@ package
 		[Embed(source="../Assets/Game/Backgrounds/Space.jpg")]
 		private var backgroundImg:Class;
 		private var bgImage:Bitmap;
+		public var _scrollSpeed:int = 8;
+		private var _Player:Player;
 		
 		public function Background() 
 		{
@@ -21,6 +23,12 @@ package
 			super();
 			bgImage = new backgroundImg();
 			addChild(bgImage);
+			//scrollspeed formula
+			
+			//if ship pos is half of stage
+				//increase scrollspeed
+			//if ship pos is right edge of stage
+				//decrease scrollspeed
 		}
 		
 		private function init(e:Event):void 

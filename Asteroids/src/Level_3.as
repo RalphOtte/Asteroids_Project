@@ -79,7 +79,7 @@ package
 				}
 			}else if (_TileCounter > 1)
 			{
-				_bg.x = 0;
+				//scrollspeed
 				_bg.y -= 5;
 				_bg1.y -= 5;
 				
@@ -101,15 +101,14 @@ package
 				{
 					//bgs[(Math.abs(_TileCounter%2)-1)]
 					_TileCounter++;
-					_bg.y += 1440;
+					_bg.y += stage.stageHeight;
 					trace("tile " + _TileCounter);
 					trace("this is bg0");
-					
 				}
 				if (_bg1.y <= -720)
 				{
 					_TileCounter++;
-					_bg1.y += 1440;
+					_bg1.y += stage.stageHeight;
 					trace("tile " + _TileCounter);
 					trace("this is bg1");
 				}

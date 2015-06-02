@@ -47,7 +47,7 @@ package
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 			_RedShip = new _Ship1(); 
-
+			
 			_RedShip.x -= (185 / 2);
 			_RedShip.y -= (142 / 2);
 			
@@ -61,7 +61,6 @@ package
 			_GreenShip.x -= (164 / 2);
 			_GreenShip.y -= (146 / 2);
 			addEventListener(Event.ADDED_TO_STAGE, CheckSkin);
-			
 		}
 		
 		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
