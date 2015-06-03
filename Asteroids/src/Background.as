@@ -16,6 +16,8 @@ package
 		private var bgImage:Bitmap;
 		public var _scrollSpeed:int = 8;
 		private var _Player:Player;
+		private var _lvl1:Level_1;
+		
 		
 		public function Background() 
 		{
@@ -34,7 +36,11 @@ package
 		
 		private function scrollLoop(e:Event):void 
 		{
-		//	_scrollSpeed = _Player.PlayerSpeed;
+ 		//	_scrollSpeed = _Player.PlayerSpeed;
+			if (_lvl1._Intro == true)
+			{
+				trace("kek")
+			}
 		}
 		
 		private function init(e:Event):void 

@@ -34,7 +34,7 @@ package
 		//Alle IntroTextBools
 		private var _Text1:Boolean = false;
 		private var _Text2:Boolean = false;
-		private var _Intro:Boolean = false;
+		public var _Intro:Boolean = false;
 		
 		//Alle text
 		private var _IntroText1:TextField;
@@ -131,8 +131,8 @@ package
 			//Level generator
 			if (_TileCounter <= 1)
 			{
-				_bg.x -= 5;
-				_bg1.x -= 5;
+				//_bg.x -= 5;
+				//_bg1.x -= 5;
 				if (_bg.x <= -1280)
 				{
 					//bgs[(Math.abs(_TileCounter%2)-1)]
