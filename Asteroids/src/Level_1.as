@@ -70,9 +70,9 @@ package
 		private var _GreenShip:Bitmap;
 		
 		// Stoplicht
-		[Embed(source="../Assets/Game/Miscelaneous/Stoplicht.swf")]  //, symbol="scene1ID"
-		private var _Stoplicht:Class;
-		private var _Stoplicht:MovieClip = new _Stoplicht();
+		//[Embed(source="../Assets/Game/Miscelaneous/Stoplicht.swf")]  //, symbol="scene1ID"
+		//private var _Stoplicht:Class;
+		//private var _StopLicht:MovieClip = new _StopLicht();
 		
 		
 		/*
@@ -112,23 +112,27 @@ package
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
 			
-			if (_Intro == true)
+			/*if (_Intro == true)
 			{
 				removeChild(_Curtain1);
 				removeChild(_Curtain2);
 				removeChild(_Curtain3);
-			}
+			}*/
 			
 			
 			//Player
 			if (_Player.x == stage.stageWidth / 2)
 			{
 				trace("LOADER");
-				addChild(Stoplicht);
-				_Stoplicht.x = stage.stageWidth / 2 ;
-				_Stoplicht.y = 200;
+			//	addChild(Stoplicht);
+			//	_Stoplicht.x = stage.stageWidth / 2 ;
+			//	_Stoplicht.y = 200;
 				_Intro = true;
-				_Stoplicht.play(); 
+			//	_Stoplicht.play(); 
+				
+			}
+			else if(_Intro == true)
+			{
 				
 			}
 			else(_Player.x += 5)
