@@ -1,4 +1,4 @@
-﻿package src
+package
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -18,6 +18,7 @@
 		private var _GM:GameManager = new GameManager;
 		
 		public var _SelectedSkin:int = 1;
+		public var PlayerSpeed:int = 0;
 		
 		private var _WButtonIsDown:Boolean = false;
 		private var _AButtonIsDown:Boolean = false;

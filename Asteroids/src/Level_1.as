@@ -75,15 +75,12 @@ package
 		private var _GreenShip:Bitmap;
 		
 		// Stoplicht
-<<<<<<< HEAD
 		//[Embed(source="../Assets/Game/Miscelaneous/Stoplicht.swf")]  //, symbol="scene1ID"
 		//private var _Stoplicht:Class;
 		//private var _StopLicht:MovieClip = new _StopLicht();
-=======
 		[Embed(source="../Assets/Game/Miscelaneous/Stoplicht.swf")]  //, symbol="scene1ID"
 		private var _Stoplicht:Class;
 		//private var _Stoplicht:MovieClip = new _Stoplicht();
->>>>>>> origin/master
 		
 		
 		/*
@@ -118,24 +115,12 @@ package
 		
 		private function loop1(e:Event):void 
 		{	
-			
-			/*if ((_Curtain1.y = -720) && (_Curtain2.y = 1440))
-			//Tile 1
-			_Curtain1.y -= 3;		
-			_Curtain2.y += 3;
-			_Curtain3.alpha -= 0.004;
-<<<<<<< HEAD
-			
-			/*if (_Intro == true)
-=======
-			*/
 			if (_Intro == true)
->>>>>>> origin/master
 			{
 				removeChild(_Curtain1);
 				removeChild(_Curtain2);
 				removeChild(_Curtain3);
-			}*/
+			}
 			
 			
 			//Tile 1
@@ -170,7 +155,6 @@ package
 			if (_Player.x == stage.stageWidth / 2)
 			{
 				trace("LOADER");
-<<<<<<< HEAD
 			//	addChild(Stoplicht);
 			//	_Stoplicht.x = stage.stageWidth / 2 ;
 			//	_Stoplicht.y = 200;
@@ -180,14 +164,11 @@ package
 			}
 			else if(_Intro == true)
 			{
-=======
 				//addChild(Stoplicht);
-				_Stoplicht.x = stage.stageWidth / 2 ;
-				_Stoplicht.y = 200;
+				//_Stoplicht.x = stage.stageWidth / 2 ;
+				//_Stoplicht.y = 200;
 				_Intro = true;
-				//_Stoplicht.play(); 
->>>>>>> origin/master
-				
+				//_Stoplicht.play();				
 			}
 			else(_Player.x += 5)
 			

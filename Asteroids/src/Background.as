@@ -4,7 +4,6 @@ package
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import src.Player;
 	
 	/**
 	 * ...
@@ -35,7 +34,7 @@ package
 		
 		private function scrollLoop(e:Event):void 
 		{
-			_scrollSpeed = _Player.PlayerSpeed;
+		//	_scrollSpeed = _Player.PlayerSpeed;
 		}
 		
 		private function init(e:Event):void 
