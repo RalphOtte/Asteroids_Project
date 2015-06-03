@@ -1,4 +1,4 @@
-package
+﻿package src
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -14,6 +14,7 @@ package
 	
 	public class Player extends Sprite
 	{	
+		private var _bullet:Bullet = new Bullet;
 		private var _GM:GameManager = new GameManager;
 		
 		public var _SelectedSkin:int = 1;
@@ -23,6 +24,8 @@ package
 		private var _SButtonIsDown:Boolean = false;
 		private var _DButtonIsDown:Boolean = false;
 		private var _ShiftButtonIsDown:Boolean = false;
+		
+		
 		
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
 		private var _Ship1:Class;
@@ -47,7 +50,7 @@ package
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 			_RedShip = new _Ship1(); 
-
+			
 			_RedShip.x -= (185 / 2);
 			_RedShip.y -= (142 / 2);
 			
@@ -61,7 +64,6 @@ package
 			_GreenShip.x -= (164 / 2);
 			_GreenShip.y -= (146 / 2);
 			addEventListener(Event.ADDED_TO_STAGE, CheckSkin);
-			
 		}
 		
 		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
@@ -96,28 +98,30 @@ package
 			
 			if (_WButtonIsDown == true)
 			{
-				this.x += 5;
+				this.y -= 10;
 			}
 			
 			if (_AButtonIsDown == true)
 			{
-				this.rotation -= 5;
+				this.x -= 10;
 			}
 			
 			if (_SButtonIsDown == true)
 			{
-				this.x -= 6;
+				this.y += 10;
 			}
 			
 			if (_DButtonIsDown == true)
 			{
-				this.rotation += 5;
+				this.x += 10;
 			}
-			//-------DO NOT TOUCH THIS-------\\
+			
 			if (_ShiftButtonIsDown == true)
 			{
-				//trace ("Bullet spawned (WEAPON)");
-				//addChild(Bullet);
+				trace ("Bullet spawned (WEAPON)");
+				addChild(_bullet);
+				_bullet.x = this.x;
+				_bullet.y = this.y;
 			}
 			
 		}

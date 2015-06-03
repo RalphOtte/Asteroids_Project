@@ -46,6 +46,11 @@ package
 		private var Radians:Number = Math.atan2(cy, cx);
 		private var Degrees:Number = Radians * 180 / Math.PI;
 		
+		//background generation
+		private var _TileCounter:int;
+		private var _bg:Background = new Background();
+		private var _bg1:Background = new Background();
+		
 		
 		//Intro op Tile 1
 		[Embed(source="../Assets/Game/Miscelaneous/Tutorial.png")]
@@ -70,9 +75,15 @@ package
 		private var _GreenShip:Bitmap;
 		
 		// Stoplicht
+<<<<<<< HEAD
 		//[Embed(source="../Assets/Game/Miscelaneous/Stoplicht.swf")]  //, symbol="scene1ID"
 		//private var _Stoplicht:Class;
 		//private var _StopLicht:MovieClip = new _StopLicht();
+=======
+		[Embed(source="../Assets/Game/Miscelaneous/Stoplicht.swf")]  //, symbol="scene1ID"
+		private var _Stoplicht:Class;
+		//private var _Stoplicht:MovieClip = new _Stoplicht();
+>>>>>>> origin/master
 		
 		
 		/*
@@ -107,12 +118,19 @@ package
 		
 		private function loop1(e:Event):void 
 		{	
+			
+			/*if ((_Curtain1.y = -720) && (_Curtain2.y = 1440))
 			//Tile 1
 			_Curtain1.y -= 3;		
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
+<<<<<<< HEAD
 			
 			/*if (_Intro == true)
+=======
+			*/
+			if (_Intro == true)
+>>>>>>> origin/master
 			{
 				removeChild(_Curtain1);
 				removeChild(_Curtain2);
@@ -120,10 +138,39 @@ package
 			}*/
 			
 			
+			//Tile 1
+			_Curtain1.y -= 3;		
+			_Curtain2.y += 3;
+			_Curtain3.alpha -= 0.004;
+			
+			//Level generator
+			if (_TileCounter <= 1)
+			{
+				_bg.x -= 5;
+				_bg1.x -= 5;
+				if (_bg.x <= -1280)
+				{
+					//bgs[(Math.abs(_TileCounter%2)-1)]
+					_TileCounter++;
+					_bg.x = 1280;
+					trace("tile " + _TileCounter);
+					trace("this is bg0");
+				}
+				if (_bg1.x <= -1280)
+				{
+					//bgs[_TileCounter%2]
+					_TileCounter++;
+					_bg1.x = 1280;
+					trace("tile " + _TileCounter);
+					trace("this is bg1");
+				}
+			}
+			
 			//Player
 			if (_Player.x == stage.stageWidth / 2)
 			{
 				trace("LOADER");
+<<<<<<< HEAD
 			//	addChild(Stoplicht);
 			//	_Stoplicht.x = stage.stageWidth / 2 ;
 			//	_Stoplicht.y = 200;
@@ -133,6 +180,13 @@ package
 			}
 			else if(_Intro == true)
 			{
+=======
+				//addChild(Stoplicht);
+				_Stoplicht.x = stage.stageWidth / 2 ;
+				_Stoplicht.y = 200;
+				_Intro = true;
+				//_Stoplicht.play(); 
+>>>>>>> origin/master
 				
 			}
 			else(_Player.x += 5)
@@ -149,7 +203,17 @@ package
 		
 		private function Tile1():void
 		{
-			addChild(_Background);
+			addChild(_bg);
+			addChild(_bg1);
+			if (_TileCounter <= 1)
+			{
+				_bg1.y = 0;
+				_bg1.x = 1280;
+			}else if (_TileCounter > 1)
+			{
+				_bg1.y = 720;
+				_bg1.x = 0
+			}
 			//trace(_GM._SelectedShip + " BEFORE (LEVEL_1)");
 			addChild(_Player);
 			//trace(_GM._SelectedShip + " AFTER (LEVEL_1)");
