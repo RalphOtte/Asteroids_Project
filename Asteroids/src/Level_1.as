@@ -115,14 +115,6 @@ package
 		
 		private function loop1(e:Event):void 
 		{	
-			if (_Intro == true)
-			{
-				removeChild(_Curtain1);
-				removeChild(_Curtain2);
-				removeChild(_Curtain3);
-			}
-			
-			
 			//Tile 1
 			_Curtain1.y -= 3;		
 			_Curtain2.y += 3;
@@ -151,35 +143,19 @@ package
 				}
 			}
 			
-			//Player
-			if (_Player.x == stage.stageWidth / 2)
-			{
-				trace("LOADER");
-			//	addChild(Stoplicht);
-			//	_Stoplicht.x = stage.stageWidth / 2 ;
-			//	_Stoplicht.y = 200;
-				_Intro = true;
-			//	_Stoplicht.play(); 
-				
-			}
-			else if(_Intro == true)
-			{
-				//addChild(Stoplicht);
-				//_Stoplicht.x = stage.stageWidth / 2 ;
-				//_Stoplicht.y = 200;
-				_Intro = true;
-				//_Stoplicht.play();				
-			}
-			else(_Player.x += 5)
-			
 			if (_asteroid.hitTestObject(_Player))
 			{
 				trace("derp");
 			}
 			else (_asteroid.x -= 5)
 			
-			
 			//Tile 2(misschien in aparte loop voor iedere tile) 
+		}
+		private function IntroOver(e:Event):void
+		{
+			_Intro = true;
+			_Background._IntroOver = true;
+			trace("FUGG 2");
 		}
 		
 		private function Tile1():void
@@ -206,7 +182,7 @@ package
 			_Player.scaleX = 0.5;
 			_Player.scaleY = 0.5;
 			_Player.rotation = 90;
-			_Player.x = -250;
+			_Player.x = 250;
 			_Player.y = stage.stageHeight / 2;
 		//	addChild(_asteroid);
 		//	_asteroid.scaleX = 0.5;
