@@ -38,6 +38,15 @@ package
 		private function scrollLoop(e:Event):void 
 		{
  		//	_scrollSpeed = _Player.PlayerSpeed;
+<<<<<<< HEAD
+=======
+		/*
+			if (_lvl1._Intro == true)
+			{
+				trace("kek")
+			}
+			*/
+>>>>>>> origin/master
 		}
 		
 		private function init(e:Event):void 
