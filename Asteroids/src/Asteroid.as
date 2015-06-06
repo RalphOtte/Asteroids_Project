@@ -78,28 +78,28 @@ package
 				_asteroid.x -= (280 / 2);
 				_asteroid.y -= (208 / 2);
 			}
-			if (randomizeAsteroid >= 2 && randomizeAsteroid <= 4)
+			else if (randomizeAsteroid >= 2 && randomizeAsteroid <= 4)
 			{
 				_asteroid = new _astr2();
 				addChild(_asteroid);
 				_asteroid.x -= (150 / 2);
 				_asteroid.y -= (160 / 2);
 			}
-			if (randomizeAsteroid >= 4 && randomizeAsteroid <= 6)
+			else if (randomizeAsteroid >= 4 && randomizeAsteroid <= 6)
 			{
 				_asteroid = new _astr3();
 				addChild(_asteroid);
 				_asteroid.x -= (238 / 2);
 				_asteroid.y -= (162 / 2);
 			}
-			if (randomizeAsteroid >= 6 && randomizeAsteroid <= 8)
+			else if (randomizeAsteroid >= 6 && randomizeAsteroid <= 8)
 			{
 				_asteroid = new _astr4();
 				addChild(_asteroid);
 				_asteroid.x -= (154 / 2);
 				_asteroid.y -= (152 / 2);
 			}
-			if (randomizeAsteroid >= 8 && randomizeAsteroid <= 10)
+			else if (randomizeAsteroid >= 8 && randomizeAsteroid <= 10)
 			{
 				_asteroid = new _astr5();
 				addChild(_asteroid);

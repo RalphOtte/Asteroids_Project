@@ -281,9 +281,7 @@ package
 			LBorder2.x = 1280;
 			
 			
-			//trace(_GM._SelectedShip + " BEFORE (LEVEL_1)");
 			addChild(_Player);
-			//trace(_GM._SelectedShip + " AFTER (LEVEL_1)");
 			
 			//addChild(_Curtain1);	// Up
 			//addChild(_Curtain2);	// Down
@@ -296,15 +294,16 @@ package
 			_Player.rotation = 90;
 			_Player.x = 250;
 			_Player.y = stage.stageHeight / 2;
-		//	addChild(_asteroid);
-		//	_asteroid.scaleX = 0.5;
-		//	_asteroid.scaleY = 0.5;
-		//	_asteroid.x = stage.stageWidth;
-		//	_asteroid.y = stage.stageHeight / 2;
+		
+			addChild(_asteroid);
+			_asteroid.scaleX = 0.5;
+			_asteroid.scaleY = 0.5;
 			_asteroid.x = stage.stageWidth;
-			_asteroid.y = (stage.stageHeight / 4) * 3
+			_asteroid.y = stage.stageHeight / 2;
+		//	_asteroid.x = stage.stageWidth;
+		//	_asteroid.y = (stage.stageHeight / 4) * 3
 			
-			addChild(_enemy);
+		//	addChild(_enemy);
 			_enemy.scaleX = 0.5;
 			_enemy.scaleY = 0.5;
 			_enemy.x = stage.stageWidth;
