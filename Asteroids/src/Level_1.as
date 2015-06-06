@@ -149,7 +149,7 @@ package
 		{	
 			
 			//scrollspeed
-			_Scrollspeed = 500 / (_Player.x / -10);
+			_Scrollspeed = 500 / (_Player.x / 10);
 			
 			
 			
@@ -158,42 +158,6 @@ package
 			_Curtain1.y -= 3;		
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
-			
-			//Players can't exit the screen
-			if (_Player.x <= 30)
-			{
-				_Player.x = 30;
-			}
-			if (_Player.x >= 1240)
-			{
-				_Player.x = 1240;
-			}
-			if (_Player.y <= 150)
-			{
-				_Player.y = 150;
-			}
-			if (_Player.y >= 570)
-			{
-				_Player.y = 570;
-			}
-			
-			//Player 2
-			/*if (_Player2.x <= 30)
-			{
-				_Player2.x = 30;
-			}
-			if (_Player2.x >= 1240)
-			{
-				_Player2.x = 1240;
-			}
-			if (_Player2.y <= 150)
-			{
-				_Player2.y = 150;
-			}
-			if (_Player2.y >= 570)
-			{
-				_Player2.y = 570;
-			}*/
 			
 			//background looper
 			_bg.x -= _Scrollspeed;
@@ -244,7 +208,26 @@ package
 				trace("background reset");
 				_bg1.x += 2560;
 			}
-<<<<<<< HEAD
+			
+			//Player 2
+			/*if (_Player2.x <= 30)
+			{
+				_Player2.x = 30;
+			}
+			if (_Player2.x >= 1240)
+			{
+				_Player2.x = 1240;
+			}
+			if (_Player2.y <= 150)
+			{
+				_Player2.y = 150;
+			}
+			if (_Player2.y >= 570)
+			{
+				_Player2.y = 570;
+			}*/
+			
+			
 			
 			
 			if (_asteroid.hitTestObject(_Player))
@@ -260,8 +243,6 @@ package
 			_Intro = true;
 			_Background._IntroOver = true;
 			trace("FUGG 2");
-=======
->>>>>>> origin/master
 		}
 		
 		
