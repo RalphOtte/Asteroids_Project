@@ -184,7 +184,10 @@ package
  			}*/
 			
 			//scrollspeed
-			_Scrollspeed = 500 / (_Player.x / 10);
+			
+			//_Scrollspeed = 500 / (_Player.x / 10);
+			
+			_Scrollspeed = _Player.x / 25;
 			
 			//Tile 1
 			_Curtain1.y -= 3;		
@@ -241,23 +244,6 @@ package
 				_bg1.x += 2560;
 			}
 			
-			//Player 2
-			/*if (_Player2.x <= 30)
-			{
-				_Player2.x = 30;
-			}
-			if (_Player2.x >= 1240)
-			{
-				_Player2.x = 1240;
-			}
-			if (_Player2.y <= 150)
-			{
-				_Player2.y = 150;
-			}
-			if (_Player2.y >= 570)
-			{
-				_Player2.y = 570;
-			}*/
 			
 			
 			
