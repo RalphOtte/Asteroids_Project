@@ -195,9 +195,9 @@ package
 			_Curtain3.alpha -= 0.004;
 			
 			//background looper
-			_bg.x -= _Scrollspeed;
+			_bg.x -= _Scrollspeed / 2;
 			//_bg.x == 0;
-			_bg1.x -= _Scrollspeed;
+			_bg1.x -= _Scrollspeed / 2;
 			//_bg1.x == 1280;
 			
 			//low border
