@@ -23,6 +23,7 @@ package
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			_eShip = new _enemyShip; 
 			addChild(_eShip);
 		}
 	}

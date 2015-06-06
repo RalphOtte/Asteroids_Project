@@ -101,6 +101,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ENTER_FRAME, collisionCheck);
+			addEventListener(Event.ENTER_FRAME, spawnRates);
 			_Curtain1 = new _CurtainUp();
 			_Curtain2 = new _CurtainDown();
 			_Curtain3 = new _CurtainFade();
@@ -108,6 +109,13 @@ package
 			_BlueShip = new _Ship2();
 			_GreenShip = new _Ship3();
 			Tile1(e);
+		}
+		
+		private function spawnRates(e:Event):void 
+		{
+			//Asteroid spawn
+			
+			//Enemy spawn
 		}
 		
 		private function collisionCheck(e:Event):void 
@@ -125,6 +133,14 @@ package
 			}
 			else (_BreakAsteroid.x -= 5)
 			*/
+			
+			//Hittest + movement for enemy
+			if (_enemy.hitTestObject(_Player))
+			{
+				trace("Hit an enemy");
+			}
+			else (_enemy.x -= 5)
+			
 			
 			//Hittest for all borders
 			if (HBorder.hitTestObject(_Player))
@@ -285,11 +301,14 @@ package
 		//	_asteroid.scaleY = 0.5;
 		//	_asteroid.x = stage.stageWidth;
 		//	_asteroid.y = stage.stageHeight / 2;
-		//	addChild(_enemy);
-		//	_enemy.scaleX = 1;
-		//	_enemy.scaleY = 1;
 			_asteroid.x = stage.stageWidth;
 			_asteroid.y = (stage.stageHeight / 4) * 3
+			
+			addChild(_enemy);
+			_enemy.scaleX = 0.5;
+			_enemy.scaleY = 0.5;
+			_enemy.x = stage.stageWidth;
+			_enemy.y = stage.stageHeight / 2;
 			
 			addEventListener(Event.ENTER_FRAME, loop1);
 		}
