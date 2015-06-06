@@ -46,10 +46,16 @@ package
 		private var Radians:Number = Math.atan2(cy, cx);
 		private var Degrees:Number = Radians * 180 / Math.PI;
 		
-		//background generation
+		//background generation & Borders
 		private var _TileCounter:int;
 		private var _bg:Background = new Background();
 		private var _bg1:Background = new Background();
+		private var _Scrollspeed:int;
+		
+		private var HBorder:HighBorder = new HighBorder();
+		private var HBorder2:HighBorder = new HighBorder();
+		private var LBorder:LowBorder = new LowBorder();
+		private var LBorder2:LowBorder = new LowBorder();
 		
 		
 		//Intro op Tile 1
@@ -105,7 +111,7 @@ package
 			_RedShip = new _Ship1(); 
 			_BlueShip = new _Ship2();
 			_GreenShip = new _Ship3();
-			Tile1();
+			Tile1(e);
 		}
 		
 		private function enemyLookAtPlayer(e:Event):void
@@ -120,28 +126,56 @@ package
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
 			
-			//Level generator
-			if (_TileCounter <= 1)
+			//background looper
+			_bg.x -= 5 //_Scrollspeed;
+			//_bg.x == 0;
+			_bg1.x -= 5 //_Scrollspeed;
+			//_bg1.x == 1280;
+			
+			//low border
+			LBorder.x -= 10;
+			LBorder.y = 605;
+			LBorder2.x -= 10;
+			LBorder2.y = 605;
+			
+			//high border
+			HBorder.x -= 10;
+			HBorder.y = 0;
+			HBorder2.x -= 10;
+			HBorder2.y = 0;
+			
+			
+			if (LBorder.x <= -1280)
 			{
-				//_bg.x -= 5;
-				//_bg1.x -= 5;
-				if (_bg.x <= -1280)
-				{
-					//bgs[(Math.abs(_TileCounter%2)-1)]
-					_TileCounter++;
-					_bg.x = 1280;
-					trace("tile " + _TileCounter);
-					trace("this is bg0");
-				}
-				if (_bg1.x <= -1280)
-				{
-					//bgs[_TileCounter%2]
-					_TileCounter++;
-					_bg1.x = 1280;
-					trace("tile " + _TileCounter);
-					trace("this is bg1");
-				}
+				trace("Border reset");
+				LBorder.x = 1280;
 			}
+			if (LBorder2.x <= -1280)
+			{
+				LBorder2.x = 1280;
+			}
+			
+			if (HBorder.x <= -1280)
+			{
+				trace("Border reset");
+				HBorder.x = 1280;
+			}
+			if (HBorder2.x <= -1280)
+			{
+				HBorder2.x = 1280;
+			}
+			
+			if (_bg.x <= -1280)
+			{
+				trace("background reset");
+				_bg.x = 1280;
+			}
+			if (_bg1.x <= -1280)
+			{
+				trace("background reset");
+				_bg1.x = 1280;
+			}
+			
 			
 			if (_asteroid.hitTestObject(_Player))
 			{
@@ -158,25 +192,32 @@ package
 			trace("FUGG 2");
 		}
 		
-		private function Tile1():void
+		private function Tile1(e:Event):void
 		{
 			addChild(_bg);
 			addChild(_bg1);
-			if (_TileCounter <= 1)
-			{
-				_bg1.y = 0;
-				_bg1.x = 1280;
-			}else if (_TileCounter > 1)
-			{
-				_bg1.y = 720;
-				_bg1.x = 0
-			}
+			
+			_bg1.y = 0;
+			_bg1.x = 1280;
+			
+			
+			//borders
+			addChild(HBorder);
+			addChild(HBorder2);
+			HBorder2.x = 1280;
+			addChild(LBorder);
+			addChild(LBorder2);
+			LBorder2.x = 1280;
+			
+			
 			//trace(_GM._SelectedShip + " BEFORE (LEVEL_1)");
 			addChild(_Player);
 			//trace(_GM._SelectedShip + " AFTER (LEVEL_1)");
-			addChild(_Curtain1);	// Up
-			addChild(_Curtain2);	// Down
-			addChild(_Curtain3);	// Fade
+			
+			//addChild(_Curtain1);	// Up
+			//addChild(_Curtain2);	// Down
+			//addChild(_Curtain3);	// Fade
+			
 			_Curtain1.y = 50;
 			_Curtain2.y = stage.stageHeight / 2 + 50;
 			_Player.scaleX = 0.5;
