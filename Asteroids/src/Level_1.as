@@ -200,9 +200,6 @@ package
  			}*/
 			
 			//scrollspeed
-			
-			//_Scrollspeed = 500 / (_Player.x / 10);
-			
 			_Scrollspeed = _Player.x / 25;
 			
 			//Tile 1
@@ -295,7 +292,8 @@ package
 			_Player.x = 250;
 			_Player.y = stage.stageHeight / 2;
 		
-			addChild(_asteroid);
+			//addChild(_asteroid);
+			
 			_asteroid.scaleX = 0.5;
 			_asteroid.scaleY = 0.5;
 			_asteroid.x = stage.stageWidth;

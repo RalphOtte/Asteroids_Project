@@ -1,4 +1,4 @@
-package
+﻿package
 {
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
@@ -14,8 +14,8 @@ package
 	
 	public class Player extends Sprite
 	{	
-		private var _bullet:Bullet = new Bullet;
-		private var _GM:GameManager = new GameManager;
+		private var _bullet:Bullet = new Bullet();
+		private var _GM:GameManager = new GameManager();
 		
 		public var _SelectedSkin:int = 1;
 		public var PlayerSpeed:int = 0;
@@ -114,19 +114,15 @@ package
 			
 			if (_DButtonIsDown == true)
 			{
-				this.x += 10;
+				this.x += 15;
 			}
 			
 			if (_ShiftButtonIsDown == true)
 			{
 				trace ("Bullet spawned (WEAPON)");
-				addChild(_bullet);
-				_bullet.x = this.x;
-				_bullet.y = this.y;
 			}
 			
 		}
-		
 		
 		private function keyDown(e:KeyboardEvent):void
 		{
