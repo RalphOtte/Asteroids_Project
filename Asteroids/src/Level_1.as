@@ -245,24 +245,7 @@ package
 			}
 			
 			
-			
-			
-			
-			if (_asteroid.hitTestObject(_Player))
-			{
-				trace("Player HIT");
-			}
-			else (_asteroid.x -= 5)
-			
-			//Tile 2(misschien in aparte loop voor iedere tile) 
 		}
-		private function IntroOver(e:Event):void
-		{
-			_Intro = true;
-			_Background._IntroOver = true;
-			trace("FUGG 2");
-		}
-		
 		
 		private function Tile1(e:Event):void
 		{
