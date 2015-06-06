@@ -15,6 +15,7 @@
 	public class Player extends Sprite
 	{	
 		private var _bullet:Bullet = new Bullet();
+		private var _RedBullets:Array;
 		private var _GM:GameManager = new GameManager();
 		
 		public var _SelectedSkin:int = 1;
@@ -24,7 +25,7 @@
 		private var _AButtonIsDown:Boolean = false;
 		private var _SButtonIsDown:Boolean = false;
 		private var _DButtonIsDown:Boolean = false;
-		private var _ShiftButtonIsDown:Boolean = false;
+		public var _ShiftButtonIsDown:Boolean = false;
 		
 		
 		
@@ -60,11 +61,13 @@
 			_BlueShip.x -= (187 / 2);
 			_BlueShip.y -= (131 / 2);
 			
-			_GreenShip = new _Ship3();
+			//_GreenShip = new _Ship3();
+			//_GreenShip.x -= (164 / 2);
+			//_GreenShip.y -= (146 / 2);
 			
-			_GreenShip.x -= (164 / 2);
-			_GreenShip.y -= (146 / 2);
 			addEventListener(Event.ADDED_TO_STAGE, CheckSkin);
+			
+			_RedBullets = new Array;
 		}
 		
 		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
@@ -119,9 +122,15 @@
 			
 			if (_ShiftButtonIsDown == true)
 			{
-				trace ("Bullet spawned (WEAPON)");
+				//trace ("Bullet spawned (WEAPON)");
+				ShootBullet();
 			}
-			
+		}
+		
+		private function ShootBullet():void 
+		{
+			addChild(_bullet);
+			trace("Bullet added to stage");
 		}
 		
 		private function keyDown(e:KeyboardEvent):void
@@ -172,6 +181,6 @@
 			{
 				_ShiftButtonIsDown = false;
 			}
-		}		
+		}
 	}
 }

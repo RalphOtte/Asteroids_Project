@@ -22,7 +22,7 @@
 			_LaserBlue = new LSB();
 			
 			addChild(_LaserRed);
-			addChild(_LaserBlue);
+			//addChild(_LaserBlue);
 		}
 		
 		private function init()

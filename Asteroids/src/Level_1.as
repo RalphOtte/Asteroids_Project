@@ -29,6 +29,7 @@ package
 		private var _asteroid:Asteroid = new Asteroid;
 	//	private var _breakAsteroid:BreakAsteroid = new BreakAsteroid;
 		private var _enemy:Enemy = new Enemy;
+		private var _bullet:Bullet = new Bullet();
 		
 		//Alle Timers
 		private var _1SecTimer:Timer = new Timer(1000);
