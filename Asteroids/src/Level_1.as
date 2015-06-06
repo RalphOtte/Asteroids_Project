@@ -24,6 +24,7 @@ package
 		private var _ShipSelect:ShipSelect;
 		private var _MPShipSelect:MPShipSelect;
 		private var _Player:Player = new Player;
+		private var _Player2:Player = new Player;
 		private var _GM:GameManager = new GameManager;
 		private var _asteroid:Asteroid = new Asteroid;
 		private var _enemy:Enemy = new Enemy;
@@ -121,65 +122,72 @@ package
 		
 		private function loop1(e:Event):void 
 		{	
+			
+			//scrollspeed
+			_Scrollspeed = 500 / (_Player.x / -10);
+			
+			
+			
+			
 			//Tile 1
 			_Curtain1.y -= 3;		
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
 			
 			//background looper
-			_bg.x -= 5 //_Scrollspeed;
+			_bg.x -= _Scrollspeed;
 			//_bg.x == 0;
-			_bg1.x -= 5 //_Scrollspeed;
+			_bg1.x -= _Scrollspeed;
 			//_bg1.x == 1280;
 			
 			//low border
-			LBorder.x -= 10;
+			LBorder.x -= _Scrollspeed;
 			LBorder.y = 605;
-			LBorder2.x -= 10;
+			LBorder2.x -= _Scrollspeed;
 			LBorder2.y = 605;
 			
 			//high border
-			HBorder.x -= 10;
+			HBorder.x -= _Scrollspeed;
 			HBorder.y = 0;
-			HBorder2.x -= 10;
+			HBorder2.x -= _Scrollspeed;
 			HBorder2.y = 0;
 			
 			
 			if (LBorder.x <= -1280)
 			{
 				trace("Border reset");
-				LBorder.x = 1280;
+				LBorder.x += 2560;
 			}
 			if (LBorder2.x <= -1280)
 			{
-				LBorder2.x = 1280;
+				LBorder2.x += 2560;
 			}
 			
 			if (HBorder.x <= -1280)
 			{
 				trace("Border reset");
-				HBorder.x = 1280;
+				HBorder.x += 2560;
 			}
 			if (HBorder2.x <= -1280)
 			{
-				HBorder2.x = 1280;
+				HBorder2.x += 2560;
 			}
 			
 			if (_bg.x <= -1280)
 			{
 				trace("background reset");
-				_bg.x = 1280;
+				_bg.x += 2560;
 			}
 			if (_bg1.x <= -1280)
 			{
 				trace("background reset");
-				_bg1.x = 1280;
+				_bg1.x += 2560;
 			}
 			
 			
 			if (_asteroid.hitTestObject(_Player))
 			{
-				trace("derp");
+				trace("Player HIT");
 			}
 			else (_asteroid.x -= 5)
 			
