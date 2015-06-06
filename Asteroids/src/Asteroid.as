@@ -40,12 +40,9 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ADDED_TO_STAGE, rotating);
 			addEventListener(Event.ADDED_TO_STAGE, randomizeAsteroids);
+			addEventListener(Event.ENTER_FRAME, loop);
 			loop(e);
 			randomizeAsteroids(e);
-			_asteroid.x -= 280 / 2;
-			_asteroid.y -= 208 / 2;
-			addEventListener(Event.ENTER_FRAME, loop);
-			
 		}
 		
 		private function rotating(e:Event):void
@@ -70,7 +67,8 @@ package
 		
 		private function randomizeAsteroids(e:Event):void
 		{
-			randomizeAsteroid = Math.random() * 10;
+			randomizeAsteroid = (Math.random() * 10); // Genereer number met 1 decimaal
+			trace(randomizeAsteroid);
 			if (randomizeAsteroid >= 0 && randomizeAsteroid <= 2)
 			{
 				_asteroid = new _astr();
