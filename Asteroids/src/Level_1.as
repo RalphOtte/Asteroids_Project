@@ -156,6 +156,10 @@ package
 			{
 				_Player.x = 30;
 			}
+			if (_Player.x >= 1240)
+			{
+				_Player.x = 1240;
+			}
 			if (_Player.y <= 150)
 			{
 				_Player.y = 150;
@@ -169,6 +173,18 @@ package
 			/*if (_Player2.x <= 30)
 			{
 				_Player2.x = 30;
+			}
+			if (_Player2.x >= 1240)
+			{
+				_Player2.x = 1240;
+			}
+			if (_Player2.y <= 150)
+			{
+				_Player2.y = 150;
+			}
+			if (_Player2.y >= 570)
+			{
+				_Player2.y = 570;
 			}*/
 			
 			//background looper
