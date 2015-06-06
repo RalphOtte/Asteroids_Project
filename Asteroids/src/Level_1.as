@@ -164,6 +164,7 @@ package
 		
 		private function loop1(e:Event):void 
 		{	
+			
  			//Players can't exit the screen
  			if (_Player.x <= 30)
  			{

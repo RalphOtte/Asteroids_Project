@@ -15,7 +15,7 @@
 	public class Player extends Sprite
 	{	
 		private var _bullet:Bullet = new Bullet();
-		private var _RedBullets:Array;
+		private var _RedBullets:Array = new Array;
 		private var _GM:GameManager = new GameManager();
 		
 		public var _SelectedSkin:int = 1;
@@ -49,6 +49,7 @@
 			addEventListener(Event.ENTER_FRAME, loop);
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ADDED_TO_STAGE, Skin);
+			addEventListener(Event.ADDED_TO_STAGE, CheckSkin);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 			_RedShip = new _Ship1(); 
@@ -65,9 +66,7 @@
 			//_GreenShip.x -= (164 / 2);
 			//_GreenShip.y -= (146 / 2);
 			
-			addEventListener(Event.ADDED_TO_STAGE, CheckSkin);
-			
-			_RedBullets = new Array;
+			//_RedBullets = new Array;
 		}
 		
 		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
@@ -125,6 +124,15 @@
 				//trace ("Bullet spawned (WEAPON)");
 				ShootBullet();
 			}
+			//Bullet movement
+			if (_bullet.stage)
+			{
+				_bullet.scaleX = 3
+				_bullet.scaleY = 3
+				_bullet.x += 5;
+				trace(_bullet.x);
+			}
+			
 		}
 		
 		private function ShootBullet():void 
