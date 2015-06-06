@@ -26,6 +26,7 @@ package
 		private var _Player:Player = new Player;
 		private var _GM:GameManager = new GameManager;
 		private var _asteroid:Asteroid = new Asteroid;
+	//	private var _breakAsteroid:BreakAsteroid = new BreakAsteroid;
 		private var _enemy:Enemy = new Enemy;
 		
 		//Alle Timers
@@ -39,12 +40,6 @@ package
 		//Alle text
 		private var _IntroText1:TextField;
 		private var _IntroText2:TextField;
-		
-		private var cx:Number = _Player.x - _enemy.x;
-		private var cy:Number = _Player.y - _enemy.y;
-		
-		private var Radians:Number = Math.atan2(cy, cx);
-		private var Degrees:Number = Radians * 180 / Math.PI;
 		
 		//background generation & Borders
 		private var _TileCounter:int;
@@ -104,7 +99,7 @@ package
 		private function init(e:Event):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			stage.addEventListener(Event.ENTER_FRAME, enemyLookAtPlayer);
+			addEventListener(Event.ENTER_FRAME, collisionCheck);
 			_Curtain1 = new _CurtainUp();
 			_Curtain2 = new _CurtainDown();
 			_Curtain3 = new _CurtainFade();
@@ -114,9 +109,39 @@ package
 			Tile1(e);
 		}
 		
-		private function enemyLookAtPlayer(e:Event):void
+		private function collisionCheck(e:Event):void 
 		{
-			_enemy.rotation = Degrees;
+			//Hittest for all asteroids
+			if (_asteroid.hitTestObject(_Player))
+			{
+				trace("Hit an Asteroid");
+			}
+			else (_asteroid.x -= 5)
+			/*
+			if (_breakAsteroid.hitTestObject(_Player))
+			{
+				trace("Hit a Breakable Asteroid");
+			}
+			else (_BreakAsteroid.x -= 5)
+			*/
+			
+			//Hittest for all borders
+			if (HBorder.hitTestObject(_Player))
+			{
+				trace("Hit High border");	
+			}
+			if (HBorder2.hitTestObject(_Player))
+			{
+				trace("Hit High border");	
+			}
+			if (LBorder.hitTestObject(_Player))
+			{
+				trace("Hit Low border");	
+			}
+			if (LBorder2.hitTestObject(_Player))
+			{
+				trace("Hit Low border");	
+			}
 		}
 		
 		private function loop1(e:Event):void 
@@ -125,6 +150,26 @@ package
 			_Curtain1.y -= 3;		
 			_Curtain2.y += 3;
 			_Curtain3.alpha -= 0.004;
+			
+			//Players can't exit the screen
+			if (_Player.x <= 30)
+			{
+				_Player.x = 30;
+			}
+			if (_Player.y <= 150)
+			{
+				_Player.y = 150;
+			}
+			if (_Player.y >= 570)
+			{
+				_Player.y = 570;
+			}
+			
+			//Player 2
+			/*if (_Player2.x <= 30)
+			{
+				_Player2.x = 30;
+			}*/
 			
 			//background looper
 			_bg.x -= 5 //_Scrollspeed;
@@ -175,22 +220,8 @@ package
 				trace("background reset");
 				_bg1.x = 1280;
 			}
-			
-			
-			if (_asteroid.hitTestObject(_Player))
-			{
-				trace("derp");
-			}
-			else (_asteroid.x -= 5)
-			
-			//Tile 2(misschien in aparte loop voor iedere tile) 
 		}
-		private function IntroOver(e:Event):void
-		{
-			_Intro = true;
-			_Background._IntroOver = true;
-			trace("FUGG 2");
-		}
+		
 		
 		private function Tile1(e:Event):void
 		{
