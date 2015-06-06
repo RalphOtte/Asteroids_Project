@@ -147,12 +147,44 @@ package
 		
 		private function loop1(e:Event):void 
 		{	
+ 			//Players can't exit the screen
+ 			if (_Player.x <= 30)
+ 			{
+ 				_Player.x = 30;
+ 			}
+			if (_Player.x >= 1240)
+			{
+				_Player.x = 1240;
+			}
+ 			if (_Player.y <= 150)
+ 			{
+ 				_Player.y = 150;
+ 			}
+ 			if (_Player.y >= 570)
+ 			{
+ 				_Player.y = 570;
+ 			}
+ 			
+ 			//Player 2
+ 			/*if (_Player2.x <= 30)
+ 			{
+ 				_Player2.x = 30;
+			}
+			if (_Player2.x >= 1240)
+			{
+				_Player2.x = 1240;
+			}
+			if (_Player2.y <= 150)
+			{
+				_Player2.y = 150;
+			}
+			if (_Player2.y >= 570)
+			{
+				_Player2.y = 570;
+ 			}*/
 			
 			//scrollspeed
 			_Scrollspeed = 500 / (_Player.x / 10);
-			
-			
-			
 			
 			//Tile 1
 			_Curtain1.y -= 3;		
