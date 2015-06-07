@@ -27,7 +27,7 @@ package
 		private var _Player2:Player = new Player;
 		private var _GM:GameManager = new GameManager;
 		private var _asteroid:Asteroid = new Asteroid;
-	//	private var _breakAsteroid:BreakAsteroid = new BreakAsteroid;
+		private var _breakAsteroid:breakAsteroids = new breakAsteroids;
 		private var _enemy:Enemy = new Enemy;
 		private var _bullet:Bullet = new Bullet();
 		private var _SpawnRate:int;
@@ -134,7 +134,7 @@ package
 			{
 				trace("Hit a Breakable Asteroid");
 			}
-			else (_BreakAsteroid.x -= 5)
+			else (_breakAsteroid.x -= 5)
 			*/
 			
 			//Hittest + movement for enemy
@@ -165,7 +165,15 @@ package
 		}
 		
 		private function loop1(e:Event):void 
-		{	
+		{
+			//Bullet movement
+			if (_bullet.stage)
+			{
+				_bullet.scaleX = 3
+				_bullet.scaleY = 3
+				_bullet.x += 5;
+				trace(_bullet.x);
+			}
 			
  			//Players can't exit the screen
  			if (_Player.x <= 30)
@@ -298,15 +306,26 @@ package
 			_Player.rotation = 90;
 			_Player.x = 250;
 			_Player.y = stage.stageHeight / 2;
+<<<<<<< HEAD
 			
 			addChild(_asteroid);
 			
+=======
+		
+			//addChild(_asteroid);
+>>>>>>> origin/master
 			_asteroid.scaleX = 0.5;
 			_asteroid.scaleY = 0.5;
 			_asteroid.x = stage.stageWidth;
 			_asteroid.y = 120 + Math.floor(Math.random() * 500);
 		//	_asteroid.x = stage.stageWidth;
 		//	_asteroid.y = (stage.stageHeight / 4) * 3
+		
+			addChild(_breakAsteroid);
+			_breakAsteroid.scaleX = 1;
+			_breakAsteroid.scaleY = 1;
+			_breakAsteroid.x = stage.stageWidth;
+			_breakAsteroid.y = stage.stageHeight / 2;
 			
 		//	addChild(_enemy);
 			_enemy.scaleX = 0.5;

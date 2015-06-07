@@ -18,11 +18,18 @@
 		public function Bullet() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
+			this.addEventListener(Event.ENTER_FRAME, posCheck);
 			_LaserRed = new LSR();
 		//	_LaserBlue = new LSB();
 			
 			//addChild(_LaserRed);
 			//addChild(_LaserBlue);
+		}
+		
+		private function posCheck(e:Event):void 
+		{
+		//	trace(this.x + " X");
+		//	trace(this.y + " Y");
 		}
 		
 		private function init(e:Event):void
