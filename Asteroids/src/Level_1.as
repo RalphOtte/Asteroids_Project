@@ -30,6 +30,7 @@ package
 	//	private var _breakAsteroid:BreakAsteroid = new BreakAsteroid;
 		private var _enemy:Enemy = new Enemy;
 		private var _bullet:Bullet = new Bullet();
+		private var _SpawnRate
 		
 		//Alle Timers
 		private var _1SecTimer:Timer = new Timer(1000);
@@ -201,8 +202,15 @@ package
 				_Player2.y = 570;
  			}*/
 			
+			//asteroids respawner and spawnrate
+			
+			if (_asteroid.x <= 0)
+			{
+				_asteroid.x +=1280;
+			}
+			
 			//scrollspeed
-			_Scrollspeed = _Player.x / 25;
+			_Scrollspeed = _Player.x / 15;
 			
 			//Tile 1
 			_Curtain1.y -= 3;		
@@ -211,9 +219,7 @@ package
 			
 			//background looper
 			_bg.x -= _Scrollspeed / 2;
-			//_bg.x == 0;
 			_bg1.x -= _Scrollspeed / 2;
-			//_bg1.x == 1280;
 			
 			//low border
 			LBorder.x -= _Scrollspeed;
@@ -257,9 +263,7 @@ package
 			{
 				trace("background reset");
 				_bg1.x += 2560;
-			}
-			
-			
+			}	
 		}
 		
 		private function Tile1(e:Event):void
@@ -293,13 +297,13 @@ package
 			_Player.rotation = 90;
 			_Player.x = 250;
 			_Player.y = stage.stageHeight / 2;
-		
-			//addChild(_asteroid);
+			
+			addChild(_asteroid);
 			
 			_asteroid.scaleX = 0.5;
 			_asteroid.scaleY = 0.5;
 			_asteroid.x = stage.stageWidth;
-			_asteroid.y = stage.stageHeight / 2;
+			_asteroid.y = 120 + Math.floor(Math.random() * 500);
 		//	_asteroid.x = stage.stageWidth;
 		//	_asteroid.y = (stage.stageHeight / 4) * 3
 			
