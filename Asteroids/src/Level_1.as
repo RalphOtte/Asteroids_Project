@@ -30,7 +30,8 @@ package
 	//	private var _breakAsteroid:BreakAsteroid = new BreakAsteroid;
 		private var _enemy:Enemy = new Enemy;
 		private var _bullet:Bullet = new Bullet();
-		private var _SpawnRate
+		private var _SpawnRate:int;
+		private var _Asteroids:Array = new Array;
 		
 		//Alle Timers
 		private var _1SecTimer:Timer = new Timer(1000);
