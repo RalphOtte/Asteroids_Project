@@ -27,6 +27,7 @@ package
 		private var _Level3:Level_3;
 		private var _Credits:Credits;	
 		private var _Player:Player = new Player;
+		private var _Bullet:Bullet = new Bullet;
 		
 		public function Main():void 
 		{
@@ -92,6 +93,15 @@ package
 			_LevelSelect.addEventListener("SpawnLevel_3", SpawnLevel_3);
 			_LevelSelect.addEventListener("SpawnLevelSelect", SpawnShipSelect1);
 			_LevelSelect.addEventListener("SpawnMPLevelSelect", SpawnShipSelect2);
+			_Player.addEventListener("Player_Shoots", PlayerShoots);
+		}
+		
+		private function PlayerShoots(e:Event):void 
+		{
+			addChild(_Bullet);
+			_Bullet.x = _Player.x;
+			_Bullet.y = _Player.y;
+			trace("HIJ DOET UT");
 		}
 		
 		private function SingleMode(e:Event):void 

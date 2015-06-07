@@ -3,9 +3,11 @@
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
 	import flash.events.Event;
+	import flash.events.TimerEvent;
 	import flash.media.Sound;
 	import flash.net.URLRequest;
 	import flash.events.KeyboardEvent;
+	import flash.utils.Timer;
 	
 	/**
 	 * ...
@@ -20,12 +22,16 @@
 		
 		public var _SelectedSkin:int = 1;
 		public var PlayerSpeed:int = 0;
+		public var _BulletAmount:int = 0;
 		
 		private var _WButtonIsDown:Boolean = false;
 		private var _AButtonIsDown:Boolean = false;
 		private var _SButtonIsDown:Boolean = false;
 		private var _DButtonIsDown:Boolean = false;
 		public var _ShiftButtonIsDown:Boolean = false;
+		
+		private var _canShoot:Boolean = true;
+		private var shootTimer:Timer = new Timer(1000);
 		
 		
 		
@@ -48,6 +54,7 @@
 		{
 			addEventListener(Event.ENTER_FRAME, loop);
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
+			shootTimer.addEventListener(TimerEvent.TIMER, shootListener);
 			addEventListener(Event.ADDED_TO_STAGE, Skin);
 			addEventListener(Event.ADDED_TO_STAGE, CheckSkin);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
@@ -67,6 +74,11 @@
 			//_GreenShip.y -= (146 / 2);
 			
 			//_RedBullets = new Array;
+		}
+		
+		private function shootListener(e:TimerEvent):void 
+		{
+			_canShoot = true;
 		}
 		
 		private function Skin(e:Event):void // _GM.SELECTEDSHIP WORDT OP 1 GEZET DOOR IETS	(Zo te zien iets fout bij waar de Whatship uitgevoerd wordt. (ShipSelect op lijn 236)
@@ -121,27 +133,22 @@
 			
 			if (_ShiftButtonIsDown == true)
 			{
-				addChild(_bullet);
-				//trace ("Bullet spawned (WEAPON)");
-				ShootBullet();
+				if (_canShoot == true)
+				{
+					if (_BulletAmount >= 3)
+					{}
+					else(ShootBullet(e), _canShoot = false, _BulletAmount += 1, shootTimer.start());
+				}
 			}
-			//Bullet movement
-			if (_bullet.stage)
-			{
-				
-				_bullet.scaleX = 3
-				_bullet.scaleY = 3
-				_bullet.x += 5;
-				trace(_bullet.x);
-			}
-			
 		}
 		
-		private function ShootBullet():void 
+		private function ShootBullet(e):void 
 		{
 			//addChild(_bullet);
-			dispatchEvent(new Event("SHOOT_BULLET"));
-			trace("Bullet added to stage");
+			dispatchEvent(new Event("Player_Shoots"));
+			_bullet.x = this.x;
+			_bullet.y = this.y;
+			//trace("Bullet added to stage");
 		}
 		
 		private function keyDown(e:KeyboardEvent):void
