@@ -121,12 +121,14 @@
 			
 			if (_ShiftButtonIsDown == true)
 			{
+				addChild(_bullet);
 				//trace ("Bullet spawned (WEAPON)");
 				ShootBullet();
 			}
 			//Bullet movement
 			if (_bullet.stage)
 			{
+				
 				_bullet.scaleX = 3
 				_bullet.scaleY = 3
 				_bullet.x += 5;
@@ -137,7 +139,8 @@
 		
 		private function ShootBullet():void 
 		{
-			addChild(_bullet);
+			//addChild(_bullet);
+			dispatchEvent(new Event("SHOOT_BULLET"));
 			trace("Bullet added to stage");
 		}
 		
