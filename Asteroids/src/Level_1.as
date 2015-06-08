@@ -165,6 +165,16 @@ package
 			{
 				trace("Hit Low border");	
 			}
+			
+			//hittest for finish
+			if (_finish.hitTestObject(_Player))
+			{
+				trace("player 1 Crossed finish");
+			}
+			if (_finish.hitTestObject(_Player2))
+			{
+				trace("player 2 crossed finish");
+			}
 		}
 		
 		private function loop1(e:Event):void 
@@ -278,10 +288,14 @@ package
 				trace(_finishSpawner)
 			}	
 			
-			if (_finishSpawner >= 5)
+			
+			if (_finishSpawner == 5)
 			{
 				_finishSpawner++;
 				addChild(_finish);
+			}
+			if (_finishSpawner >= 5)
+			{
 				trace(_finish.x)
 				_finish.x -= _Scrollspeed;
 				trace("added finish")
@@ -316,7 +330,6 @@ package
 			addChild(LBorder2);
 			LBorder2.x = 1280;
 			
-			
 			addChild(_Player);
 			
 			//addChild(_Curtain1);	// Up
@@ -335,7 +348,8 @@ package
 			_asteroid.scaleX = 0.5;
 			_asteroid.scaleY = 0.5;
 			_asteroid.x = stage.stageWidth;
-			_asteroid.y = 120 + Math.floor(Math.random() * 500);
+			_asteroid.y = 120 + Math.floor(Math.random() * 480);
+			_asteroid.x -= _Scrollspeed;
 			
 			//addChild(_asteroid2);
 			_asteroid2.scaleX = 0.5;
