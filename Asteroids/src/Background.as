@@ -14,7 +14,6 @@ package
 		[Embed(source="../Assets/Game/Backgrounds/Space.jpg")]
 		private var backgroundImg:Class;
 		private var bgImage:Bitmap;
-		public var _scrollSpeed:int = 8;
 		private var _Player:Player;
 		private var _lvl1:Level_1;
 		public var _IntroOver:Boolean = false;

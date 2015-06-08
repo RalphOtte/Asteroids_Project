@@ -26,12 +26,15 @@ package
 		private var _Player:Player = new Player;
 		private var _Player2:Player = new Player;
 		private var _GM:GameManager = new GameManager;
-		private var _asteroid:Asteroid = new Asteroid;
+		private var _asteroid:Asteroid = new Asteroid; 
+		private var _asteroid2:Asteroid = new Asteroid;
 		private var _breakAsteroid:breakAsteroids = new breakAsteroids;
 		private var _enemy:Enemy = new Enemy;
 		private var _bullet:Bullet = new Bullet();
 		private var _SpawnRate:int;
 		private var _Asteroids:Array = new Array;
+		private var _finishSpawner:int;
+		private var _finish:Finish = new Finish;
 		
 		//Alle Timers
 		private var _1SecTimer:Timer = new Timer(1000);
@@ -212,11 +215,8 @@ package
  			}*/
 			
 			//asteroids respawner and spawnrate
+			SpawnAsteroids();
 			
-			if (_asteroid.x <= 0)
-			{
-				_asteroid.x +=1280;
-			}
 			
 			//scrollspeed
 			_Scrollspeed = _Player.x / 15;
@@ -267,12 +267,34 @@ package
 			{
 				trace("background reset");
 				_bg.x += 2560;
+				_finishSpawner++;
+				trace(_finishSpawner)
 			}
 			if (_bg1.x <= -1280)
 			{
 				trace("background reset");
 				_bg1.x += 2560;
+				_finishSpawner++;
+				trace(_finishSpawner)
 			}	
+			
+			if (_finishSpawner >= 5)
+			{
+				_finishSpawner++;
+				addChild(_finish);
+				trace(_finish.x)
+				_finish.x -= _Scrollspeed;
+				trace("added finish")
+			}
+		}
+		
+		
+		private function SpawnAsteroids():void 
+		{
+			if (_asteroid.x <= 10)
+			{
+				//trace("asteroid removed");
+			}
 		}
 		
 		private function Tile1(e:Event):void
@@ -282,6 +304,8 @@ package
 			
 			_bg1.y = 0;
 			_bg1.x = 1280;
+			
+			_finish.x = 1350;
 			
 			
 			//borders
@@ -306,18 +330,20 @@ package
 			_Player.rotation = 90;
 			_Player.x = 250;
 			_Player.y = stage.stageHeight / 2;
-<<<<<<< HEAD
 			
-			addChild(_asteroid);
-			
-=======
-		
-			//addChild(_asteroid);
->>>>>>> origin/master
+			addChild(_asteroid);	
 			_asteroid.scaleX = 0.5;
 			_asteroid.scaleY = 0.5;
 			_asteroid.x = stage.stageWidth;
 			_asteroid.y = 120 + Math.floor(Math.random() * 500);
+			
+			//addChild(_asteroid2);
+			_asteroid2.scaleX = 0.5;
+			_asteroid2.scaleY = 0.5;
+			_asteroid2.x = stage.stageWidth;
+			_asteroid2.y = 120 + Math.floor(Math.random() * 500);
+			
+			
 		//	_asteroid.x = stage.stageWidth;
 		//	_asteroid.y = (stage.stageHeight / 4) * 3
 		
