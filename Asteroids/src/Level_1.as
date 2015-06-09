@@ -130,7 +130,7 @@ package
 			//Hittest for all asteroids
 			if (_asteroid.hitTestObject(_Player))
 			{
-				trace("Hit an Asteroid");
+				//trace("Hit an Asteroid");
 			}
 			else (_asteroid.x -= _Scrollspeed/1.5)
 			/*
@@ -323,6 +323,14 @@ package
 			{
 				//trace("asteroid removed");
 			}
+		}
+		
+		public function ShootBullet():void
+		{
+			addChild(_bullet);
+			_bullet.x = _Player.x;
+			_bullet.y = _Player.y;
+			trace("HIJ DOET UT");
 		}
 		
 		private function Tile1(e:Event):void

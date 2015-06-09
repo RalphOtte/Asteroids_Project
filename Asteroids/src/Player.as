@@ -19,6 +19,7 @@
 		private var _bullet:Bullet = new Bullet();
 		private var _RedBullets:Array = new Array;
 		private var _GM:GameManager = new GameManager();
+		private var _level1:Level_1 = new Level_1();
 		
 		public var _SelectedSkin:int = 1;
 		public var PlayerSpeed:int = 0;
@@ -136,7 +137,9 @@
 				if (_canShoot == true)
 				{
 					if (_BulletAmount >= 3)
-					{}
+					{
+						
+					}
 					else(ShootBullet(e), _canShoot = false, _BulletAmount += 1, shootTimer.start());
 				}
 			}
@@ -145,10 +148,8 @@
 		private function ShootBullet(e):void 
 		{
 			//addChild(_bullet);
-			dispatchEvent(new Event("Player_Shoots"));
-			_bullet.x = this.x;
-			_bullet.y = this.y;
-			//trace("Bullet added to stage");
+			//dispatchEvent(new Event("Player_Shoots"));
+			_level1.ShootBullet();
 		}
 		
 		private function keyDown(e:KeyboardEvent):void
