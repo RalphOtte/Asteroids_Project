@@ -33,6 +33,11 @@
 		private var _canShoot:Boolean = true;
 		private var shootTimer:Timer = new Timer(1000);
 		
+		//player health
+		private var _HealthBlock1:Health = new Health;
+		private var _HealthBlock2:Health = new Health;
+		private var _HealthBlock3:Health = new Health;
+		
 		
 		
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
@@ -94,6 +99,23 @@
 			{
 				trace("Skin 1 (PLAYER)");
 				addChild(_RedShip);
+				
+				addChild(_HealthBlock1);
+				addChild(_HealthBlock2);
+				addChild(_HealthBlock3);
+				
+				_HealthBlock1.x = this.x -350;
+				_HealthBlock1.y = this.y -330;
+				_HealthBlock1.rotation = 90;
+				
+				_HealthBlock2.x = this.x -350;
+				_HealthBlock2.y = this.y -370;
+				_HealthBlock2.rotation = 90;
+				
+				_HealthBlock3.x = this.x -350;
+				_HealthBlock3.y = this.y -410;
+				_HealthBlock3.rotation = 90;
+				
 			}
 			else if (_SelectedSkin == 2)
 			{
