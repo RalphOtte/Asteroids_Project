@@ -38,6 +38,7 @@
 		private var _HealthBlock2:Health = new Health;
 		private var _HealthBlock3:Health = new Health;
 		public var _HealthVisible:int;
+		public var _HealthCounter:int = 3;
 		
 		
 		
@@ -100,10 +101,12 @@
 			{
 				trace("Skin 1 (PLAYER)");
 				addChild(_RedShip);
-				
-				addChild(_HealthBlock1);
-				addChild(_HealthBlock2);
-				addChild(_HealthBlock3);
+				if (_HealthCounter  == 3)
+				{
+					addChild(_HealthBlock1);
+					addChild(_HealthBlock2);
+					addChild(_HealthBlock3);
+				}
 				
 				_HealthBlock1.x = this.x -350;
 				_HealthBlock1.y = this.y -330;
@@ -134,22 +137,68 @@
 		{
 			
 			//Health Regulation
-			if (_HealthVisible >= 45)
+			if (_HealthCounter == 3)
 			{
-				//if healthtimer is higher than 45 health is visible
-				_HealthBlock1.visible = false;
-				_HealthBlock2.visible = false;
-				_HealthBlock3.visible = false;
-				trace(_HealthVisible + " 30 and up");
+				if (_HealthVisible >= 45)
+				{
+					//if healthtimer is higher than 45 health is visible
+					_HealthBlock1.visible = false;
+					_HealthBlock2.visible = false;
+					_HealthBlock3.visible = false;
+					//trace(_HealthVisible + " 30 and up");
+				}
+				if (_HealthVisible < 45)
+				{
+					_HealthBlock1.visible = true;
+					_HealthBlock2.visible = true;
+					_HealthBlock3.visible = true;
+					//trace(_HealthVisible + " below 30");
+					_HealthVisible++;
+				}
 			}
-			if (_HealthVisible < 45)
+			if (_HealthCounter == 2)
 			{
-				_HealthBlock1.visible = true;
-				_HealthBlock2.visible = true;
-				_HealthBlock3.visible = true;
-				trace(_HealthVisible + " below 30");
-				_HealthVisible++;
+				removeChild(_HealthBlock3);
+				if (_HealthVisible >= 45)
+				{
+					//if healthtimer is higher than 45 health is visible
+					_HealthBlock1.visible = false;
+					_HealthBlock2.visible = false;
+					
+					//trace(_HealthVisible + " 30 and up");
+				}
+				if (_HealthVisible < 45)
+				{
+					_HealthBlock1.visible = true;
+					_HealthBlock2.visible = true;
+					
+					//trace(_HealthVisible + " below 30");
+					_HealthVisible++;
+				}
 			}
+			if (_HealthCounter == 1)
+			{
+				removeChild(_HealthBlock2);
+				if (_HealthVisible >= 45)
+				{
+					//if healthtimer is higher than 45 health is visible
+					_HealthBlock1.visible = false;
+					
+					//trace(_HealthVisible + " 30 and up");
+				}
+				if (_HealthVisible < 45)
+				{
+					_HealthBlock1.visible = true;
+					
+					//trace(_HealthVisible + " below 30");
+					_HealthVisible++;
+				}
+			}
+			//upon first collision remove _HealthBlock3
+			
+			//upon second collision remove _HealthBlock2
+			
+			//upon third Collision remove _HealthBlock1 and pick winner.l
 			
 			
 			//var radian:Number = this.rotation

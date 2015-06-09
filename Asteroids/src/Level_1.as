@@ -121,6 +121,8 @@ package
 			if (_asteroid.hitTestObject(_Player))
 			{
 				//trace("Hit an Asteroid");
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			else (_asteroid.x -= _Scrollspeed/1.5)
 			/*
@@ -135,6 +137,8 @@ package
 			if (_enemy.hitTestObject(_Player))
 			{
 				trace("Hit an enemy");
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			else (_enemy.x -= 5)
 			
@@ -155,19 +159,27 @@ package
 			//Hittest for all borders
 			if (HBorder.hitTestObject(_Player))
 			{
-				trace("Hit High border");	
+				trace("Hit High border");
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			if (HBorder2.hitTestObject(_Player))
 			{
 				trace("Hit High border");	
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			if (LBorder.hitTestObject(_Player))
 			{
-				trace("Hit Low border");	
+				trace("Hit Low border");
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			if (LBorder2.hitTestObject(_Player))
 			{
-				trace("Hit Low border");	
+				trace("Hit Low border");
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			
 			//hittest for finish
