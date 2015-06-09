@@ -131,7 +131,7 @@ package
 			{
 				trace("Hit an Asteroid");
 			}
-			else (_asteroid.x -= 5)
+			else (_asteroid.x -= _Scrollspeed/1.5)
 			/*
 			if (_breakAsteroid.hitTestObject(_Player))
 			{
@@ -349,7 +349,6 @@ package
 			_asteroid.scaleY = 0.5;
 			_asteroid.x = stage.stageWidth;
 			_asteroid.y = 120 + Math.floor(Math.random() * 480);
-			_asteroid.x -= _Scrollspeed;
 			
 			//addChild(_asteroid2);
 			_asteroid2.scaleX = 0.5;
