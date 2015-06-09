@@ -29,6 +29,7 @@ package
 		private var _asteroid:Asteroid = new Asteroid; 
 		private var _asteroid2:Asteroid = new Asteroid;
 		private var _breakAsteroid:breakAsteroids = new breakAsteroids;
+		private var _BreakAsteroidPiece:BreakAsteroidPiece = new BreakAsteroidPiece;
 		private var _enemy:Enemy = new Enemy;
 		private var _bullet:Bullet = new Bullet();
 		private var _SpawnRate:int;
@@ -147,6 +148,19 @@ package
 			}
 			else (_enemy.x -= 5)
 			
+			//Hittest + bulletmovement
+			if (_bullet.hitTestObject(_breakAsteroid))
+			{
+				trace("Bullet hit a breakable asteroid!");
+				removeChild(_bullet);
+			}
+			else(_bullet.x += 5)
+			
+			if (_bullet.hitTestObject(_asteroid))
+			{
+				removeChild(_bullet);
+			}
+			else(_bullet.x += 5)
 			
 			//Hittest for all borders
 			if (HBorder.hitTestObject(_Player))
