@@ -37,6 +37,7 @@
 		private var _HealthBlock1:Health = new Health;
 		private var _HealthBlock2:Health = new Health;
 		private var _HealthBlock3:Health = new Health;
+		public var _HealthVisible:int;
 		
 		
 		
@@ -131,6 +132,26 @@
 		
 		private function loop(e:Event):void
 		{
+			
+			//Health Regulation
+			if (_HealthVisible >= 45)
+			{
+				//if healthtimer is higher than 45 health is visible
+				_HealthBlock1.visible = false;
+				_HealthBlock2.visible = false;
+				_HealthBlock3.visible = false;
+				trace(_HealthVisible + " 30 and up");
+			}
+			if (_HealthVisible < 45)
+			{
+				_HealthBlock1.visible = true;
+				_HealthBlock2.visible = true;
+				_HealthBlock3.visible = true;
+				trace(_HealthVisible + " below 30");
+				_HealthVisible++;
+			}
+			
+			
 			//var radian:Number = this.rotation
 			
 			if (_WButtonIsDown == true)
