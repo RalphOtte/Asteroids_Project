@@ -1,5 +1,4 @@
 package
-
 {
 	import flash.display.Bitmap;
 	import flash.display.Loader;
@@ -18,7 +17,6 @@ package
 	 */
 	public class Level_1 extends Sprite
 	{
-		
 		//variables
 		private var _Background:Background = new Background;
 		private var _ShipSelect:ShipSelect;
@@ -32,8 +30,7 @@ package
 		private var _BreakAsteroidPiece:BreakAsteroidPiece = new BreakAsteroidPiece;
 		private var _enemy:Enemy = new Enemy;
 		private var _bullet:Bullet = new Bullet();
-		private var _SpawnRate:int;
-		private var _Asteroids:Array = new Array;
+		private var _SpawnRate:Timer = new Timer (1000);
 		private var _finishSpawner:int;
 		private var _finish:Finish = new Finish;
 		
@@ -108,7 +105,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ENTER_FRAME, collisionCheck);
-			addEventListener(Event.ENTER_FRAME, spawnRates);
+			_SpawnRate.addEventListener(TimerEvent.TIMER, SpawnAsteroids);
 			_Curtain1 = new _CurtainUp();
 			_Curtain2 = new _CurtainDown();
 			_Curtain3 = new _CurtainFade();
@@ -116,13 +113,6 @@ package
 			_BlueShip = new _Ship2();
 			_GreenShip = new _Ship3();
 			Tile1(e);
-		}
-		
-		private function spawnRates(e:Event):void 
-		{
-			//Asteroid spawn
-			
-			//Enemy spawn
 		}
 		
 		private function collisionCheck(e:Event):void 
@@ -239,7 +229,6 @@ package
  			}*/
 			
 			//asteroids respawner and spawnrate
-			SpawnAsteroids();
 			
 			
 			//scrollspeed
@@ -319,18 +308,16 @@ package
 		
 		private function SpawnAsteroids():void 
 		{
-			if (_asteroid.x <= 10)
+			if (_asteroid.x <= -20)
 			{
-				//trace("asteroid removed");
+				_asteroid.x += 1400;
 			}
-		}
-		
-		public function ShootBullet():void
-		{
-			addChild(_bullet);
-			_bullet.x = _Player.x;
-			_bullet.y = _Player.y;
-			trace("HIJ DOET UT");
+			
+			addChild(_asteroid);
+			_asteroid.scaleX = 0.5;
+			_asteroid.scaleY = 0.5;
+			_asteroid.x = stage.stageWidth;
+			_asteroid.y = 120 + Math.floor(Math.random() * 480);
 		}
 		
 		private function Tile1(e:Event):void
@@ -342,7 +329,6 @@ package
 			_bg1.x = 1280;
 			
 			_finish.x = 1350;
-			
 			
 			//borders
 			addChild(HBorder);
@@ -366,11 +352,17 @@ package
 			_Player.x = 250;
 			_Player.y = stage.stageHeight / 2;
 			
+			
+			
+			SpawnAsteroids();
+			
+			/*
 			addChild(_asteroid);	
 			_asteroid.scaleX = 0.5;
 			_asteroid.scaleY = 0.5;
 			_asteroid.x = stage.stageWidth;
 			_asteroid.y = 120 + Math.floor(Math.random() * 480);
+			
 			
 			//addChild(_asteroid2);
 			_asteroid2.scaleX = 0.5;
@@ -382,11 +374,12 @@ package
 		//	_asteroid.x = stage.stageWidth;
 		//	_asteroid.y = (stage.stageHeight / 4) * 3
 		
-			addChild(_breakAsteroid);
+			//addChild(_breakAsteroid);
 			_breakAsteroid.scaleX = 1;
 			_breakAsteroid.scaleY = 1;
 			_breakAsteroid.x = stage.stageWidth;
 			_breakAsteroid.y = stage.stageHeight / 2;
+			*/
 			
 		//	addChild(_enemy);
 			_enemy.scaleX = 0.5;

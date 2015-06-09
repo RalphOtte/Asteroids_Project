@@ -12,6 +12,8 @@ package
 	 * ...
 	 * @author Ralph Otte
 	 */
+	
+	 
 	public class GameManager extends Sprite
 	{
 		public var _Singleplayer:Boolean = false;
@@ -28,6 +30,11 @@ package
 		private function init(e:Event):void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		public function Skiet():void
+		{
+			trace("Gedoe");
 		}
 		
 		public function P1_1():void

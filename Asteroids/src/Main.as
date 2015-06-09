@@ -93,14 +93,13 @@ package
 			_LevelSelect.addEventListener("SpawnLevel_3", SpawnLevel_3);
 			_LevelSelect.addEventListener("SpawnLevelSelect", SpawnShipSelect1);
 			_LevelSelect.addEventListener("SpawnMPLevelSelect", SpawnShipSelect2);
-			//_Player.addEventListener("Player_Shoots", PlayerShoots);
+			_Player.addEventListener("SHOOT", ShootBullet);
 		}
 		
-		/*private function PlayerShoots(e:Event):void 
+		private function ShootBullet(e:Event):void 
 		{
-			_Level1.ShootBullet();
-			trace("shooting shit")
-		}*/
+			
+		}
 		
 		private function SingleMode(e:Event):void 
 		{
