@@ -118,13 +118,13 @@ package
 		{
 			if (this.contains(_BreakAsteroidPiece))
 			{
-				_BreakAsteroidPiece.x += 5
-				_BreakAsteroidPiece.y += 10
+				_BreakAsteroidPiece.x += 5;
+				_BreakAsteroidPiece.y += 10;
 			}
 			if (this.contains(_BreakAsteroidPiece2))
 			{
-				_BreakAsteroidPiece2.x -= 5
-				_BreakAsteroidPiece2.y -= 10
+				_BreakAsteroidPiece2.x -= 5;
+				_BreakAsteroidPiece2.y -= 10;
 			}
 		}
 		
@@ -423,7 +423,7 @@ package
 				_BreakAsteroidPiece.y = _breakAsteroid.y;
 				_BreakAsteroidPiece2.x = _breakAsteroid.x;
 				_BreakAsteroidPiece2.y = _breakAsteroid.y;
-				breakPieceMovement(e);
+				//breakPieceMovement(e);
 				if (this.contains(_breakAsteroid))
 				{
 					removeChild(_breakAsteroid);
