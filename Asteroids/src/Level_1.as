@@ -28,10 +28,9 @@ package
 		private var _asteroid2:Asteroid = new Asteroid;
 		private var _breakAsteroid:breakAsteroids = new breakAsteroids;
 		private var _BreakAsteroidPiece:BreakAsteroidPiece = new BreakAsteroidPiece;
+		private var _BreakAsteroidPiece2:BreakAsteroidPiece = new BreakAsteroidPiece;
 		private var _enemy:Enemy = new Enemy;
 		private var _bullet1:Bullet = new Bullet();
-		private var _bullet2:Bullet = new Bullet();
-		private var _bullet3:Bullet = new Bullet();
 		private var _finishSpawner:int;
 		private var _finish:Finish = new Finish;
 		
@@ -103,6 +102,8 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ENTER_FRAME, collisionCheck);
+			addEventListener(Event.ENTER_FRAME, addBullets1);
+			addEventListener(Event.ENTER_FRAME, breakPieceMovement);
 			_SpawnRate.addEventListener(TimerEvent.TIMER, SpawnAsteroids);
 			_Curtain1 = new _CurtainUp();
 			_Curtain2 = new _CurtainDown();
@@ -113,9 +114,30 @@ package
 			Tile1(e);
 		}
 		
+		private function breakPieceMovement(e:Event):void 
+		{
+			if (this.contains(_BreakAsteroidPiece))
+			{
+				_BreakAsteroidPiece.x += 5
+				_BreakAsteroidPiece.y += 10
+			}
+			if (this.contains(_BreakAsteroidPiece2))
+			{
+				_BreakAsteroidPiece2.x -= 5
+				_BreakAsteroidPiece2.y -= 10
+			}
+		}
+		
 		private function collisionCheck(e:Event):void 
 		{
 			//Hittest for all asteroids
+			if (this.contains(_bullet1))
+			{
+				if (_bullet1.x >= 1280)
+				{
+					removeChild(_bullet1);
+				}
+			}
 			
 			if (_asteroid.hitTestObject(_Player))
 			{
@@ -131,13 +153,23 @@ package
 				}
 			}
 			else (_asteroid.x -= _Scrollspeed/1.5)
-			/*
+			
 			if (_breakAsteroid.hitTestObject(_Player))
 			{
 				trace("Hit a Breakable Asteroid");
 			}
-			else (_breakAsteroid.x -= 5)
-			*/
+			else (_breakAsteroid.x -= _Scrollspeed / 1.5)
+			
+			//Healthpool
+			if (_breakAsteroid.hitTestObject(_bullet1))
+			{
+				_breakAsteroid._AsteroidsHealth -= 5;
+			}
+			
+			if (_breakAsteroid._AsteroidsHealth == 0)
+			{
+				spawnBreakPieces();
+			}
 			
 			//Hittest + movement for enemy
 			
@@ -157,50 +189,26 @@ package
 			}
 			else (_enemy.x -= 5)
 			
-			//Hittest + bulletmovement
+			//Hittest + bulletmovement			
 			if (_bullet1.hitTestObject(_breakAsteroid))
 			{
 				trace("Bullet hit a breakable asteroid!");
+				_bullet1.x = 0;
+				_bullet1.y = 0;
 				removeChild(_bullet1);
 			}
 			else(_bullet1.x += 5)
 			
 			if (_bullet1.hitTestObject(_asteroid))
 			{
+				trace("Bullet hit an indestructible asteroid");
+				_bullet1.x = 0;
+				_bullet1.y = 0;
 				removeChild(_bullet1);
 			}
 			else(_bullet1.x += 5)
 			
-				//Hittest + bulletmovement
-			if (_bullet2.hitTestObject(_breakAsteroid))
-			{
-				trace("Bullet hit a breakable asteroid!");
-				removeChild(_bullet2);
-			}
-			else(_bullet2.x += 5)
-			
-			if (_bullet2.hitTestObject(_asteroid))
-			{
-				removeChild(_bullet2);
-			}
-			else(_bullet2.x += 5)
-			
-				//Hittest + bulletmovement
-			if (_bullet3.hitTestObject(_breakAsteroid))
-			{
-				trace("Bullet hit a breakable asteroid!");
-				removeChild(_bullet3);
-			}
-			else(_bullet3.x += 5)
-			
-			if (_bullet3.hitTestObject(_asteroid))
-			{
-				removeChild(_bullet3);
-			}
-			else(_bullet3.x += 5)
-			
 			//Hittest for all borders
-			
 			if (HBorder.hitTestObject(_Player))
 			{
 				if (_Player._InvincibleFrame == false)
@@ -268,11 +276,6 @@ package
 			}
 		}
 		
-		private function addBullets():void
-		{
-		
-		}
-		
 		private function loop1(e:Event):void 
 		{
 			
@@ -283,22 +286,6 @@ package
 				_bullet1.scaleY = 1
 				_bullet1.rotation = 90;
 				_bullet1.x += 5;
-			}
-			//Bullet movement
-			if (_bullet2.stage)
-			{
-				_bullet2.scaleX = 1
-				_bullet2.scaleY = 1
-				_bullet2.rotation = 90;
-				_bullet2.x += 5;
-			}
-			//Bullet movement
-			if (_bullet3.stage)
-			{
-				_bullet3.scaleX = 1
-				_bullet3.scaleY = 1
-				_bullet3.rotation = 90;
-				_bullet3.x += 5;
 			}
 			
  			//Players can't exit the screen
@@ -414,6 +401,35 @@ package
 			}
 		}
 		
+		private function addBullets1(e:Event):void 
+		{
+			if (_Player._ShiftButtonIsDown == true)
+			{
+				if (!this.contains(_bullet1))
+				{
+					addChild(_bullet1);
+					_bullet1.x = _Player.x;
+					_bullet1.y = _Player.y;
+				}
+				else{}
+			}
+		}
+		
+		public function spawnBreakPieces():void
+		{
+				this.addChild(_BreakAsteroidPiece);
+				this.addChild(_BreakAsteroidPiece2);
+				_BreakAsteroidPiece.x = _breakAsteroid.x;
+				_BreakAsteroidPiece.y = _breakAsteroid.y;
+				_BreakAsteroidPiece2.x = _breakAsteroid.x;
+				_BreakAsteroidPiece2.y = _breakAsteroid.y;
+				breakPieceMovement(e);
+				if (this.contains(_breakAsteroid))
+				{
+					removeChild(_breakAsteroid);
+				}
+		}
+		
 		private function SpawnAsteroids():void 
 		{
 			if (_asteroid.x <= -20)
@@ -462,10 +478,10 @@ package
 			
 			
 			
-			SpawnAsteroids();
+		//	SpawnAsteroids();
 			
-			/*
-			addChild(_asteroid);	
+			
+			//addChild(_asteroid);	
 			_asteroid.scaleX = 0.5;
 			_asteroid.scaleY = 0.5;
 			_asteroid.x = stage.stageWidth;
@@ -477,17 +493,13 @@ package
 			_asteroid2.scaleY = 0.5;
 			_asteroid2.x = stage.stageWidth;
 			_asteroid2.y = 120 + Math.floor(Math.random() * 500);
-			
-			
-		//	_asteroid.x = stage.stageWidth;
-		//	_asteroid.y = (stage.stageHeight / 4) * 3
 		
-			//addChild(_breakAsteroid);
+			addChild(_breakAsteroid);
 			_breakAsteroid.scaleX = 1;
 			_breakAsteroid.scaleY = 1;
 			_breakAsteroid.x = stage.stageWidth;
 			_breakAsteroid.y = stage.stageHeight / 2;
-			*/
+			
 			
 		//	addChild(_enemy);
 			_enemy.scaleX = 0.5;

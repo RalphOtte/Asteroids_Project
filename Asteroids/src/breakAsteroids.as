@@ -10,6 +10,9 @@ package
 	 */
 	public class breakAsteroids extends Sprite
 	{
+		private var _bullet:Bullet;
+		private var _BreakAsteroid:BreakAsteroidPiece;
+		
 		private var _rotate:int = 0;
 		private var _asteroidType:int = 1;
 		public var _AsteroidsHealth:int = 10;

@@ -137,8 +137,8 @@
 		private function loop(e:Event):void
 		{
 			
-			trace("Invincible is " + _InvincibleFrame);
-			trace("Health is " + _HealthCounter);
+	//		trace("Invincible is " + _InvincibleFrame);
+	//		trace("Health is " + _HealthCounter);
 			
 			//Health Regulation
 			if (_HealthCounter == 3)
