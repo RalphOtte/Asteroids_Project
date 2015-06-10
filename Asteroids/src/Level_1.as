@@ -423,7 +423,7 @@ package
 				_BreakAsteroidPiece.y = _breakAsteroid.y;
 				_BreakAsteroidPiece2.x = _breakAsteroid.x;
 				_BreakAsteroidPiece2.y = _breakAsteroid.y;
-				//breakPieceMovement(e);
+				breakPieceMovement(e);
 				if (this.contains(_breakAsteroid))
 				{
 					removeChild(_breakAsteroid);
