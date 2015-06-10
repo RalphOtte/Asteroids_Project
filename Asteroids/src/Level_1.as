@@ -5,11 +5,13 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
+	import flash.media.Sound;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	
 	
 	/**
 	 * ...
@@ -62,6 +64,12 @@ package
 		private var HBorder2:HighBorder = new HighBorder();
 		private var LBorder:LowBorder = new LowBorder();
 		private var LBorder2:LowBorder = new LowBorder();
+		
+		//sounds
+		[Embed(source="astroids-hit.mp3")]
+		public var _GameSounds:Sound;
+		[Embed(source="astroids-backgroundsound.mp3")]
+		public var _BGM:Sound = new Sound;
 		
 		
 		//Intro op Tile 1
@@ -121,6 +129,8 @@ package
 			{
 				if (_Player._InvincibleFrame == false)
 				{
+					var _GameSounds:Sound = new Sound;
+					_GameSounds.load(new URLRequest("astroids-hit.mp3"));
 					//trace("Hit an Asteroid");
 					_Player._HealthVisible = 0;
 					_Player._HealthCounter--;
@@ -430,6 +440,9 @@ package
 		
 		private function Tile1(e:Event):void
 		{
+			_BGM.load(new URLRequest("astroids-backgroundsound.mp3"));
+			_BGM.play(0, 999);
+			
 			addChild(_bg);
 			addChild(_bg1);
 			
