@@ -118,19 +118,11 @@ package
 		private function collisionCheck(e:Event):void 
 		{
 			//Hittest for all asteroids
-			
 			if (_asteroid.hitTestObject(_Player))
 			{
-				if (_Player._InvincibleFrame == false)
-				{
-					//trace("Hit an Asteroid");
-					_Player._HealthVisible = 0;
-					_Player._HealthCounter--;
-				}
-				if (_Player._InvincibleFrame == true)
-				{
-					trace("Player invincible");
-				}
+				//trace("Hit an Asteroid");
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			else (_asteroid.x -= _Scrollspeed/1.5)
 			/*
@@ -142,26 +134,13 @@ package
 			*/
 			
 			//Hittest + movement for enemy
-			
-			
-			
 			if (_enemy.hitTestObject(_Player))
 			{
-				if (_Player._InvincibleFrame == false)
-				{
-					trace("Hit an enemy");
-					_Player._HealthVisible = 0;
-					_Player._HealthCounter--;
-				}
-				
-				if (_Player._InvincibleFrame == true)
-				{
-					trace("Player invincible");
-				}
+				trace("Hit an enemy");
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			else (_enemy.x -= 5)
-			
-			
 			
 			//Hittest + bulletmovement
 			if (_bullet.hitTestObject(_breakAsteroid))
@@ -178,61 +157,29 @@ package
 			else(_bullet.x += 5)
 			
 			//Hittest for all borders
-			
 			if (HBorder.hitTestObject(_Player))
 			{
-				if (_Player._InvincibleFrame == false)
-				{
-					trace("Hit High border");
-					_Player._HealthVisible = 0;
-					_Player._HealthCounter--;
-				}
-				if (_Player._InvincibleFrame == true)
-				{
-					trace("Player invincible");
-				}
+				trace("Hit High border");
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			if (HBorder2.hitTestObject(_Player))
 			{
-				if (_Player._InvincibleFrame == false)
-				{
-					trace("Hit High border");	
-					_Player._HealthVisible = 0;
-					_Player._HealthCounter--;
-				}
-				
-				if (_Player._InvincibleFrame == true)
-				{
-					trace("Player invincible");
-				}
+				trace("Hit High border");	
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			if (LBorder.hitTestObject(_Player))
 			{
-				if (_Player._InvincibleFrame == false)
-				{
-					trace("Hit Low border");
-					_Player._HealthVisible = 0;
-					_Player._HealthCounter--;
-				}
-				
-				if (_Player._InvincibleFrame == true)
-				{
-					trace("Player invincible");
-				}
+				trace("Hit Low border");
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			if (LBorder2.hitTestObject(_Player))
 			{
-				if (_Player._InvincibleFrame == false)
-				{
-					trace("Hit Low border");
-					_Player._HealthVisible = 0;
-					_Player._HealthCounter--;
-				}
-				
-				if (_Player._InvincibleFrame == true)
-				{
-					trace("Player invincible");
-				}
+				trace("Hit Low border");
+				_Player._HealthVisible = 0;
+				_Player._HealthCounter--;
 			}
 			
 			//hittest for finish
