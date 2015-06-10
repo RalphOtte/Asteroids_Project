@@ -29,13 +29,19 @@ package
 		private var _breakAsteroid:breakAsteroids = new breakAsteroids;
 		private var _BreakAsteroidPiece:BreakAsteroidPiece = new BreakAsteroidPiece;
 		private var _enemy:Enemy = new Enemy;
-		private var _bullet:Bullet = new Bullet();
-		private var _SpawnRate:Timer = new Timer (1000);
+		private var _bullet1:Bullet = new Bullet();
+		private var _bullet2:Bullet = new Bullet();
+		private var _bullet3:Bullet = new Bullet();
 		private var _finishSpawner:int;
 		private var _finish:Finish = new Finish;
 		
 		//Alle Timers
 		private var _1SecTimer:Timer = new Timer(1000);
+		private var _SpawnRate:Timer = new Timer(1000);
+		
+		//Arrays
+		private var _Player1Bullets:Array = new Array;
+		private var _Player2Bullets:Array = new Array;
 		
 		//Alle IntroTextBools
 		private var _Text1:Boolean = false;
@@ -88,14 +94,6 @@ package
 		private var _Stoplicht:Class;
 		//private var _Stoplicht:MovieClip = new _Stoplicht();
 		
-		
-		/*
-		 * Denk dat het het beste is om te kijken als een volgende tile geactiveerd wordt dat er dan een switch of dergelijke wordt omgezet
-		 * En dan de volgende loop aan te roepen tegelijk met de nieuwe tile, en dan de oude dingen weg te halen.
-		 * 
-		 * IDEE: Kunnen asteroides de volgende tiles binnenvliegen als hun koers die richting op is?
-		 * 
-		 * */
 		public function Level_1() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -143,18 +141,46 @@ package
 			else (_enemy.x -= 5)
 			
 			//Hittest + bulletmovement
-			if (_bullet.hitTestObject(_breakAsteroid))
+			if (_bullet1.hitTestObject(_breakAsteroid))
 			{
 				trace("Bullet hit a breakable asteroid!");
-				removeChild(_bullet);
+				removeChild(_bullet1);
 			}
-			else(_bullet.x += 5)
+			else(_bullet1.x += 5)
 			
-			if (_bullet.hitTestObject(_asteroid))
+			if (_bullet1.hitTestObject(_asteroid))
 			{
-				removeChild(_bullet);
+				removeChild(_bullet1);
 			}
-			else(_bullet.x += 5)
+			else(_bullet1.x += 5)
+			
+				//Hittest + bulletmovement
+			if (_bullet2.hitTestObject(_breakAsteroid))
+			{
+				trace("Bullet hit a breakable asteroid!");
+				removeChild(_bullet2);
+			}
+			else(_bullet2.x += 5)
+			
+			if (_bullet2.hitTestObject(_asteroid))
+			{
+				removeChild(_bullet2);
+			}
+			else(_bullet2.x += 5)
+			
+				//Hittest + bulletmovement
+			if (_bullet3.hitTestObject(_breakAsteroid))
+			{
+				trace("Bullet hit a breakable asteroid!");
+				removeChild(_bullet3);
+			}
+			else(_bullet3.x += 5)
+			
+			if (_bullet3.hitTestObject(_asteroid))
+			{
+				removeChild(_bullet3);
+			}
+			else(_bullet3.x += 5)
 			
 			//Hittest for all borders
 			if (HBorder.hitTestObject(_Player))
@@ -193,15 +219,37 @@ package
 			}
 		}
 		
+		private function addBullets():void
+		{
+		
+		}
+		
 		private function loop1(e:Event):void 
 		{
+			
 			//Bullet movement
-			if (_bullet.stage)
+			if (_bullet1.stage)
 			{
-				_bullet.scaleX = 3
-				_bullet.scaleY = 3
-				_bullet.x += 5;
-				trace(_bullet.x);
+				_bullet1.scaleX = 1
+				_bullet1.scaleY = 1
+				_bullet1.rotation = 90;
+				_bullet1.x += 5;
+			}
+			//Bullet movement
+			if (_bullet2.stage)
+			{
+				_bullet2.scaleX = 1
+				_bullet2.scaleY = 1
+				_bullet2.rotation = 90;
+				_bullet2.x += 5;
+			}
+			//Bullet movement
+			if (_bullet3.stage)
+			{
+				_bullet3.scaleX = 1
+				_bullet3.scaleY = 1
+				_bullet3.rotation = 90;
+				_bullet3.x += 5;
 			}
 			
  			//Players can't exit the screen
@@ -316,7 +364,6 @@ package
 				trace("added finish")
 			}
 		}
-		
 		
 		private function SpawnAsteroids():void 
 		{
