@@ -39,6 +39,7 @@
 		private var _HealthBlock3:Health = new Health;
 		public var _HealthVisible:int;
 		public var _HealthCounter:int = 3;
+		public var _InvincibleFrame:Boolean;
 		
 		
 		
@@ -136,12 +137,15 @@
 		private function loop(e:Event):void
 		{
 			
+			trace("Invincible is " + _InvincibleFrame);
+			trace("Health is " + _HealthCounter);
+			
 			//Health Regulation
 			if (_HealthCounter == 3)
 			{
 				if (_HealthVisible >= 45)
 				{
-					//if healthtimer is higher than 45 health is visible
+					//if healthtimer is higher than 45 health is invisible
 					_HealthBlock1.visible = false;
 					_HealthBlock2.visible = false;
 					_HealthBlock3.visible = false;
@@ -158,38 +162,39 @@
 			}
 			if (_HealthCounter == 2)
 			{
-				removeChild(_HealthBlock3);
+				if(this.contains(_HealthBlock3))removeChild(_HealthBlock3);
+				
 				if (_HealthVisible >= 45)
 				{
-					//if healthtimer is higher than 45 health is visible
+					//if healthtimer is higher than 45 health is invisible
 					_HealthBlock1.visible = false;
 					_HealthBlock2.visible = false;
-					
+					_InvincibleFrame = false;
 					//trace(_HealthVisible + " 30 and up");
 				}
 				if (_HealthVisible < 45)
 				{
 					_HealthBlock1.visible = true;
 					_HealthBlock2.visible = true;
-					
+					_InvincibleFrame = true;
 					//trace(_HealthVisible + " below 30");
 					_HealthVisible++;
 				}
 			}
 			if (_HealthCounter == 1)
 			{
-				removeChild(_HealthBlock2);
+				if(this.contains(_HealthBlock2))removeChild(_HealthBlock2);
 				if (_HealthVisible >= 45)
 				{
 					//if healthtimer is higher than 45 health is visible
 					_HealthBlock1.visible = false;
-					
+					_InvincibleFrame = false;
 					//trace(_HealthVisible + " 30 and up");
 				}
 				if (_HealthVisible < 45)
 				{
 					_HealthBlock1.visible = true;
-					
+					_InvincibleFrame = true;
 					//trace(_HealthVisible + " below 30");
 					_HealthVisible++;
 				}
