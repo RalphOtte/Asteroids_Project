@@ -76,12 +76,6 @@
 			
 			_BlueShip.x -= (187 / 2);
 			_BlueShip.y -= (131 / 2);
-			
-			//_GreenShip = new _Ship3();
-			//_GreenShip.x -= (164 / 2);
-			//_GreenShip.y -= (146 / 2);
-			
-			//_RedBullets = new Array;
 		}
 		
 		private function shootListener(e:TimerEvent):void 
