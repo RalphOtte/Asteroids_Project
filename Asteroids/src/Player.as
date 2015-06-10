@@ -224,16 +224,7 @@
 			
 			if (_ShiftButtonIsDown == true)
 			{
-				trace("Shift is pressed");
-				ShootShit();
-			}
-		}
-		
-		private function ShootShit():void 
-		{
-			if (_canShoot == true)
-			{
-				_GM.Skiet();
+				// Level 1 adds Bullet
 			}
 		}
 		

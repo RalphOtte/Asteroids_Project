@@ -36,8 +36,7 @@ package
 		
 		private function init(e:Event = null):void 
 		{
-			_GM = new GameManager();
-			addChild(_GM);
+			
 			startMenu();
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -47,6 +46,8 @@ package
 
 			_menu = new Menu();
 			addChild(_menu);
+			_GM = new GameManager();
+			addChild(_GM);
 			_ShipSelect = new ShipSelect();
 			_MPShipSelect = new MPShipSelect();
 			_Option = new Options();
