@@ -173,7 +173,8 @@ package
 			if (_breakAsteroid.hitTestObject(_Player))
 			{
 				trace("Hit a Breakable Asteroid");
-				removeChild(_BreakAsteroidPiece);
+				
+				_breakAsteroid._AsteroidsHealth -= 5;
 			}
 			else (_breakAsteroid.x -= _Scrollspeed / 1.5)
 			
@@ -182,12 +183,13 @@ package
 			if (_BreakAsteroidPiece.hitTestObject(_Player))
 			{
 				removeChild(_BreakAsteroidPiece);
+				trace("Hit a Breakable Asteroid piece1");
 			}
 			else(_BreakAsteroidPiece.x -= _Scrollspeed / 1.5)
 			
 			if (_BreakAsteroidPiece2.hitTestObject(_Player))
 			{
-				trace("Hit a Breakable Asteroid");
+				trace("Hit a Breakable Asteroid piece2");
 				removeChild(_BreakAsteroidPiece2);
 			}
 			else (_BreakAsteroidPiece2.x -= _Scrollspeed / 1.5)
@@ -210,7 +212,7 @@ package
 			{
 				if (_Player._InvincibleFrame == false)
 				{
-					//trace("Hit an enemy");
+					trace("Hit an enemy");
 					_Player._HealthVisible = 0;
 					_Player._HealthCounter--;
 				}
@@ -524,11 +526,26 @@ package
 		
 		private function SpawnAsteroids():void 
 		{
-			addChild(_asteroid);
-			_asteroid.scaleX = 0.5;
-			_asteroid.scaleY = 0.5;
-			_asteroid.x = 1350;
-			_asteroid.y = 120 + Math.floor(Math.random() * 480);
+			_ObsDetermine = Math.floor( Math.random() * 11 );
+			trace("RNG = "+_ObsDetermine);
+			
+			if (_ObsDetermine > 5)
+			{
+				addChild(_asteroid);
+				_asteroid.scaleX = 0.5;
+				_asteroid.scaleY = 0.5;
+				_asteroid.x = 1350;
+				_asteroid.y = 120 + Math.floor(Math.random() * 480);
+				_ObsSpawner = 0;
+			}
+			if (_ObsDetermine <= 5)
+			{
+				addChild(_breakAsteroid);
+				_breakAsteroid.x = 1350;
+				_breakAsteroid.y = 120 + Math.floor(Math.random() * 400);
+				_breakAsteroid.x -= _Scrollspeed / 3.5;
+				_ObsSpawner = 0;
+			}
 		}
 		
 		private function SpawnRate():void
@@ -560,33 +577,9 @@ package
 			}
 			
 			//spawner
-			if (_ObsSpawner >= 120)
+			if (_ObsSpawner >= 150)
 			{
-				_ObsDetermine = Math.floor( Math.random() * 11 );
-				
-				if (_ObsDetermine > 5 || _AsteroidCounter < 1)
-				{
-					SpawnAsteroids();//normal asteroid
-					_AsteroidCounter++;
-					trace(_AsteroidCounter);
-					_ObsSpawner = 0;
-				}
-				if (_ObsDetermine <= 5 || _AsteroidCounter < 1)
-				{
-					if (_PieceTracker == false)
-					{
-						addChild(_breakAsteroid);//breakable asteroid
-						_AsteroidCounter++;
-						trace(_AsteroidCounter);
-						_breakAsteroid.x = 1450;
-						_breakAsteroid.y = 120 + Math.floor(Math.random() * 400);
-						_breakAsteroid.x -= _Scrollspeed / 3.5;
-						
-						trace(_breakAsteroid.x);
-						
-						_ObsSpawner = 0;
-					}	
-				}
+				SpawnAsteroids();
 			}else(_ObsSpawner++)
 		}
 		
@@ -646,7 +639,7 @@ package
 			//_breakAsteroid.x = stage.stageWidth;
 			//_breakAsteroid.y = stage.stageHeight / 2;
 			
-			addChild(_enemy);
+			//addChild(_enemy);
 			_enemy.scaleX = 0.5;
 			_enemy.scaleY = 0.5;
 			_enemy.x = stage.stageWidth;
