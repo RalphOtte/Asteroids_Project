@@ -332,6 +332,31 @@ package
 					_enemy.removeMe();
 				}
 			}
+			if (_enemyBullet.hitTestObject(_bullet1)){}
+			if (_enemyBullet.hitTestObject(_Player))
+			{
+				// REMOVELIFE
+			}
+			if (_Player.x <= _enemy.x - 800)
+			{
+				_enemy.x -= 5;
+			}
+			else(_enemy.x -= 5);
+			if (_bullet1.hitTestObject(_enemy))
+			{
+				_bullet1.x = 0;
+				_bullet1.y = 0;
+				removeChild(_bullet1);
+				_enemy._enemyHealth -= 5;
+			}
+			if (_enemy._enemyHealth == 0)
+			{
+				if (this.contains(_enemyBullet))
+				{
+					_enemy.removeMe();
+				}
+			}
+			
 		}
 		
 		private function loop1(e:Event):void 
@@ -479,23 +504,7 @@ package
 		
 		public function spawnBreakPieces():void
 		{
-<<<<<<< HEAD
-				this.addChild(_BreakAsteroidPiece);
-				this.addChild(_BreakAsteroidPiece2);
-				_BreakAsteroidPiece.scaleX = 0.4;
-				_BreakAsteroidPiece.scaleY = 0.4;
-				_BreakAsteroidPiece2.scaleX = 0.4;
-				_BreakAsteroidPiece2.scaleY = 0.4;
-				_BreakAsteroidPiece.x = _breakAsteroid.x + 20;
-				_BreakAsteroidPiece.y = _breakAsteroid.y + 20;
-				_BreakAsteroidPiece2.x = _breakAsteroid.x - 20;
-				_BreakAsteroidPiece2.y = _breakAsteroid.y - 20;
-			//	breakPieceMovement(e);
-				if (this.contains(_breakAsteroid))
-				{
-					removeChild(_breakAsteroid);
-				}
-=======
+
 			this.addChild(_BreakAsteroidPiece);
 			this.addChild(_BreakAsteroidPiece2);
 			_BreakAsteroidPiece.scaleX = 0.4;
@@ -511,7 +520,6 @@ package
 			{
 				removeChild(_breakAsteroid);
 			}
->>>>>>> origin/master
 		}
 		
 		private function SpawnAsteroids():void 
@@ -630,22 +638,13 @@ package
 			_asteroid2.scaleX = 0.5;
 			_asteroid2.scaleY = 0.5;
 			_asteroid2.x = stage.stageWidth;
-			_asteroid2.y = 120 + Math.floor(Math.random() * 500);
-		
-<<<<<<< HEAD
-		//	addChild(_breakAsteroid);
-			_breakAsteroid.scaleX = 1;
-			_breakAsteroid.scaleY = 1;
-			_breakAsteroid.x = stage.stageWidth;
-			_breakAsteroid.y = stage.stageHeight / 2;
-=======
+			_asteroid2.y = 120 + Math.floor(Math.random() * 500);	
+			
 			//addChild(_breakAsteroid);
 			//_breakAsteroid.scaleX = 1;
 			//_breakAsteroid.scaleY = 1;
 			//_breakAsteroid.x = stage.stageWidth;
 			//_breakAsteroid.y = stage.stageHeight / 2;
->>>>>>> origin/master
-			
 			
 			addChild(_enemy);
 			_enemy.scaleX = 0.5;
