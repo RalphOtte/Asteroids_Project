@@ -31,6 +31,7 @@ package
 		private var _BreakAsteroidPiece2:BreakAsteroidPiece = new BreakAsteroidPiece;
 		private var _enemy:Enemy = new Enemy;
 		private var _bullet1:Bullet = new Bullet();
+		private var _bullet2:bullet2 = new bullet2();
 		private var _enemyBullet:enemyBullet = new enemyBullet();
 		private var _finishSpawner:int;
 		private var _finish:Finish = new Finish;
@@ -108,6 +109,7 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ENTER_FRAME, collisionCheck);
 			addEventListener(Event.ENTER_FRAME, addBullets1);
+			addEventListener(Event.ENTER_FRAME, addBullets2);
 			addEventListener(Event.ENTER_FRAME, breakPieceMovement);
 			//_SpawnRate.addEventListener(TimerEvent.TIMER, SpawnAsteroids);
 			_Curtain1 = new _CurtainUp();
@@ -208,25 +210,6 @@ package
 				spawnBreakPieces();
 			}
 			
-			//Hittest + movement for enemy
-			
-			/*if (_enemy.hitTestObject(_Player))
-			{
-				if (_Player._InvincibleFrame == false)
-				{
-					trace("Hit an enemy");
-					_Player._HealthVisible = 0;
-					_Player._HealthCounter--;
-				}
-				
-				if (_Player._InvincibleFrame == true)
-				{
-					//trace("Player invincible");
-				}
-			}
-			else (_enemy.x -= 5)
-			*/
-			
 			//Hittest + bulletmovement			
 			if (_bullet1.hitTestObject(_breakAsteroid))
 			{
@@ -303,6 +286,146 @@ package
 				}
 			}
 			
+			//PLAYER 2
+			//Hittest for all asteroids
+			if (this.contains(_bullet2))
+			{
+				if (_bullet2.x >= 1280)
+				{
+					removeChild(_bullet2);
+				}
+			}
+			
+			if (_asteroid.hitTestObject(_Player2))
+			{
+				if (_Player2._InvincibleFrame == false)
+				{
+					//trace("Hit an Asteroid");
+					_Player2._HealthVisible = 0;
+					_Player2._HealthCounter--;
+				}
+				if (_Player2._InvincibleFrame == true)
+				{
+					//trace("Player invincible");
+				}
+			}
+			else (_asteroid.x -= _Scrollspeed/1.5)
+			
+			
+			if (_breakAsteroid.hitTestObject(_Player2))
+			{
+				trace("Hit a Breakable Asteroid");
+				
+				_breakAsteroid._AsteroidsHealth -= 5;
+			}
+			else (_breakAsteroid.x -= _Scrollspeed / 1.5)
+			
+			
+			//asteroid pieces
+			if (_BreakAsteroidPiece.hitTestObject(_Player2))
+			{
+				//removeChild(_BreakAsteroidPiece);
+				trace("Hit a Breakable Asteroid piece1");
+				_Player2._HealthCounter--;
+			}
+			else(_BreakAsteroidPiece.x -= _Scrollspeed / 1.5)
+			
+			if (_BreakAsteroidPiece2.hitTestObject(_Player2))
+			{
+				trace("Hit a Breakable Asteroid piece2");
+				//removeChild(_BreakAsteroidPiece2);
+				_Player2._HealthCounter--;
+			}
+			else (_BreakAsteroidPiece2.x -= _Scrollspeed / 1.5)
+			
+			
+			//Healthpool
+			if (_breakAsteroid.hitTestObject(_bullet2))
+			{
+				_breakAsteroid._AsteroidsHealth -= 5;
+			}
+			
+			if (_breakAsteroid._AsteroidsHealth == 0)
+			{
+				spawnBreakPieces();
+			}
+			
+			//Hittest + bulletmovement			
+			if (_bullet2.hitTestObject(_breakAsteroid))
+			{
+				trace("Bullet hit a breakable asteroid!");
+				_bullet2.x = 0;
+				_bullet2.y = 0;
+				removeChild(_bullet2);
+			}
+			else(_bullet2.x += 5)
+			
+			if (_bullet2.hitTestObject(_asteroid))
+			{
+				trace("Bullet hit an indestructible asteroid");
+				_bullet2.x = 0;
+				_bullet2.y = 0;
+				removeChild(_bullet2);
+			}
+			else(_bullet2.x += 5)
+			
+			//Hittest for all borders
+			if (HBorder.hitTestObject(_Player2))
+			{
+				if (_Player2._InvincibleFrame == false)
+				{
+					trace("Hit High border");
+					_Player2._HealthVisible = 0;
+					_Player2._HealthCounter--;
+				}
+				if (_Player2._InvincibleFrame == true)
+				{
+					//trace("Player invincible");
+				}
+			}
+			if (HBorder2.hitTestObject(_Player2))
+			{
+				if (_Player2._InvincibleFrame == false)
+				{
+					trace("Hit High border");	
+					_Player2._HealthVisible = 0;
+					_Player2._HealthCounter--;
+				}
+				
+				if (_Player2._InvincibleFrame == true)
+				{
+					//trace("Player invincible");
+				}
+			}
+			if (LBorder.hitTestObject(_Player2))
+			{
+				if (_Player2._InvincibleFrame == false)
+				{
+					trace("Hit Low border");
+					_Player2._HealthVisible = 0;
+					_Player2._HealthCounter--;
+				}
+				
+				if (_Player2._InvincibleFrame == true)
+				{
+					trace("Player invincible");
+				}
+			}
+			if (LBorder2.hitTestObject(_Player2))
+			{
+				if (_Player2._InvincibleFrame == false)
+				{
+					trace("Hit Low border");
+					_Player2._HealthVisible = 0;
+					_Player2._HealthCounter--;
+				}
+				
+				if (_Player2._InvincibleFrame == true)
+				{
+					trace("Player invincible");
+				}
+			}
+			
 			//hittest for finish
 			if (_finish.hitTestObject(_Player))
 			{
@@ -312,56 +435,6 @@ package
 			{
 				trace("player 2 crossed finish");
 			}
-			
-			if (_enemyBullet.hitTestObject(_bullet1)){}
-			if (_enemyBullet.hitTestObject(_Player))
-			{
-				// REMOVELIFE
-			}
-			if (_Player.x <= _enemy.x - 800)
-			{
-				_enemy.x -= 5;
-			}
-			else(_enemy.x -= 5);
-			if (_bullet1.hitTestObject(_enemy))
-			{
-				_bullet1.x = 0;
-				_bullet1.y = 0;
-				removeChild(_bullet1);
-				_enemy._enemyHealth -= 5;
-			}
-			if (_enemy._enemyHealth == 0)
-			{
-				if (this.contains(_enemyBullet))
-				{
-					_enemy.removeMe();
-				}
-			}
-			if (_enemyBullet.hitTestObject(_bullet1)){}
-			if (_enemyBullet.hitTestObject(_Player))
-			{
-				// REMOVELIFE
-			}
-			if (_Player.x <= _enemy.x - 800)
-			{
-				_enemy.x -= 5;
-			}
-			else(_enemy.x -= 5);
-			if (_bullet1.hitTestObject(_enemy))
-			{
-				_bullet1.x = 0;
-				_bullet1.y = 0;
-				removeChild(_bullet1);
-				_enemy._enemyHealth -= 5;
-			}
-			if (_enemy._enemyHealth == 0)
-			{
-				if (this.contains(_enemyBullet))
-				{
-					_enemy.removeMe();
-				}
-			}
-			
 		}
 		
 		private function loop1(e:Event):void 
@@ -372,10 +445,18 @@ package
 			//Bullet movement
 			if (_bullet1.stage)
 			{
-				_bullet1.scaleX = 1
-				_bullet1.scaleY = 1
+				_bullet1.scaleX = 1;
+				_bullet1.scaleY = 1;
 				_bullet1.rotation = 90;
 				_bullet1.x += 5;
+			}
+			
+			if (_bullet2.stage)
+			{
+				_bullet2.scaleX = 1;
+				_bullet2.scaleY = 1;
+				_bullet2.rotation = 90;
+				_bullet2.x += 5;
 			}
 			
  			//Players can't exit the screen
@@ -397,7 +478,7 @@ package
  			}
  			
  			//Player 2
- 			/*if (_Player2.x <= 30)
+ 			if (_Player2.x <= 30)
  			{
  				_Player2.x = 30;
 			}
@@ -412,7 +493,7 @@ package
 			if (_Player2.y >= 570)
 			{
 				_Player2.y = 570;
- 			}*/
+ 			}
 			
 			//asteroids respawner and spawnrate
 			
@@ -508,6 +589,19 @@ package
 					addChild(_bullet1);
 					_bullet1.x = _Player.x;
 					_bullet1.y = _Player.y;
+				}
+			}
+		}
+		
+		private function addBullets2(e:Event):void 
+		{
+			if (_Player._ShiftButtonIsDown == true)
+			{
+				if (!this.contains(_bullet2))
+				{
+					addChild(_bullet2);
+					_bullet2.x = _Player.x;
+					_bullet2.y = _Player.y;
 				}
 			}
 		}
