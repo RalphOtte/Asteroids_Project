@@ -293,6 +293,11 @@ package
 				addChild(_WinScreen);
 				//addChild(_GameOverScreen);
 			}
+			
+			if (_Player._HealthCounter <= 0)
+			{
+				addChild(_GameOverScreen);
+			}
 
 		}
 		
