@@ -167,10 +167,6 @@ package
 			{
 				_SpaceButton = true;
 			}
-			/*if (e.keyCode == "C")	// Hier nog de keycode voor C
-			{
-				_CButton = true;
-			}*/
 		}
 		
 		public function loop(e:Event):void 
@@ -242,7 +238,7 @@ package
 				if (_MenuSelection == 2)
 				{
 				//	dispatchEvent(new Event("SpawnShipSelect2"));			// Geeft signaal af voor de Main dat hij ShipSelect moet spawnen
-					dispatchEvent(new Event("SpawnLevelSelect"));
+					dispatchEvent(new Event("SpawnLevelSelect2"));
 					removeChild(_Pointer);
 					removeEventListener(Event.ENTER_FRAME, loop);
 					dispatchEvent(new Event("RemoveMenu"));

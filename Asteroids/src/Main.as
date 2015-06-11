@@ -22,9 +22,11 @@ package
 		private var _MPShipSelect:MPShipSelect;
 		private var _Option:Options;
 		private var _LevelSelect:LevelSelect;
+		private var _LevelSelect2:LevelSelect2;
 		private var _Level1:Level_1;
 		private var _Level2:Level_2;
 		private var _Level3:Level_3;
+		private var _Level1MP:MP;
 		private var _Credits:Credits;	
 		private var _Player:Player = new Player;
 		private var _Bullet:Bullet = new Bullet;
@@ -52,9 +54,11 @@ package
 			_MPShipSelect = new MPShipSelect();
 			_Option = new Options();
 			_LevelSelect = new LevelSelect();
+			_LevelSelect2 = new LevelSelect2();
 			_Level1 = new Level_1();
 			_Level2 = new Level_2();
 			_Level3 = new Level_3();
+			_Level1MP = new MP();
 			_Credits = new Credits();
 		
 			/*
@@ -75,6 +79,7 @@ package
 			_menu.addEventListener("SpawnOptions" , SpawnOptions);
 			_menu.addEventListener("SpawnCredits", SpawnCredits);
 			_menu.addEventListener("SpawnLevelSelect", SpawnLevelSelect);
+			_menu.addEventListener("SpawnLevelSelect2", SpawnLevelSelect2);
 			_Option.addEventListener("SpawnMenu", SpawnMenu);
 			_Option.addEventListener("RemoveOptions", RemoveOptions);
 			_ShipSelect.addEventListener("SpawnMenu", SpawnMenu);
@@ -94,12 +99,7 @@ package
 			_LevelSelect.addEventListener("SpawnLevel_3", SpawnLevel_3);
 			_LevelSelect.addEventListener("SpawnLevelSelect", SpawnShipSelect1);
 			_LevelSelect.addEventListener("SpawnMPLevelSelect", SpawnShipSelect2);
-			_Player.addEventListener("SHOOT", ShootBullet);
-		}
-		
-		private function ShootBullet(e:Event):void 
-		{
-			
+			_LevelSelect2.addEventListener("SpawnLevel_1MP", SpawnLevel_1MP);
 		}
 		
 		private function SingleMode(e:Event):void 
@@ -124,6 +124,11 @@ package
 		//	_Level1.reSpawn(e); (moet nog gemaakt worden)
 		}
 		
+		private function SpawnLevel_1MP(e:Event):void 
+		{
+			addChild(_Level1MP);
+		}
+		
 		private function SpawnLevel_2(e:Event):void 
 		{
 		//	addChild(_Level2);
@@ -141,6 +146,13 @@ package
 			addChild(_LevelSelect);
 			_LevelSelect.reSpawn(e);
 			_LevelSelect.AllLevelSelect();
+		}
+		
+		private function SpawnLevelSelect2(e:Event):void 
+		{
+			addChild(_LevelSelect2);
+			_LevelSelect2.reSpawn(e);
+			_LevelSelect2.AllLevelSelect();
 		}
 		
 		// RESPAWN FUNCTIONS

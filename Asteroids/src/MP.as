@@ -1,9 +1,19 @@
-package  
+package
 {
+	import flash.display.Bitmap;
+	import flash.display.Loader;
 	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	import flash.text.TextField;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	
 	/**
 	 * ...
-	 * @author Jochem
+	 * @author Ralph Otte
 	 */
 	public class MP extends Sprite
 	{
@@ -18,10 +28,9 @@ package
 		private var _asteroid2:Asteroid = new Asteroid;
 		private var _breakAsteroid:breakAsteroids = new breakAsteroids;
 		private var _BreakAsteroidPiece:BreakAsteroidPiece = new BreakAsteroidPiece;
+		private var _BreakAsteroidPiece2:BreakAsteroidPiece = new BreakAsteroidPiece;
 		private var _enemy:Enemy = new Enemy;
 		private var _bullet1:Bullet = new Bullet();
-		private var _bullet2:Bullet = new Bullet();
-		private var _bullet3:Bullet = new Bullet();
 		private var _finishSpawner:int;
 		private var _finish:Finish = new Finish;
 		
@@ -36,6 +45,7 @@ package
 		//Alle IntroTextBools
 		private var _Text1:Boolean = false;
 		private var _Text2:Boolean = false;
+		public var _Intro:Boolean = false;
 		
 		//Alle text
 		private var _IntroText1:TextField;
@@ -51,6 +61,7 @@ package
 		private var HBorder2:HighBorder = new HighBorder();
 		private var LBorder:LowBorder = new LowBorder();
 		private var LBorder2:LowBorder = new LowBorder();
+		
 		
 		//Intro op Tile 1
 		[Embed(source="../Assets/Game/Miscelaneous/Tutorial.png")]
@@ -74,6 +85,14 @@ package
 		private var _Ship3:Class;
 		private var _GreenShip:Bitmap;
 		
+		// Stoplicht
+		//[Embed(source="../Assets/Game/Miscelaneous/Stoplicht.swf")]  //, symbol="scene1ID"
+		//private var _Stoplicht:Class;
+		//private var _StopLicht:MovieClip = new _StopLicht();
+		[Embed(source="../Assets/Game/Miscelaneous/Stoplicht.swf")]  //, symbol="scene1ID"
+		private var _Stoplicht:Class;
+		//private var _Stoplicht:MovieClip = new _Stoplicht();
+		
 		public function MP() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -83,6 +102,8 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ENTER_FRAME, collisionCheck);
+			addEventListener(Event.ENTER_FRAME, addBullets1);
+			addEventListener(Event.ENTER_FRAME, breakPieceMovement);
 			_SpawnRate.addEventListener(TimerEvent.TIMER, SpawnAsteroids);
 			_Curtain1 = new _CurtainUp();
 			_Curtain2 = new _CurtainDown();
@@ -93,9 +114,30 @@ package
 			Tile1(e);
 		}
 		
+		private function breakPieceMovement(e:Event):void 
+		{
+			if (this.contains(_BreakAsteroidPiece))
+			{
+				_BreakAsteroidPiece.x += 5;
+				_BreakAsteroidPiece.y += 10;
+			}
+			if (this.contains(_BreakAsteroidPiece2))
+			{
+				_BreakAsteroidPiece2.x -= 5;
+				_BreakAsteroidPiece2.y -= 10;
+			}
+		}
+		
 		private function collisionCheck(e:Event):void 
 		{
 			//Hittest for all asteroids
+			if (this.contains(_bullet1))
+			{
+				if (_bullet1.x >= 1280)
+				{
+					removeChild(_bullet1);
+				}
+			}
 			
 			if (_asteroid.hitTestObject(_Player))
 			{
@@ -111,13 +153,23 @@ package
 				}
 			}
 			else (_asteroid.x -= _Scrollspeed/1.5)
-			/*
+			
 			if (_breakAsteroid.hitTestObject(_Player))
 			{
 				trace("Hit a Breakable Asteroid");
 			}
-			else (_breakAsteroid.x -= 5)
-			*/
+			else (_breakAsteroid.x -= _Scrollspeed / 1.5)
+			
+			//Healthpool
+			if (_breakAsteroid.hitTestObject(_bullet1))
+			{
+				_breakAsteroid._AsteroidsHealth -= 5;
+			}
+			
+			if (_breakAsteroid._AsteroidsHealth == 0)
+			{
+				spawnBreakPieces();
+			}
 			
 			//Hittest + movement for enemy
 			
@@ -137,50 +189,26 @@ package
 			}
 			else (_enemy.x -= 5)
 			
-			//Hittest + bulletmovement
+			//Hittest + bulletmovement			
 			if (_bullet1.hitTestObject(_breakAsteroid))
 			{
 				trace("Bullet hit a breakable asteroid!");
+				_bullet1.x = 0;
+				_bullet1.y = 0;
 				removeChild(_bullet1);
 			}
 			else(_bullet1.x += 5)
 			
 			if (_bullet1.hitTestObject(_asteroid))
 			{
+				trace("Bullet hit an indestructible asteroid");
+				_bullet1.x = 0;
+				_bullet1.y = 0;
 				removeChild(_bullet1);
 			}
 			else(_bullet1.x += 5)
 			
-				//Hittest + bulletmovement
-			if (_bullet2.hitTestObject(_breakAsteroid))
-			{
-				trace("Bullet hit a breakable asteroid!");
-				removeChild(_bullet2);
-			}
-			else(_bullet2.x += 5)
-			
-			if (_bullet2.hitTestObject(_asteroid))
-			{
-				removeChild(_bullet2);
-			}
-			else(_bullet2.x += 5)
-			
-				//Hittest + bulletmovement
-			if (_bullet3.hitTestObject(_breakAsteroid))
-			{
-				trace("Bullet hit a breakable asteroid!");
-				removeChild(_bullet3);
-			}
-			else(_bullet3.x += 5)
-			
-			if (_bullet3.hitTestObject(_asteroid))
-			{
-				removeChild(_bullet3);
-			}
-			else(_bullet3.x += 5)
-			
 			//Hittest for all borders
-			
 			if (HBorder.hitTestObject(_Player))
 			{
 				if (_Player._InvincibleFrame == false)
@@ -246,12 +274,6 @@ package
 			{
 				trace("player 2 crossed finish");
 			}
-			
-		}
-		
-		private function addBullets():void
-		{
-		
 		}
 		
 		private function loop1(e:Event):void 
@@ -264,22 +286,6 @@ package
 				_bullet1.scaleY = 1
 				_bullet1.rotation = 90;
 				_bullet1.x += 5;
-			}
-			//Bullet movement
-			if (_bullet2.stage)
-			{
-				_bullet2.scaleX = 1
-				_bullet2.scaleY = 1
-				_bullet2.rotation = 90;
-				_bullet2.x += 5;
-			}
-			//Bullet movement
-			if (_bullet3.stage)
-			{
-				_bullet3.scaleX = 1
-				_bullet3.scaleY = 1
-				_bullet3.rotation = 90;
-				_bullet3.x += 5;
 			}
 			
  			//Players can't exit the screen
@@ -301,7 +307,7 @@ package
  			}
  			
  			//Player 2
- 			/*if (_Player2.x <= 30)
+ 			if (_Player2.x <= 30)
  			{
  				_Player2.x = 30;
 			}
@@ -316,7 +322,7 @@ package
 			if (_Player2.y >= 570)
 			{
 				_Player2.y = 570;
- 			}*/
+ 			}
 			
 			//asteroids respawner and spawnrate
 			
@@ -395,6 +401,124 @@ package
 			}
 		}
 		
+		private function addBullets1(e:Event):void 
+		{
+			if (_Player._ShiftButtonIsDown == true)
+			{
+				if (!this.contains(_bullet1))
+				{
+					addChild(_bullet1);
+					_bullet1.x = _Player.x;
+					_bullet1.y = _Player.y;
+				}
+				else{}
+			}
+		}
+		
+		public function spawnBreakPieces():void
+		{
+				this.addChild(_BreakAsteroidPiece);
+				this.addChild(_BreakAsteroidPiece2);
+				_BreakAsteroidPiece.scaleX = 0.4;
+				_BreakAsteroidPiece.scaleY = 0.4;
+				_BreakAsteroidPiece2.scaleX = 0.4;
+				_BreakAsteroidPiece2.scaleY = 0.4;
+				_BreakAsteroidPiece.x = _breakAsteroid.x + 20;
+				_BreakAsteroidPiece.y = _breakAsteroid.y + 20;
+				_BreakAsteroidPiece2.x = _breakAsteroid.x - 20;
+				_BreakAsteroidPiece2.y = _breakAsteroid.y - 20;
+			//	breakPieceMovement(e);
+				if (this.contains(_breakAsteroid))
+				{
+					removeChild(_breakAsteroid);
+				}
+		}
+		
+		private function SpawnAsteroids():void 
+		{
+			if (_asteroid.x <= -20)
+			{
+				_asteroid.x += 1400;
+			}
+			
+			addChild(_asteroid);
+			_asteroid.scaleX = 0.5;
+			_asteroid.scaleY = 0.5;
+			_asteroid.x = stage.stageWidth;
+			_asteroid.y = 120 + Math.floor(Math.random() * 480);
+		}
+		
+		private function Tile1(e:Event):void
+		{
+			addChild(_bg);
+			addChild(_bg1);
+			
+			_bg1.y = 0;
+			_bg1.x = 1280;
+			
+			_finish.x = 1350;
+			
+			//borders
+			addChild(HBorder);
+			addChild(HBorder2);
+			HBorder2.x = 1280;
+			addChild(LBorder);
+			addChild(LBorder2);
+			LBorder2.x = 1280;
+			
+			addChild(_Player);
+			addChild(_Player2);
+			
+			//addChild(_Curtain1);	// Up
+			//addChild(_Curtain2);	// Down
+			//addChild(_Curtain3);	// Fade
+			
+			_Curtain1.y = 50;
+			_Curtain2.y = stage.stageHeight / 2 + 50;
+			_Player.scaleX = 0.5;
+			_Player.scaleY = 0.5;
+			_Player.rotation = 90;
+			_Player.x = (stage.stageWidth / 10) * 3;
+			_Player.y = (stage.stageHeight / 4) * 2;
+		
+			_Player2.scaleX = 0.5;
+			_Player2.scaleY = 0.5;
+			_Player2.rotation = 90;
+			_Player2.x = (stage.stageWidth / 10) * 3;
+			_Player2.y = (stage.stageHeight / 4) * 3;
+			
+			
+			
+		//	SpawnAsteroids();
+			
+			
+			//addChild(_asteroid);	
+			_asteroid.scaleX = 0.5;
+			_asteroid.scaleY = 0.5;
+			_asteroid.x = stage.stageWidth;
+			_asteroid.y = 120 + Math.floor(Math.random() * 480);
+			
+			
+			//addChild(_asteroid2);
+			_asteroid2.scaleX = 0.5;
+			_asteroid2.scaleY = 0.5;
+			_asteroid2.x = stage.stageWidth;
+			_asteroid2.y = 120 + Math.floor(Math.random() * 500);
+		
+			addChild(_breakAsteroid);
+			_breakAsteroid.scaleX = 1;
+			_breakAsteroid.scaleY = 1;
+			_breakAsteroid.x = stage.stageWidth;
+			_breakAsteroid.y = stage.stageHeight / 2;
+			
+			
+		//	addChild(_enemy);
+			_enemy.scaleX = 0.5;
+			_enemy.scaleY = 0.5;
+			_enemy.x = stage.stageWidth;
+			_enemy.y = stage.stageHeight / 2;
+			
+			addEventListener(Event.ENTER_FRAME, loop1);
+		}
 	}
-
 }

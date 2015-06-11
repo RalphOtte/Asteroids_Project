@@ -31,6 +31,7 @@ package
 		private var _BreakAsteroidPiece2:BreakAsteroidPiece = new BreakAsteroidPiece;
 		private var _enemy:Enemy = new Enemy;
 		private var _bullet1:Bullet = new Bullet();
+		private var _enemyBullet:enemyBullet = new enemyBullet();
 		private var _finishSpawner:int;
 		private var _finish:Finish = new Finish;
 		
@@ -274,6 +275,31 @@ package
 			{
 				trace("player 2 crossed finish");
 			}
+			
+			if (_enemyBullet.hitTestObject(_bullet1)){}
+			if (_enemyBullet.hitTestObject(_Player))
+			{
+				// REMOVELIFE
+			}
+			if (_Player.x <= _enemy.x - 800)
+			{
+				_enemy.x -= 5;
+			}
+			else(_enemy.x -= 5);
+			if (_bullet1.hitTestObject(_enemy))
+			{
+				_bullet1.x = 0;
+				_bullet1.y = 0;
+				removeChild(_bullet1);
+				_enemy._enemyHealth -= 5;
+			}
+			if (_enemy._enemyHealth == 0)
+			{
+				if (this.contains(_enemyBullet))
+				{
+					_enemy.removeMe();
+				}
+			}
 		}
 		
 		private function loop1(e:Event):void 
@@ -419,11 +445,15 @@ package
 		{
 				this.addChild(_BreakAsteroidPiece);
 				this.addChild(_BreakAsteroidPiece2);
-				_BreakAsteroidPiece.x = _breakAsteroid.x;
-				_BreakAsteroidPiece.y = _breakAsteroid.y;
-				_BreakAsteroidPiece2.x = _breakAsteroid.x;
-				_BreakAsteroidPiece2.y = _breakAsteroid.y;
-				breakPieceMovement(e);
+				_BreakAsteroidPiece.scaleX = 0.4;
+				_BreakAsteroidPiece.scaleY = 0.4;
+				_BreakAsteroidPiece2.scaleX = 0.4;
+				_BreakAsteroidPiece2.scaleY = 0.4;
+				_BreakAsteroidPiece.x = _breakAsteroid.x + 20;
+				_BreakAsteroidPiece.y = _breakAsteroid.y + 20;
+				_BreakAsteroidPiece2.x = _breakAsteroid.x - 20;
+				_BreakAsteroidPiece2.y = _breakAsteroid.y - 20;
+			//	breakPieceMovement(e);
 				if (this.contains(_breakAsteroid))
 				{
 					removeChild(_breakAsteroid);
@@ -494,14 +524,14 @@ package
 			_asteroid2.x = stage.stageWidth;
 			_asteroid2.y = 120 + Math.floor(Math.random() * 500);
 		
-			addChild(_breakAsteroid);
+		//	addChild(_breakAsteroid);
 			_breakAsteroid.scaleX = 1;
 			_breakAsteroid.scaleY = 1;
 			_breakAsteroid.x = stage.stageWidth;
 			_breakAsteroid.y = stage.stageHeight / 2;
 			
 			
-		//	addChild(_enemy);
+			addChild(_enemy);
 			_enemy.scaleX = 0.5;
 			_enemy.scaleY = 0.5;
 			_enemy.x = stage.stageWidth;
