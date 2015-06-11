@@ -530,7 +530,7 @@ package
 			}
 			
 			//spawner
-			if (_ObsSpawner >= 150)
+			if (_ObsSpawner >= 50)
 			{
 				SpawnAsteroids();
 			}else(_ObsSpawner++)
