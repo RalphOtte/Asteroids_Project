@@ -291,12 +291,16 @@ package
 			{
 				trace("player 1 Crossed finish");
 				addChild(_WinScreen);
+				_Player.x = -500;
+				_Player.y = -500;
 				//addChild(_GameOverScreen);
 			}
 			
 			if (_Player._HealthCounter <= 0)
 			{
 				addChild(_GameOverScreen);
+				_Player.x = -500;
+				_Player.y = -500;
 			}
 
 		}
