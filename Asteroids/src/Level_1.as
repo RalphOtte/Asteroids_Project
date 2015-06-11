@@ -182,15 +182,17 @@ package
 			//asteroid pieces
 			if (_BreakAsteroidPiece.hitTestObject(_Player))
 			{
-				removeChild(_BreakAsteroidPiece);
+				//removeChild(_BreakAsteroidPiece);
 				trace("Hit a Breakable Asteroid piece1");
+				_Player._HealthCounter--;
 			}
 			else(_BreakAsteroidPiece.x -= _Scrollspeed / 1.5)
 			
 			if (_BreakAsteroidPiece2.hitTestObject(_Player))
 			{
 				trace("Hit a Breakable Asteroid piece2");
-				removeChild(_BreakAsteroidPiece2);
+				//removeChild(_BreakAsteroidPiece2);
+				_Player._HealthCounter--;
 			}
 			else (_BreakAsteroidPiece2.x -= _Scrollspeed / 1.5)
 			
@@ -208,7 +210,7 @@ package
 			
 			//Hittest + movement for enemy
 			
-			if (_enemy.hitTestObject(_Player))
+			/*if (_enemy.hitTestObject(_Player))
 			{
 				if (_Player._InvincibleFrame == false)
 				{
@@ -223,6 +225,7 @@ package
 				}
 			}
 			else (_enemy.x -= 5)
+			*/
 			
 			//Hittest + bulletmovement			
 			if (_bullet1.hitTestObject(_breakAsteroid))
@@ -477,7 +480,7 @@ package
 			
 			if (_finishSpawner == 5)
 			{
-				_finishSpawner++;
+				//_finishSpawner++;
 				addChild(_finish);
 				_finish.scaleX = 1.5;
 				_finish.scaleY = 1.5;
@@ -485,9 +488,14 @@ package
 			}
 			if (_finishSpawner >= 5)
 			{
-				trace(_finish.x)
+				trace("finish is at "+_finish.x)
 				_finish.x -= _Scrollspeed;
-				trace("added finish")
+				//trace("added finish")
+				
+				if (this.contains(_finish) && _finish.x <= -50)
+				{
+					removeChild(_finish);
+				}
 			}
 		}
 		
