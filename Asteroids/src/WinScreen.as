@@ -9,7 +9,7 @@ package
 	 * ...
 	 * @author Ralph Otte
 	 */
-	public class GameOverScreen 
+	public class WinScreen 
 	{
 		private var _GameOver:TextField;
 		
@@ -17,7 +17,7 @@ package
 		private var backgroundImg:Class;
 		private var bgImage:Bitmap;
 		
-		public function GameOverScreen() 
+		public function WinScreen() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 			super();
