@@ -10,6 +10,9 @@ package
 	import flash.text.TextField;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	import flash.media.Sound;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
 	
 	/**
 	 * ...
@@ -69,6 +72,10 @@ package
 		private var HBorder2:HighBorder = new HighBorder();
 		private var LBorder:LowBorder = new LowBorder();
 		private var LBorder2:LowBorder = new LowBorder();
+		
+		//sounds
+		private var _Music:Sound = new Sound;
+		private var _GameSound:Sound;
 		
 		
 		//Intro op Tile 1
@@ -164,6 +171,10 @@ package
 					//trace("Hit an Asteroid");
 					_Player._HealthVisible = 0;
 					_Player._HealthCounter--;
+					
+					var _GameSound:Sound = new Sound;
+					_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+					_GameSound.play(1);
 				}
 				if (_Player._InvincibleFrame == true)
 				{
@@ -177,6 +188,9 @@ package
 			{
 				trace("Hit a Breakable Asteroid");
 				
+				var _GameSound:Sound = new Sound;
+				_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+				_GameSound.play(1);
 				_breakAsteroid._AsteroidsHealth -= 5;
 			}
 			else (_breakAsteroid.x -= _Scrollspeed / 1.5)
@@ -188,6 +202,10 @@ package
 				//removeChild(_BreakAsteroidPiece);
 				trace("Hit a Breakable Asteroid piece1");
 				_Player._HealthCounter--;
+				
+				var _GameSound:Sound = new Sound;
+				_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+				_GameSound.play(1);
 			}
 			else(_BreakAsteroidPiece.x -= _Scrollspeed / 1.5)
 			
@@ -196,6 +214,10 @@ package
 				trace("Hit a Breakable Asteroid piece2");
 				//removeChild(_BreakAsteroidPiece2);
 				_Player._HealthCounter--;
+				
+				var _GameSound:Sound = new Sound;
+				_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+				_GameSound.play(1);
 			}
 			else (_BreakAsteroidPiece2.x -= _Scrollspeed / 1.5)
 			
@@ -204,6 +226,10 @@ package
 			if (_breakAsteroid.hitTestObject(_bullet1))
 			{
 				_breakAsteroid._AsteroidsHealth -= 5;
+				
+				var _GameSound:Sound = new Sound;
+				_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+				_GameSound.play(1);
 			}
 			
 			if (_breakAsteroid._AsteroidsHealth == 0)
@@ -218,6 +244,10 @@ package
 				_bullet1.x = 0;
 				_bullet1.y = 0;
 				removeChild(_bullet1);
+				
+				var _GameSound:Sound = new Sound;
+				_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+				_GameSound.play(1);
 			}
 			else(_bullet1.x += 5)
 			
@@ -227,6 +257,10 @@ package
 				_bullet1.x = 0;
 				_bullet1.y = 0;
 				removeChild(_bullet1);
+				
+				var _GameSound:Sound = new Sound;
+				_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+				_GameSound.play(1);
 			}
 			else(_bullet1.x += 5)
 			
@@ -238,6 +272,10 @@ package
 					trace("Hit High border");
 					_Player._HealthVisible = 0;
 					_Player._HealthCounter--;
+					
+					var _GameSound:Sound = new Sound;
+					_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+					_GameSound.play(1);
 				}
 				if (_Player._InvincibleFrame == true)
 				{
@@ -251,6 +289,10 @@ package
 					trace("Hit High border");	
 					_Player._HealthVisible = 0;
 					_Player._HealthCounter--;
+					
+					var _GameSound:Sound = new Sound;
+					_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+					_GameSound.play(1);
 				}
 				
 				if (_Player._InvincibleFrame == true)
@@ -265,6 +307,10 @@ package
 					trace("Hit Low border");
 					_Player._HealthVisible = 0;
 					_Player._HealthCounter--;
+					
+					var _GameSound:Sound = new Sound;
+					_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+					_GameSound.play(1);
 				}
 				
 				if (_Player._InvincibleFrame == true)
@@ -279,6 +325,10 @@ package
 					trace("Hit Low border");
 					_Player._HealthVisible = 0;
 					_Player._HealthCounter--;
+					
+					var _GameSound:Sound = new Sound;
+					_GameSound.load(new URLRequest ("../Assets/New folder/astroids-hit.mp3"));
+					_GameSound.play(1);
 				}
 				
 				if (_Player._InvincibleFrame == true)
@@ -294,6 +344,10 @@ package
 				_Player.x = -500;
 				_Player.y = -500;
 				//addChild(_GameOverScreen);
+				
+				var _GameSound:Sound = new Sound;
+				_GameSound.load(new URLRequest("../Assets/New folder/astroids-finish.mp3"));
+				_GameSound.play(1);
 			}
 			
 			if (_Player._HealthCounter <= 0)
@@ -542,6 +596,10 @@ package
 		
 		private function Tile1(e:Event):void
 		{
+			
+			_Music.load(new URLRequest("../Assets/New folder/astroids-backgroundsound.mp3"));
+			_Music.play(0, 999);
+			
 			addChild(_bg);
 			addChild(_bg1);
 			

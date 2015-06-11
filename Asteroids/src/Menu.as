@@ -31,6 +31,7 @@ package
 		private var _SButtonIsDown:Boolean = false;	
 		private var _SpaceButton:Boolean = false;
 		private var _CButton:Boolean = false;
+		private var _MenuSound:Sound;
 		
 		[Embed(source="../Assets/Menu's/menu_astroids.png")]
 		private var _MenuBackground:Class;							  
@@ -152,20 +153,34 @@ package
 			if (e.keyCode == 83)
 			{
 				_SButtonIsDown = true;
+				
+				var _MenuSound:Sound = new Sound
+				_MenuSound.load(new URLRequest("../Assets/New folder/astroids-menu choose.mp3"));
+				_MenuSound.play(1);
 			}
 			
 			if (e.keyCode == 38)
 			{
 				_WButtonIsDown = true;
+				var _MenuSound:Sound = new Sound
+				_MenuSound.load(new URLRequest("../Assets/New folder/astroids-menu choose.mp3"));
+				_MenuSound.play(1);
 			}
 			if (e.keyCode == 40)
 			{
 				_SButtonIsDown = true;
+				var _MenuSound:Sound = new Sound
+				_MenuSound.load(new URLRequest("../Assets/New folder/astroids-menu choose.mp3"));
+				_MenuSound.play(1);
 			}
 			
 			if (e.keyCode == 32)
 			{
 				_SpaceButton = true;
+				
+				var _MenuSound:Sound = new Sound
+				_MenuSound.load(new URLRequest("../Assets/New folder/astroids-menu hit.mp3"));
+				_MenuSound.play(1);
 			}
 		}
 		
