@@ -175,7 +175,7 @@ package
 			
 			//Hittest + movement for enemy
 			
-			if (_enemy.hitTestObject(_Player))
+			/*if (_enemy.hitTestObject(_Player))
 			{
 				if (_Player._InvincibleFrame == false)
 				{
@@ -190,6 +190,7 @@ package
 				}
 			}
 			else (_enemy.x -= 5)
+			*/
 			
 			//Hittest + bulletmovement			
 			if (_bullet1.hitTestObject(_breakAsteroid))
