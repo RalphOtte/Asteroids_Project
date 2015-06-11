@@ -33,10 +33,14 @@ package
 		private var _bullet1:Bullet = new Bullet();
 		private var _finishSpawner:int;
 		private var _finish:Finish = new Finish;
+		private var _ObsSpawner:int;
+		private var _ObsDetermine:int;
+		private var _AsteroidCounter:int;
+		private var _PieceTracker:Boolean;
 		
 		//Alle Timers
 		private var _1SecTimer:Timer = new Timer(1000);
-		private var _SpawnRate:Timer = new Timer(1000);
+		//private var _SpawnRate:Timer = new Timer(1000);
 		
 		//Arrays
 		private var _Player1Bullets:Array = new Array;
@@ -104,7 +108,7 @@ package
 			addEventListener(Event.ENTER_FRAME, collisionCheck);
 			addEventListener(Event.ENTER_FRAME, addBullets1);
 			addEventListener(Event.ENTER_FRAME, breakPieceMovement);
-			_SpawnRate.addEventListener(TimerEvent.TIMER, SpawnAsteroids);
+			//_SpawnRate.addEventListener(TimerEvent.TIMER, SpawnAsteroids);
 			_Curtain1 = new _CurtainUp();
 			_Curtain2 = new _CurtainDown();
 			_Curtain3 = new _CurtainFade();
@@ -120,11 +124,21 @@ package
 			{
 				_BreakAsteroidPiece.x += 5;
 				_BreakAsteroidPiece.y += 10;
+				if (_BreakAsteroidPiece.x <= - 20 || _BreakAsteroidPiece.y <= 20 || _BreakAsteroidPiece.x >= 1300 || _BreakAsteroidPiece.y >= 780)
+				{
+					removeChild(_BreakAsteroidPiece);
+					trace("remove piece 1");
+				}
 			}
 			if (this.contains(_BreakAsteroidPiece2))
 			{
 				_BreakAsteroidPiece2.x -= 5;
 				_BreakAsteroidPiece2.y -= 10;
+				if (_BreakAsteroidPiece2.x <= - 20 || _BreakAsteroidPiece2.y <= 20 || _BreakAsteroidPiece2.x >= 1300 || _BreakAsteroidPiece2.y >= 780)
+				{
+					removeChild(_BreakAsteroidPiece2);
+					trace("remove piece 2");
+				}
 			}
 		}
 		
@@ -149,16 +163,34 @@ package
 				}
 				if (_Player._InvincibleFrame == true)
 				{
-					trace("Player invincible");
+					//trace("Player invincible");
 				}
 			}
 			else (_asteroid.x -= _Scrollspeed/1.5)
 			
+			
 			if (_breakAsteroid.hitTestObject(_Player))
 			{
 				trace("Hit a Breakable Asteroid");
+				removeChild(_BreakAsteroidPiece);
 			}
 			else (_breakAsteroid.x -= _Scrollspeed / 1.5)
+			
+			
+			//asteroid pieces
+			if (_BreakAsteroidPiece.hitTestObject(_Player))
+			{
+				removeChild(_BreakAsteroidPiece);
+			}
+			else(_BreakAsteroidPiece.x -= _Scrollspeed / 1.5)
+			
+			if (_BreakAsteroidPiece2.hitTestObject(_Player))
+			{
+				trace("Hit a Breakable Asteroid");
+				removeChild(_BreakAsteroidPiece2);
+			}
+			else (_BreakAsteroidPiece2.x -= _Scrollspeed / 1.5)
+			
 			
 			//Healthpool
 			if (_breakAsteroid.hitTestObject(_bullet1))
@@ -177,14 +209,14 @@ package
 			{
 				if (_Player._InvincibleFrame == false)
 				{
-					trace("Hit an enemy");
+					//trace("Hit an enemy");
 					_Player._HealthVisible = 0;
 					_Player._HealthCounter--;
 				}
 				
 				if (_Player._InvincibleFrame == true)
 				{
-					trace("Player invincible");
+					//trace("Player invincible");
 				}
 			}
 			else (_enemy.x -= 5)
@@ -219,7 +251,7 @@ package
 				}
 				if (_Player._InvincibleFrame == true)
 				{
-					trace("Player invincible");
+					//trace("Player invincible");
 				}
 			}
 			if (HBorder2.hitTestObject(_Player))
@@ -233,7 +265,7 @@ package
 				
 				if (_Player._InvincibleFrame == true)
 				{
-					trace("Player invincible");
+					//trace("Player invincible");
 				}
 			}
 			if (LBorder.hitTestObject(_Player))
@@ -278,6 +310,8 @@ package
 		
 		private function loop1(e:Event):void 
 		{
+			
+			SpawnRate();
 			
 			//Bullet movement
 			if (_bullet1.stage)
@@ -392,6 +426,9 @@ package
 			{
 				_finishSpawner++;
 				addChild(_finish);
+				_finish.scaleX = 1.5;
+				_finish.scaleY = 1.5;
+				_finish.y = -150;
 			}
 			if (_finishSpawner >= 5)
 			{
@@ -411,37 +448,94 @@ package
 					_bullet1.x = _Player.x;
 					_bullet1.y = _Player.y;
 				}
-				else{}
 			}
 		}
 		
 		public function spawnBreakPieces():void
 		{
-				this.addChild(_BreakAsteroidPiece);
-				this.addChild(_BreakAsteroidPiece2);
-				_BreakAsteroidPiece.x = _breakAsteroid.x;
-				_BreakAsteroidPiece.y = _breakAsteroid.y;
-				_BreakAsteroidPiece2.x = _breakAsteroid.x;
-				_BreakAsteroidPiece2.y = _breakAsteroid.y;
-				breakPieceMovement(e);
-				if (this.contains(_breakAsteroid))
-				{
-					removeChild(_breakAsteroid);
-				}
+			this.addChild(_BreakAsteroidPiece);
+			this.addChild(_BreakAsteroidPiece2);
+			_BreakAsteroidPiece.scaleX = 0.4;
+			_BreakAsteroidPiece.scaleY = 0.4;
+			_BreakAsteroidPiece2.scaleX = 0.4;
+			_BreakAsteroidPiece2.scaleY = 0.4;
+			_BreakAsteroidPiece.x = _breakAsteroid.x + 20;
+			_BreakAsteroidPiece.y = _breakAsteroid.y + 20;
+			_BreakAsteroidPiece2.x = _breakAsteroid.x - 20;
+			_BreakAsteroidPiece2.y = _breakAsteroid.y - 20;
+			//	breakPieceMovement(e);
+			if (this.contains(_breakAsteroid))
+			{
+				removeChild(_breakAsteroid);
+			}
 		}
 		
 		private function SpawnAsteroids():void 
 		{
-			if (_asteroid.x <= -20)
-			{
-				_asteroid.x += 1400;
-			}
-			
 			addChild(_asteroid);
 			_asteroid.scaleX = 0.5;
 			_asteroid.scaleY = 0.5;
-			_asteroid.x = stage.stageWidth;
+			_asteroid.x = 1350;
 			_asteroid.y = 120 + Math.floor(Math.random() * 480);
+		}
+		
+		private function SpawnRate():void
+		{
+			//position checking
+			if (this.contains(_asteroid))
+			{
+				if (_asteroid.x <= -100)
+				{
+					removeChild(_asteroid);
+					_AsteroidCounter--;
+					trace(_AsteroidCounter);
+				}	
+			}
+			if (this.contains(_breakAsteroid))
+			{
+				if (_breakAsteroid.x <= -100)
+				{
+					removeChild(_breakAsteroid);
+					_AsteroidCounter--;
+					trace(_AsteroidCounter);
+				}
+			}
+			
+			//check for pieces
+			if (this.contains(_BreakAsteroidPiece || _BreakAsteroidPiece2))
+			{
+				_PieceTracker = true;
+			}
+			
+			//spawner
+			if (_ObsSpawner >= 120)
+			{
+				_ObsDetermine = Math.floor( Math.random() * 11 );
+				
+				if (_ObsDetermine > 5 || _AsteroidCounter < 1)
+				{
+					SpawnAsteroids();//normal asteroid
+					_AsteroidCounter++;
+					trace(_AsteroidCounter);
+					_ObsSpawner = 0;
+				}
+				if (_ObsDetermine <= 5 || _AsteroidCounter < 1)
+				{
+					if (_PieceTracker == false)
+					{
+						addChild(_breakAsteroid);//breakable asteroid
+						_AsteroidCounter++;
+						trace(_AsteroidCounter);
+						_breakAsteroid.x = 1450;
+						_breakAsteroid.y = 120 + Math.floor(Math.random() * 400);
+						_breakAsteroid.x -= _Scrollspeed / 3.5;
+						
+						trace(_breakAsteroid.x);
+						
+						_ObsSpawner = 0;
+					}	
+				}
+			}else(_ObsSpawner++)
 		}
 		
 		private function Tile1(e:Event):void
@@ -494,11 +588,11 @@ package
 			_asteroid2.x = stage.stageWidth;
 			_asteroid2.y = 120 + Math.floor(Math.random() * 500);
 		
-			addChild(_breakAsteroid);
-			_breakAsteroid.scaleX = 1;
-			_breakAsteroid.scaleY = 1;
-			_breakAsteroid.x = stage.stageWidth;
-			_breakAsteroid.y = stage.stageHeight / 2;
+			//addChild(_breakAsteroid);
+			//_breakAsteroid.scaleX = 1;
+			//_breakAsteroid.scaleY = 1;
+			//_breakAsteroid.x = stage.stageWidth;
+			//_breakAsteroid.y = stage.stageHeight / 2;
 			
 			
 		//	addChild(_enemy);
