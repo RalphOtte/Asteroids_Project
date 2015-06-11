@@ -9,7 +9,7 @@ package
 	 * ...
 	 * @author Ralph Otte
 	 */
-	public class WinScreen 
+	public class WinScreen extends Sprite
 	{
 		private var _Win:TextField;
 		
@@ -34,8 +34,10 @@ package
 		{
 			_Win = new TextField();
 			_Win.textColor = 0xFFFFFF;	 // Wit
-			_Win.width = stage.stagewidth / 2;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
-			_Win.height = stage.stageheight / 2;
+			_Win.width = 1280 / 2;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
+			_Win.height = 720 / 2;
+			_Win.x = 1080 / 2  ;
+			_Win.y = 620 / 2;
 			_Win.scaleX = 3;			 	
 			_Win.scaleY = 3;
 			_Win.text = "YOU WIN.";

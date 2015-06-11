@@ -39,6 +39,8 @@ package
 		private var _ObsDetermine:int;
 		private var _AsteroidCounter:int;
 		private var _PieceTracker:Boolean;
+		private var _WinScreen:WinScreen = new WinScreen;
+		private var _GameOverScreen:GameOverScreen = new GameOverScreen;
 		
 		//Alle Timers
 		private var _1SecTimer:Timer = new Timer(1000);
@@ -109,7 +111,6 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			addEventListener(Event.ENTER_FRAME, collisionCheck);
 			addEventListener(Event.ENTER_FRAME, addBullets1);
-			addEventListener(Event.ENTER_FRAME, addBullets2);
 			addEventListener(Event.ENTER_FRAME, breakPieceMovement);
 			//_SpawnRate.addEventListener(TimerEvent.TIMER, SpawnAsteroids);
 			_Curtain1 = new _CurtainUp();
@@ -285,156 +286,14 @@ package
 					trace("Player invincible");
 				}
 			}
-			
-			//PLAYER 2
-			//Hittest for all asteroids
-			if (this.contains(_bullet2))
-			{
-				if (_bullet2.x >= 1280)
-				{
-					removeChild(_bullet2);
-				}
-			}
-			
-			if (_asteroid.hitTestObject(_Player2))
-			{
-				if (_Player2._InvincibleFrame == false)
-				{
-					//trace("Hit an Asteroid");
-					_Player2._HealthVisible = 0;
-					_Player2._HealthCounter--;
-				}
-				if (_Player2._InvincibleFrame == true)
-				{
-					//trace("Player invincible");
-				}
-			}
-			else (_asteroid.x -= _Scrollspeed/1.5)
-			
-			
-			if (_breakAsteroid.hitTestObject(_Player2))
-			{
-				trace("Hit a Breakable Asteroid");
-				
-				_breakAsteroid._AsteroidsHealth -= 5;
-			}
-			else (_breakAsteroid.x -= _Scrollspeed / 1.5)
-			
-			
-			//asteroid pieces
-			if (_BreakAsteroidPiece.hitTestObject(_Player2))
-			{
-				//removeChild(_BreakAsteroidPiece);
-				trace("Hit a Breakable Asteroid piece1");
-				_Player2._HealthCounter--;
-			}
-			else(_BreakAsteroidPiece.x -= _Scrollspeed / 1.5)
-			
-			if (_BreakAsteroidPiece2.hitTestObject(_Player2))
-			{
-				trace("Hit a Breakable Asteroid piece2");
-				//removeChild(_BreakAsteroidPiece2);
-				_Player2._HealthCounter--;
-			}
-			else (_BreakAsteroidPiece2.x -= _Scrollspeed / 1.5)
-			
-			
-			//Healthpool
-			if (_breakAsteroid.hitTestObject(_bullet2))
-			{
-				_breakAsteroid._AsteroidsHealth -= 5;
-			}
-			
-			if (_breakAsteroid._AsteroidsHealth == 0)
-			{
-				spawnBreakPieces();
-			}
-			
-			//Hittest + bulletmovement			
-			if (_bullet2.hitTestObject(_breakAsteroid))
-			{
-				trace("Bullet hit a breakable asteroid!");
-				_bullet2.x = 0;
-				_bullet2.y = 0;
-				removeChild(_bullet2);
-			}
-			else(_bullet2.x += 5)
-			
-			if (_bullet2.hitTestObject(_asteroid))
-			{
-				trace("Bullet hit an indestructible asteroid");
-				_bullet2.x = 0;
-				_bullet2.y = 0;
-				removeChild(_bullet2);
-			}
-			else(_bullet2.x += 5)
-			
-			//Hittest for all borders
-			if (HBorder.hitTestObject(_Player2))
-			{
-				if (_Player2._InvincibleFrame == false)
-				{
-					trace("Hit High border");
-					_Player2._HealthVisible = 0;
-					_Player2._HealthCounter--;
-				}
-				if (_Player2._InvincibleFrame == true)
-				{
-					//trace("Player invincible");
-				}
-			}
-			if (HBorder2.hitTestObject(_Player2))
-			{
-				if (_Player2._InvincibleFrame == false)
-				{
-					trace("Hit High border");	
-					_Player2._HealthVisible = 0;
-					_Player2._HealthCounter--;
-				}
-				
-				if (_Player2._InvincibleFrame == true)
-				{
-					//trace("Player invincible");
-				}
-			}
-			if (LBorder.hitTestObject(_Player2))
-			{
-				if (_Player2._InvincibleFrame == false)
-				{
-					trace("Hit Low border");
-					_Player2._HealthVisible = 0;
-					_Player2._HealthCounter--;
-				}
-				
-				if (_Player2._InvincibleFrame == true)
-				{
-					trace("Player invincible");
-				}
-			}
-			if (LBorder2.hitTestObject(_Player2))
-			{
-				if (_Player2._InvincibleFrame == false)
-				{
-					trace("Hit Low border");
-					_Player2._HealthVisible = 0;
-					_Player2._HealthCounter--;
-				}
-				
-				if (_Player2._InvincibleFrame == true)
-				{
-					trace("Player invincible");
-				}
-			}
-			
 			//hittest for finish
 			if (_finish.hitTestObject(_Player))
 			{
 				trace("player 1 Crossed finish");
+				addChild(_WinScreen);
+				//addChild(_GameOverScreen);
 			}
-			if (_finish.hitTestObject(_Player2))
-			{
-				trace("player 2 crossed finish");
-			}
+
 		}
 		
 		private function loop1(e:Event):void 
@@ -589,19 +448,6 @@ package
 					addChild(_bullet1);
 					_bullet1.x = _Player.x;
 					_bullet1.y = _Player.y;
-				}
-			}
-		}
-		
-		private function addBullets2(e:Event):void 
-		{
-			if (_Player._ShiftButtonIsDown == true)
-			{
-				if (!this.contains(_bullet2))
-				{
-					addChild(_bullet2);
-					_bullet2.x = _Player.x;
-					_bullet2.y = _Player.y;
 				}
 			}
 		}

@@ -9,7 +9,7 @@ package
 	 * ...
 	 * @author Ralph Otte
 	 */
-	public class GameOverScreen 
+	public class GameOverScreen extends Sprite
 	{
 		private var _GameOver:TextField;
 		
@@ -34,8 +34,10 @@ package
 		{
 			_GameOver = new TextField();
 			_GameOver.textColor = 0xFFFFFF;	 // Wit
-			_GameOver.width = stage.stagewidth / 2;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
-			_GameOver.height = stage.stageheight / 2;
+			_GameOver.width = 1280 / 2;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
+			_GameOver.height = 1280 / 2;
+			_GameOver.x = 880 / 2  ;
+			_GameOver.y = 420 / 2;
 			_GameOver.scaleX = 3;			 	
 			_GameOver.scaleY = 3;
 			_GameOver.text = "GAMEOVER.";
