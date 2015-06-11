@@ -22,7 +22,7 @@ package
 		private var _ShipSelect:ShipSelect;
 		private var _MPShipSelect:MPShipSelect;
 		private var _Player:Player = new Player;
-		private var _Player2:Player = new Player;
+		private var _Player2:Player2 = new Player2;
 		private var _GM:GameManager = new GameManager;
 		private var _asteroid:Asteroid = new Asteroid; 
 		private var _asteroid2:Asteroid = new Asteroid;

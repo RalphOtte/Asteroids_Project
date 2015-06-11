@@ -11,7 +11,7 @@ package
 	 */
 	public class WinScreen 
 	{
-		private var _GameOver:TextField;
+		private var _Win:TextField;
 		
 		[Embed(source="../Assets/Game/Backgrounds/Space.jpg")]
 		private var backgroundImg:Class;
@@ -27,19 +27,19 @@ package
 		
 		private function init(e:Event):void 
 		{
-			GameOverText();
+			WinText();
 		}
 		
-		private function GameOverText():void 
+		private function WinText():void 
 		{
-			_GameOver = new TextField();
-			_GameOver.textColor = 0xFFFFFF;	 // Wit
-			_GameOver.width = stage.stagewidth / 2;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
-			_GameOver.height = stage.stageheight / 2;
-			_GameOver.scaleX = 3;			 	
-			_GameOver.scaleY = 3;
-			_GameOver.text = "YOU WIN.";
-			addChild(_GameOver);
+			_Win = new TextField();
+			_Win.textColor = 0xFFFFFF;	 // Wit
+			_Win.width = stage.stagewidth / 2;				 // Dit is de "available" aantal pixels waarop de text wordt laten zien
+			_Win.height = stage.stageheight / 2;
+			_Win.scaleX = 3;			 	
+			_Win.scaleY = 3;
+			_Win.text = "YOU WIN.";
+			addChild(_Win);
 		}
 	}
 }
