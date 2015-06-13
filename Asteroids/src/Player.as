@@ -41,11 +41,6 @@
 		public var _HealthCounter:int = 3;
 		public var _InvincibleFrame:Boolean;
 		
-		//sounds
-		private var _Shootsound:Sound = new Sound;
-		
-		
-		
 		[Embed(source="../Assets/Game/PlayerShips/Schip_rood.png")]
 		private var _Ship1:Class;
 		private var _RedShip:Bitmap;
@@ -252,9 +247,6 @@
 			if (e.keyCode == 16)
 			{
 				_ShiftButtonIsDown = true;
-				
-				_Shootsound.load(new URLRequest("../Assets/New folder/astroids-laser.mp3"));
-				_Shootsound.play(1);
 			}
 		}
 		
